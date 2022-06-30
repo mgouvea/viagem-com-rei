@@ -1,0 +1,5 @@
+.homeHeader {
+  width: 100%;
+  background-image: url('https://images.unsplash.com/photo-1656219626201-ef52cf2b969e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2072&q=80');
+  object-fit: cover;
+}
