@@ -138,11 +138,6 @@ const DesktopNav = () => {
                   textDecoration: 'none',
                   color: linkHoverColor,
                 }}
-                // onClick={
-                //   navItem.href === '/Pacotes'
-                //     ? setPacote(true)
-                //     : setPacote(false)
-                // }
               >
                 {navItem.label}
               </Link>
@@ -289,18 +284,19 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Prêmios',
-    children: [
-      {
-        label: '5 dias em Jericoacoara - CE',
-        subLabel: 'Hotel padrão 4 estrelas',
-        href: '/Jeri',
-      },
-      {
-        label: '1 Iphone',
-        subLabel: 'Última Geração',
-        href: '#',
-      },
-    ],
+    href: '/Jeri',
+    // children: [
+    //   {
+    //     label: '5 dias em Jericoacoara - CE',
+    //     subLabel: 'Hotel padrão 4 estrelas',
+    //     href: '/Jeri',
+    //   },
+    //   {
+    //     label: '1 Iphone',
+    //     subLabel: 'Última Geração',
+    //     href: '#',
+    //   },
+    // ],
   },
   {
     label: 'Pacotes',
