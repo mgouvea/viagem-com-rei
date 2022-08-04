@@ -13,9 +13,12 @@ import {
   Button,
   Img,
   Flex,
+  Link,
 } from '@chakra-ui/react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { Navbar } from '../Navbar';
+import { Link as ReactRouter } from 'react-router-dom';
+
 import pix from '../../assets/pix.svg';
 
 function PriceWrapper({ children }: { children: ReactNode }) {
@@ -87,9 +90,15 @@ export default function Pacotes() {
                 </ListItem>
               </List>
               <Box w="80%" pt={7}>
-                <Button w="full" colorScheme="orange" variant="outline">
-                  Comprar
-                </Button>
+                <Link
+                  as={ReactRouter}
+                  to={'/Checkout20'}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button w="full" colorScheme="orange" variant="outline">
+                    Comprar
+                  </Button>
+                </Link>
               </Box>
             </VStack>
           </PriceWrapper>
@@ -148,9 +157,15 @@ export default function Pacotes() {
                   </ListItem>
                 </List>
                 <Box w="80%" pt={7}>
-                  <Button w="full" colorScheme="orange">
-                    Comprar
-                  </Button>
+                  <Link
+                    as={ReactRouter}
+                    to={'/Checkout30'}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <Button w="full" colorScheme="orange">
+                      Comprar
+                    </Button>
+                  </Link>
                 </Box>
               </VStack>
             </Box>
@@ -188,9 +203,15 @@ export default function Pacotes() {
                 </ListItem>
               </List>
               <Box w="80%" pt={7}>
-                <Button w="full" colorScheme="orange" variant="outline">
-                  Comprar
-                </Button>
+                <Link
+                  as={ReactRouter}
+                  to={'/Checkout'}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button w="full" colorScheme="orange" variant="outline">
+                    Comprar
+                  </Button>
+                </Link>
               </Box>
             </VStack>
           </PriceWrapper>

@@ -26,7 +26,6 @@ import {
 import { Link as ReactRouter } from 'react-router-dom';
 
 import logo from '../../assets/logoSvg.svg';
-import { useState } from 'react';
 
 export function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -88,7 +87,10 @@ export function Navbar() {
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10} align="center">
             <DesktopNav />
-            {window.location.pathname === '/Pacotes' ? null : (
+            {window.location.pathname === '/Pacotes' ||
+            window.location.pathname === '/Checkout' ||
+            window.location.pathname === '/Checkout20' ||
+            window.location.pathname === '/Checkout30' ? null : (
               <Button
                 ml="1rem"
                 display={{ base: 'none', md: 'inline-flex' }}
