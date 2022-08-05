@@ -46,13 +46,19 @@ export function Content() {
   const [cpf, setCpf] = useState('');
 
   useEffect(() => {
+    // TEST
     window.location.pathname === '/Checkout'
-      ? (setValue(50), setTicket(5))
+      ? (setValue(1), setTicket(5))
       : window.location.pathname === '/Checkout30'
-      ? (setValue(30), setTicket(3))
-      : (setValue(20), setTicket(1));
-    {
-    }
+      ? (setValue(1), setTicket(3))
+      : (setValue(1), setTicket(1));
+
+    // PROD
+    // window.location.pathname === '/Checkout'
+    //   ? (setValue(50), setTicket(5))
+    //   : window.location.pathname === '/Checkout30'
+    //   ? (setValue(30), setTicket(3))
+    //   : (setValue(20), setTicket(1));
   }, [window.location.pathname]);
 
   const getRandom = (a: number, b: number) => {
