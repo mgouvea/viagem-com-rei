@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/react';
 
 import { firstName, lastName, cpfMask, phoneMask } from '../../utils/mask';
+import { Link as ReactRouter } from 'react-router-dom';
 
 // import { format, formatDistanceToNow } from 'date-fns';
 // import ptBR from 'date-fns/locale/pt-BR';
@@ -27,6 +28,7 @@ import cpSegura from '../../assets/cpSegura.png';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { pix } from '../../services/pix';
+import { pixResponse } from '../../services/pixResponse';
 
 export function Content() {
   const [value, setValue] = useState(0);
@@ -36,7 +38,8 @@ export function Content() {
 
   const [dataQR, setDataQR] = useState();
   const [dataPastePix, setDataPastePix] = useState('');
-  const [expiration, setExpiration] = useState<Date>(new Date());
+  // const [expiration, setExpiration] = useState<Date>(new Date());
+  const [urlPayment, setUrlPayment] = useState('');
 
   const { hasCopied, onCopy } = useClipboard(dataPastePix);
 
@@ -53,13 +56,17 @@ export function Content() {
       ? (setValue(1), setTicket(3))
       : (setValue(1), setTicket(1));
 
+    if (hasPix) {
+      window.open(`${urlPayment}`, '_blank');
+    }
+
     // PROD
     // window.location.pathname === '/Checkout'
     //   ? (setValue(50), setTicket(5))
     //   : window.location.pathname === '/Checkout30'
     //   ? (setValue(30), setTicket(3))
     //   : (setValue(20), setTicket(1));
-  }, [window.location.pathname]);
+  }, [window.location.pathname, hasPix]);
 
   const getRandom = (a: number, b: number) => {
     return Math.floor(Math.random() * (b - a + 1)) + a;
@@ -104,24 +111,37 @@ export function Content() {
         setDataPastePix(
           response.data.point_of_interaction.transaction_data.qr_code
         );
-        // setExpiration();
+        setUrlPayment(
+          response?.data.point_of_interaction.transaction_data.ticket_url
+        );
 
-        // console.log(
-        //   'exp',
-        //   format(
-        //     response?.data?.date_of_expiration,
-        //     "d 'de' LLLL 'às' HH:mm'h'",
-        //     {
-        //       locale: ptBR,
-        //     }
-        //   )
-        // );
+        sethasPix(true);
 
+        console.log(
+          'respo-THEN',
+          response?.data?.point_of_interaction?.transaction_data?.ticket_url
+        );
         return response.data;
       })
       .catch(function (error) {
         console.error('err', error);
       });
+
+    // if (response?.status === 'pending') {
+    //   const responseWebHooks = await pixResponse
+    //     .get(`/${response?.id}/events`)
+    //     .then(function (resp: any) {
+    //       console.log(resp);
+    //     })
+    //     .catch(function (err: any) {
+    //       console.error(err);
+    //     });
+    //   // .then(function () {
+    //   //   // sempre será executado
+    //   // });
+
+    //   console.log('webhoook', responseWebHooks);
+    // }
 
     // await api
     //   .post(
@@ -185,7 +205,6 @@ export function Content() {
                 colorScheme={'orange'}
                 variant={'solid'}
                 onClick={(e) => {
-                  sethasPix(true);
                   handlePix();
                 }}
               >
@@ -233,45 +252,46 @@ export function Content() {
             </Text>
           </Flex>
           <Divider mt="1rem" w="25rem" mx="auto" />
-          <Flex align="center" justify="center" mt="1rem">
+          {/* <Flex align="center" justify="center" mt="1rem">
             <Image
               w="12rem"
               src={dataQR ? `data:image/jpeg;base64,${dataQR}` : ''}
             />
-          </Flex>
-          {hasPix ? (
-            <Flex
-              direction="column"
-              mb={2}
-              mt="1rem"
-              align="center"
-              justify="center"
-            >
-              <Text fontSize={'xs'} mb="0.3rem">
-                Ou copie nosso pix e pague no seu banco!
-              </Text>
-              <Input
-                w="25rem"
-                value={dataPastePix}
-                isReadOnly
-                placeholder="Welcome"
-              />
-              <Button onClick={onCopy} ml={2} colorScheme="blues" mt="0.5rem">
-                {hasCopied ? 'Copiado' : 'Copiar'}
-              </Button>
-              {/* <Flex
-                direction={'column'}
-                fontSize="sm"
-                align={'center'}
-                color="gray.300"
-              >
-                <Text>Informações importantes</Text>
-                <Text>
-                  Pague seu pix até{' '}
-                </Text>
-              </Flex> */}
-            </Flex>
-          ) : null}
+          </Flex> */}
+          {hasPix
+            ? ''
+            : // <Flex
+              //   direction="column"
+              //   mb={2}
+              //   mt="1rem"
+              //   align="center"
+              //   justify="center"
+              // >
+              //   <Text fontSize={'xs'} mb="0.3rem">
+              //     Ou copie nosso pix e pague no seu banco!
+              //   </Text>
+              //   <Input
+              //     w="25rem"
+              //     value={dataPastePix}
+              //     isReadOnly
+              //     placeholder="Welcome"
+              //   />
+              //   <Button onClick={onCopy} ml={2} colorScheme="blues" mt="0.5rem">
+              //     {hasCopied ? 'Copiado' : 'Copiar'}
+              //   </Button>
+              //   {/* <Flex
+              //     direction={'column'}
+              //     fontSize="sm"
+              //     align={'center'}
+              //     color="gray.300"
+              //   >
+              //     <Text>Informações importantes</Text>
+              //     <Text>
+              //       Pague seu pix até{' '}
+              //     </Text>
+              //   </Flex> */}
+              // </Flex>
+              null}
         </Flex>
       </Flex>
       <Flex justify={'center'} mt="1rem">
