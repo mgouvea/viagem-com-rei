@@ -17,7 +17,8 @@ import {
 } from '@chakra-ui/react';
 
 import { firstName, lastName, cpfMask, phoneMask } from '../../utils/mask';
-import { Link as ReactRouter } from 'react-router-dom';
+// import { Link as ReactRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // import { format, formatDistanceToNow } from 'date-fns';
 // import ptBR from 'date-fns/locale/pt-BR';
@@ -34,12 +35,16 @@ export function Content() {
   const [value, setValue] = useState(0);
   const [qtd, setQtd] = useState(1);
   const [ticket, setTicket] = useState(0);
-  const [hasPix, sethasPix] = useState(false);
 
+  // Mercado pago states
+  const [pixId, setPixId] = useState('');
+  const [hasPix, sethasPix] = useState(false);
   const [dataQR, setDataQR] = useState();
   const [dataPastePix, setDataPastePix] = useState('');
   // const [expiration, setExpiration] = useState<Date>(new Date());
-  const [urlPayment, setUrlPayment] = useState('');
+  // const [urlPayment, setUrlPayment] = useState('');
+  const [pixHasCreated, setPixHasCreated] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState('');
 
   const { hasCopied, onCopy } = useClipboard(dataPastePix);
 
@@ -56,10 +61,6 @@ export function Content() {
       ? (setValue(1), setTicket(3))
       : (setValue(1), setTicket(1));
 
-    if (hasPix) {
-      window.open(`${urlPayment}`, '_blank');
-    }
-
     // PROD
     // window.location.pathname === '/Checkout'
     //   ? (setValue(50), setTicket(5))
@@ -68,24 +69,82 @@ export function Content() {
     //   : (setValue(20), setTicket(1));
   }, [window.location.pathname, hasPix]);
 
+  const webHookInterval = () => {
+    // Chamando a api a cada 20 segundos
+    const interval = setInterval(() => {
+      handleWebHooks(pixId);
+    }, 20000);
+
+    return interval;
+  };
+
+  useEffect(() => {
+    if (pixHasCreated) {
+      webHookInterval();
+
+      setTimeout(() => {
+        clearInterval(webHookInterval());
+      }, 240000);
+    }
+  }, [pixHasCreated]);
+
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (paymentStatus === 'approved') {
+      clearInterval(webHookInterval());
+      handleDataPost();
+      navigate('/PaymentApproved');
+    }
+  }, [paymentStatus]);
+
   const getRandom = (a: number, b: number) => {
     return Math.floor(Math.random() * (b - a + 1)) + a;
   };
 
-  const handlePix = async () => {
-    const headers = {
-      'Content-Type': 'application/json;charset=utf-8',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
-    };
+  // pending
+  //approved
 
+  const headers = {
+    'Content-Type': 'application/json;charset=utf-8',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
+  };
+
+  const handleDataPost = async () => {
     let luckyNumber = [];
     for (let i = 0; i < ticket; i++) {
       luckyNumber.push(getRandom(2000, 3000));
     }
-    Checkbox;
+    await api
+      .post(
+        '/',
+        {
+          name: name,
+          email: email,
+          phone: phone,
+          luckyNumber: luckyNumber,
+        },
+        { headers }
+      )
+      .then(function (response) {
+        console.log('resp', response);
+      })
+      .catch(function (error) {
+        console.error('err', error);
+      });
+  };
 
-    const response = await pix
+  const handleWebHooks = async (id: string) => {
+    try {
+      const response = await pixResponse.get(`/${id}`);
+      setPaymentStatus(response?.data?.status);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handlePix = async () => {
+    await pix
       .post(
         '/',
         {
@@ -105,61 +164,24 @@ export function Content() {
         { headers }
       )
       .then(function (response) {
+        setPixId(response?.data.id);
         setDataQR(
           response.data.point_of_interaction.transaction_data.qr_code_base64
         );
         setDataPastePix(
           response.data.point_of_interaction.transaction_data.qr_code
         );
-        setUrlPayment(
-          response?.data.point_of_interaction.transaction_data.ticket_url
-        );
-
+        // setUrlPayment(
+        //   response?.data.point_of_interaction.transaction_data.ticket_url
+        // );
         sethasPix(true);
+        setPixHasCreated(true);
 
-        console.log(
-          'respo-THEN',
-          response?.data?.point_of_interaction?.transaction_data?.ticket_url
-        );
-        return response.data;
+        return response.data.send(200);
       })
       .catch(function (error) {
         console.error('err', error);
       });
-
-    // if (response?.status === 'pending') {
-    //   const responseWebHooks = await pixResponse
-    //     .get(`/${response?.id}/events`)
-    //     .then(function (resp: any) {
-    //       console.log(resp);
-    //     })
-    //     .catch(function (err: any) {
-    //       console.error(err);
-    //     });
-    //   // .then(function () {
-    //   //   // sempre será executado
-    //   // });
-
-    //   console.log('webhoook', responseWebHooks);
-    // }
-
-    // await api
-    //   .post(
-    //     '/',
-    //     {
-    //       name: name,
-    //       email: email,
-    //       phone: phone,
-    //       luckyNumber: luckyNumber,
-    //     },
-    //     { headers }
-    //   )
-    //   .then(function (response) {
-    //     console.log('resp', response);
-    //   })
-    //   .catch(function (error) {
-    //     console.error('err', error);
-    //   });
   };
 
   return (
@@ -252,46 +274,45 @@ export function Content() {
             </Text>
           </Flex>
           <Divider mt="1rem" w="25rem" mx="auto" />
-          {/* <Flex align="center" justify="center" mt="1rem">
+          <Flex align="center" justify="center" mt="1rem">
             <Image
               w="12rem"
               src={dataQR ? `data:image/jpeg;base64,${dataQR}` : ''}
             />
-          </Flex> */}
-          {hasPix
-            ? ''
-            : // <Flex
-              //   direction="column"
-              //   mb={2}
-              //   mt="1rem"
-              //   align="center"
-              //   justify="center"
-              // >
-              //   <Text fontSize={'xs'} mb="0.3rem">
-              //     Ou copie nosso pix e pague no seu banco!
-              //   </Text>
-              //   <Input
-              //     w="25rem"
-              //     value={dataPastePix}
-              //     isReadOnly
-              //     placeholder="Welcome"
-              //   />
-              //   <Button onClick={onCopy} ml={2} colorScheme="blues" mt="0.5rem">
-              //     {hasCopied ? 'Copiado' : 'Copiar'}
-              //   </Button>
-              //   {/* <Flex
-              //     direction={'column'}
-              //     fontSize="sm"
-              //     align={'center'}
-              //     color="gray.300"
-              //   >
-              //     <Text>Informações importantes</Text>
-              //     <Text>
-              //       Pague seu pix até{' '}
-              //     </Text>
-              //   </Flex> */}
-              // </Flex>
-              null}
+          </Flex>
+          {hasPix ? (
+            <Flex
+              direction="column"
+              mb={2}
+              mt="1rem"
+              align="center"
+              justify="center"
+            >
+              <Text fontSize={'xs'} mb="0.3rem">
+                Ou copie nosso pix e pague no seu banco!
+              </Text>
+              <Input
+                w="25rem"
+                value={dataPastePix}
+                isReadOnly
+                // placeholder="Welcome"
+              />
+              <Button onClick={onCopy} ml={2} colorScheme="orange" mt="0.5rem">
+                {hasCopied ? 'Copiado' : 'Copiar'}
+              </Button>
+              {/* <Flex
+                  direction={'column'}
+                  fontSize="sm"
+                  align={'center'}
+                  color="gray.300"
+                >
+                  <Text>Informações importantes</Text>
+                  <Text>
+                    Pague seu pix até{' '}
+                  </Text>
+                </Flex> */}
+            </Flex>
+          ) : null}
         </Flex>
       </Flex>
       <Flex justify={'center'} mt="1rem">
