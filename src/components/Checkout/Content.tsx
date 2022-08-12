@@ -31,10 +31,6 @@ import { api } from '../../services/api';
 import { pix } from '../../services/pix';
 import { pixResponse } from '../../services/pixResponse';
 
-interface UpdateTickets {
-  number: number[];
-}
-
 export function Content() {
   const [value, setValue] = useState(0);
   const [qtd, setQtd] = useState(1);
@@ -61,6 +57,8 @@ export function Content() {
   const [updateLuckyNumbers, setUpdateLuckyNumbers] = useState<number[]>([]);
   const [postLuckyNumbers, setPostLuckyNumbers] = useState<number[]>([]);
 
+  const [checkoutPathName, setCheckoutPathName] = useState('');
+
   async function getAllTickets() {
     try {
       const respTickets = await api.get('/tickets');
@@ -77,8 +75,8 @@ export function Content() {
     window.location.pathname === '/Checkout'
       ? (setValue(1), setTicket(5))
       : window.location.pathname === '/Checkout30'
-      ? (setValue(1), setTicket(3))
-      : (setValue(1), setTicket(1));
+      ? (setValue(1), setTicket(3), setCheckoutPathName('30'))
+      : (setValue(1), setTicket(1), setCheckoutPathName('20'));
 
     // PROD
     // window.location.pathname === '/Checkout'
@@ -88,30 +86,22 @@ export function Content() {
     //   : (setValue(20), setTicket(1));
   }, [window.location.pathname, hasPix]);
 
-  const webHookInterval = () => {
-    // Chamando a api a cada 20 segundos
-    const interval = setInterval(() => {
-      handleWebHooks(pixId);
-    }, 20000);
-
-    return interval;
-  };
-
   let navigate = useNavigate();
   useEffect(() => {
     if (pixHasCreated) {
-      if (paymentStatus !== 'approved') {
-        webHookInterval();
-      }
-      if (paymentStatus === 'approved') {
-        clearInterval(webHookInterval());
+      const interval = setInterval(() => {
+        handleWebHooks(pixId);
+      }, 20000);
+
+      if (paymentStatus === 'pending') {
+        setTimeout(() => {
+          clearInterval(interval);
+        }, 240000);
+      } else if (paymentStatus === 'approved') {
+        clearInterval(interval);
         handleDataPost();
         navigate('/PaymentApproved');
       }
-
-      setTimeout(() => {
-        clearInterval(webHookInterval());
-      }, 240000);
     }
   }, [pixHasCreated, paymentStatus]);
 
@@ -167,13 +157,9 @@ export function Content() {
       });
 
     await api
-      .patch(
-        `/tickets/${idTickets}`,
-        {
-          luckyNumbers: postLuckyNumbers,
-        },
-        { headers }
-      )
+      .patch(`/tickets/${idTickets}`, {
+        luckyNumbers: postLuckyNumbers,
+      })
       .then(function (response) {
         console.log('resp', response);
       })
