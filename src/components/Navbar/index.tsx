@@ -14,7 +14,6 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
-  Image,
   Img,
 } from '@chakra-ui/react';
 import {
@@ -287,7 +286,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Prêmios',
-    href: '/Jeri',
+    href: '/jeri',
     // children: [
     //   {
     //     label: '5 dias em Jericoacoara - CE',
@@ -303,7 +302,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Pacotes',
-    href: '/Pacotes',
+    href: '/pacotes',
   },
   // {
   //   label: 'Faça uma doação',
