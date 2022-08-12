@@ -31,6 +31,10 @@ import { api } from '../../services/api';
 import { pix } from '../../services/pix';
 import { pixResponse } from '../../services/pixResponse';
 
+interface UpdateTickets {
+  number: number[];
+}
+
 export function Content() {
   const [value, setValue] = useState(0);
   const [qtd, setQtd] = useState(1);
@@ -53,7 +57,22 @@ export function Content() {
   const [phone, setPhone] = useState('');
   const [cpf, setCpf] = useState('');
 
+  // salva estado atual de tickets
+  const [updateLuckyNumbers, setUpdateLuckyNumbers] = useState<number[]>([]);
+  const [postLuckyNumbers, setPostLuckyNumbers] = useState<number[]>([]);
+
+  async function getAllTickets() {
+    try {
+      const respTickets = await api.get('/tickets');
+      setUpdateLuckyNumbers(respTickets?.data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  const idTickets = '62f65e2585e585a0e681736f';
+
   useEffect(() => {
+    getAllTickets();
     // TEST
     window.location.pathname === '/Checkout'
       ? (setValue(1), setTicket(5))
@@ -78,24 +97,29 @@ export function Content() {
     return interval;
   };
 
+  let navigate = useNavigate();
   useEffect(() => {
     if (pixHasCreated) {
-      webHookInterval();
+      if (paymentStatus !== 'approved') {
+        webHookInterval();
+      }
+      if (paymentStatus === 'approved') {
+        clearInterval(webHookInterval());
+        handleDataPost();
+        navigate('/PaymentApproved');
+      }
 
       setTimeout(() => {
         clearInterval(webHookInterval());
       }, 240000);
     }
-  }, [pixHasCreated]);
+  }, [pixHasCreated, paymentStatus]);
 
-  let navigate = useNavigate();
-  useEffect(() => {
-    if (paymentStatus === 'approved') {
-      clearInterval(webHookInterval());
-      handleDataPost();
-      navigate('/PaymentApproved');
-    }
-  }, [paymentStatus]);
+  // useEffect(() => {
+  //   if (paymentStatus === 'approved') {
+  //     clearInterval(webHookInterval());
+  //   }
+  // }, [paymentStatus]);
 
   const getRandom = (a: number, b: number) => {
     return Math.floor(Math.random() * (b - a + 1)) + a;
@@ -111,10 +135,19 @@ export function Content() {
   };
 
   const handleDataPost = async () => {
-    let luckyNumber = [];
+    let luckyNumber: number[] = [];
+
     for (let i = 0; i < ticket; i++) {
-      luckyNumber.push(getRandom(2000, 3000));
+      let num = getRandom(2000, 3000);
+      do {
+        num = getRandom(2000, 3000);
+      } while (updateLuckyNumbers?.includes(num));
+
+      luckyNumber.push(num);
     }
+
+    setPostLuckyNumbers(luckyNumber.concat(updateLuckyNumbers));
+
     await api
       .post(
         '/users',
@@ -134,10 +167,10 @@ export function Content() {
       });
 
     await api
-      .post(
-        '/tickets',
+      .patch(
+        `/tickets/${idTickets}`,
         {
-          luckyNumbers: luckyNumber,
+          luckyNumbers: postLuckyNumbers,
         },
         { headers }
       )
