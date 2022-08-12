@@ -117,12 +117,27 @@ export function Content() {
     }
     await api
       .post(
-        '/',
+        '/users',
         {
           name: name,
           email: email,
           phone: phone,
           luckyNumber: luckyNumber,
+        },
+        { headers }
+      )
+      .then(function (response) {
+        console.log('resp', response);
+      })
+      .catch(function (error) {
+        console.error('err', error);
+      });
+
+    await api
+      .post(
+        '/tickets',
+        {
+          luckyNumbers: luckyNumber,
         },
         { headers }
       )
