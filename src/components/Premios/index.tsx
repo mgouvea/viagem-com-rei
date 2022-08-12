@@ -16,12 +16,15 @@ import { Itens } from './Itens';
 
 import jeri from '../../assets/jeri4.jpg';
 import iphone from '../../assets/iphone5.png';
+import { useNavigate } from 'react-router-dom';
 
 export function Premios() {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
+  let navigate = useNavigate();
+
   return (
     <>
       <Container maxW={'3xl'}>
@@ -85,6 +88,7 @@ export function Premios() {
               _hover={{
                 bg: 'green.500',
               }}
+              onClick={() => navigate('/Pacotes')}
             >
               Participe já!
             </Button>

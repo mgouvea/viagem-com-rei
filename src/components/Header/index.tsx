@@ -1,4 +1,11 @@
-import { Box, Container, Flex, Img, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Flex,
+  Img,
+  Text,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import { Navbar } from '../Navbar';
 
 import fundoHome from '../../assets/funHome2.png';
@@ -6,6 +13,10 @@ import Infos from './Infos';
 // import styles from './Header.module.css';
 
 export function Header() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Box>
       <Box boxShadow="dark-lg">
@@ -17,10 +28,10 @@ export function Header() {
         bgImage={fundoHome}
         bgSize="cover"
         bgRepeat="no-repeat"
-        bgPosition="center"
+        bgPosition={isWideVersion ? 'center' : 'right'}
         align="center"
         justify="flex-start"
-        height="75rem"
+        height={isWideVersion ? '75rem' : '72rem'}
         justifyContent="flex-end"
       >
         <Infos />

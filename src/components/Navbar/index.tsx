@@ -23,12 +23,13 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
-import { Link as ReactRouter } from 'react-router-dom';
+import { Link as ReactRouter, useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/logoSvg.svg';
 
 export function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
+  let navigate = useNavigate();
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -78,9 +79,9 @@ export function Navbar() {
                 src={logo}
                 alt="Viagem com o rei"
                 boxSize="5rem"
-                w="100%"
+                w={isWideVersion ? '100%' : '90%'}
                 objectFit="cover"
-                ml="2rem"
+                ml={isWideVersion ? '2rem' : ''}
               />
             </Link>
           </Text>
@@ -98,7 +99,7 @@ export function Navbar() {
                 fontWeight={600}
                 color={'white'}
                 bg={'orange.400'}
-                // href={'#'}
+                onClick={() => navigate('/Pacotes')}
                 _hover={{
                   bg: 'orange.500',
                 }}
@@ -304,8 +305,8 @@ const NAV_ITEMS: Array<NavItem> = [
     label: 'Pacotes',
     href: '/Pacotes',
   },
-  {
-    label: 'Faça uma doação',
-    href: '#',
-  },
+  // {
+  //   label: 'Faça uma doação',
+  //   href: '#',
+  // },
 ];

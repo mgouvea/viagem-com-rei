@@ -7,8 +7,14 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Infos() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+  let navigate = useNavigate();
   return (
     <Stack
       // minH={'100vh'}
@@ -55,6 +61,7 @@ export default function Infos() {
               _hover={{
                 bg: 'yellow.400',
               }}
+              onClick={() => navigate('/Pacotes')}
             >
               Comprar bilhete
             </Button>

@@ -75,10 +75,10 @@ export function Footer() {
           <Link as={ReactRouter} to={'/Pacotes'}>
             Pacotes
           </Link>
-          <Link as={ReactRouter} to={'/'}>
+          {/* <Link as={ReactRouter} to={'/'}>
             Doação
-          </Link>
-          <Link as={ReactRouter} to={'/'}>
+          </Link> */}
+          <Link as={ReactRouter} to={'/Pacotes'}>
             Comprar bilhete
           </Link>
         </Stack>
@@ -103,9 +103,9 @@ export function Footer() {
             <SocialButton label={'Whatsapp'} href={'#'}>
               <FaWhatsapp />
             </SocialButton>
-            <SocialButton label={'YouTube'} href={'#'}>
+            {/* <SocialButton label={'YouTube'} href={'#'}>
               <FaYoutube />
-            </SocialButton>
+            </SocialButton> */}
             <SocialButton label={'Instagram'} href={'#'}>
               <FaInstagram />
             </SocialButton>
