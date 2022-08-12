@@ -14,6 +14,7 @@ import {
   Divider,
   useClipboard,
   FormHelperText,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 
 import { firstName, lastName, cpfMask, phoneMask } from '../../utils/mask';
@@ -32,6 +33,11 @@ import { pix } from '../../services/pix';
 import { pixResponse } from '../../services/pixResponse';
 
 export function Content() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   const [value, setValue] = useState(0);
   const [qtd, setQtd] = useState(1);
   const [ticket, setTicket] = useState(0);
@@ -274,8 +280,10 @@ export function Content() {
           </Stack>
         </Flex>
 
+        {/* ABA LATERAL  QRCODE  */}
         <Flex
-          w="35rem"
+          w={isWideVersion ? '35rem' : '100%'}
+          height={isWideVersion ? '' : '100%'}
           backgroundColor="gray.500"
           mr="5rem"
           color="white"
@@ -284,7 +292,12 @@ export function Content() {
           {/* <Flex justify="center" mt="2rem" mb="3rem">
             <Img src={logoY} w="5rem" />
           </Flex> */}
-          <Heading fontSize="xl" textAlign={'start'} pl="5rem" mt="2rem">
+          <Heading
+            fontSize={isWideVersion ? 'xl' : '2xl'}
+            textAlign={isWideVersion ? 'start' : 'center'}
+            pl={isWideVersion ? '5rem' : ''}
+            mt="2rem"
+          >
             Resumo da compra
           </Heading>
           <Divider mt="1.5rem" w="25rem" mx="auto" />
@@ -322,16 +335,26 @@ export function Content() {
               align="center"
               justify="center"
             >
-              <Text fontSize={'xs'} mb="0.3rem">
-                Ou copie nosso pix e pague no seu banco!
+              <Text fontSize={isWideVersion ? 'xs' : 'md'} mb="0.3rem">
+                {isWideVersion
+                  ? 'Ou copie nosso pix e pague no seu banco!'
+                  : 'Copie nossa chave pix e pague no seu banco!'}
               </Text>
               <Input
-                w="25rem"
+                w={isWideVersion ? '25rem' : '20rem'}
                 value={dataPastePix}
                 isReadOnly
                 // placeholder="Welcome"
               />
-              <Button onClick={onCopy} ml={2} colorScheme="orange" mt="0.5rem">
+              <Button
+                onClick={onCopy}
+                ml={2}
+                w={isWideVersion ? '' : '7rem'}
+                fontSize={isWideVersion ? '' : 'lg'}
+                colorScheme="orange"
+                mt={isWideVersion ? '0.5rem' : '1rem'}
+                mb={isWideVersion ? '' : '0.5rem'}
+              >
                 {hasCopied ? 'Copiado' : 'Copiar'}
               </Button>
               {/* <Flex
