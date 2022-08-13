@@ -95,6 +95,8 @@ export function Content() {
   // let navigate = useNavigate();
   useEffect(() => {
     if (pixHasCreated) {
+      console.log('luckyNumbers', postLuckyNumbers);
+      console.log('updateLuckyNumbers', updateLuckyNumbers);
       const interval = setInterval(() => {
         handleWebHooks(pixId);
       }, 20000);
@@ -143,11 +145,11 @@ export function Content() {
       luckyNumber.push(num);
     }
     setLuckyNumbers(luckyNumber);
-    setPostLuckyNumbers(luckyNumber.concat(updateLuckyNumbers));
+    let patchLuckyNumbers: number[] = luckyNumber.concat(updateLuckyNumbers);
 
     await api
       .post(
-        '/',
+        '/users',
         {
           name: name,
           email: email,
@@ -165,7 +167,7 @@ export function Content() {
 
     await api
       .patch(`/tickets/${idTickets}`, {
-        luckyNumbers: postLuckyNumbers,
+        luckyNumbers: patchLuckyNumbers,
       })
       .then(function (response) {
         console.log('resp', response);
