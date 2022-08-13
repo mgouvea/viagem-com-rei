@@ -28,12 +28,12 @@ import logo from '../../assets/logoSvg.svg';
 
 export function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
-  let navigate = useNavigate();
 
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
+  let navigate = useNavigate();
 
   return (
     <Box>
@@ -136,6 +136,7 @@ const DesktopNav = () => {
                 fontSize={'md'}
                 fontWeight={500}
                 color={linkColor}
+                background={'transparent'}
                 _hover={{
                   textDecoration: 'none',
                   color: linkHoverColor,
@@ -226,8 +227,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
-        href={href ?? '#'}
+        as={ReactRouter}
+        to={href ?? '#'}
         justify={'space-between'}
         align={'center'}
         _hover={{
@@ -262,7 +263,13 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <Link
+                as={ReactRouter}
+                key={child.label}
+                py={2}
+                to={child.href!}
+                href={child.href}
+              >
                 {child.label}
               </Link>
             ))}
