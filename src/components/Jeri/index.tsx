@@ -73,10 +73,10 @@ export function Jeri() {
             <Text
               color={'gray.50'}
               fontWeight="bold"
-              fontSize={isWideVersion ? '1.1rem' : '1rem'}
-              textAlign={'justify'}
+              fontSize={isWideVersion ? '1.1rem' : '1.1rem'}
+              textAlign={isWideVersion ? 'justify' : 'left'}
               // border="1px solid red"
-              w={isWideVersion ? '30rem' : '19rem'}
+              w={isWideVersion ? '30rem' : '23rem'}
             >
               Compre um bilhete e concorra a 5 diárias em hotel padrão 4
               estrelas em Jericoacoara, com direito a 1 acompanhante, café da

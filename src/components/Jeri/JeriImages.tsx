@@ -7,6 +7,7 @@ import {
   Stat,
   StatLabel,
   StatNumber,
+  useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
 
@@ -37,18 +38,29 @@ function StatsCard(props: StatsCardProps) {
 }
 
 export default function JeriImages() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
-    <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
+    <Box
+      maxW="7xl"
+      mx={'auto'}
+      pt={5}
+      px={{ base: 2, sm: 12, md: 17 }}
+      // backgroundColor={isWideVersion ? '' : 'gray.100'}
+    >
       <chakra.h1
         textAlign={'center'}
         fontSize={'4xl'}
         py={10}
         fontWeight={'bold'}
-        color="white"
+        color={isWideVersion ? 'white' : 'gray.600'}
       >
         Conheça esse lugar incrível!
       </chakra.h1>
       <Flex
+        direction={isWideVersion ? 'row' : 'column'}
         // columns={{ base: 1, md: 3 }}
         // spacing={{ base: 5, lg: 8 }}
         // border="1px solid red"
