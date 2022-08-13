@@ -12,6 +12,7 @@ import {
   createIcon,
   IconProps,
   useColorModeValue,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { Navbar } from '../Navbar';
 
@@ -19,20 +20,24 @@ import fundoJeri from '../../assets/jeri7.jpg';
 import JeriImages from './JeriImages';
 
 export function Jeri() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Box
       mt="0.1rem"
       bgImage={fundoJeri}
       bgSize="cover"
       bgRepeat="no-repeat"
-      bgPosition="center"
+      bgPosition="left"
       height="100vh"
       justifyContent="flex-end"
     >
       <Navbar />
-      <Container maxW={'7xl'}>
+      <Container maxW={isWideVersion ? '7xl' : '5xl'}>
         <Stack
-          align={'center'}
+          align={isWideVersion ? 'center' : ''}
           spacing={{ base: 8, md: 10 }}
           py={{ base: 20, md: '5rem' }}
           direction={{ base: 'column', md: 'row' }}
@@ -68,10 +73,10 @@ export function Jeri() {
             <Text
               color={'gray.50'}
               fontWeight="bold"
-              fontSize="1.1rem"
+              fontSize={isWideVersion ? '1.1rem' : '1rem'}
               textAlign={'justify'}
               // border="1px solid red"
-              w="30rem"
+              w={isWideVersion ? '30rem' : '19rem'}
             >
               Compre um bilhete e concorra a 5 diárias em hotel padrão 4
               estrelas em Jericoacoara, com direito a 1 acompanhante, café da
@@ -83,8 +88,9 @@ export function Jeri() {
             >
               <Button
                 rounded={'full'}
-                size={'lg'}
+                size={isWideVersion ? 'lg' : 'md'}
                 fontWeight={'normal'}
+                w="22rem"
                 px={6}
                 colorScheme={'red'}
                 bg={'red.400'}
@@ -102,8 +108,8 @@ export function Jeri() {
             w={'full'}
           >
             <Blob
-              w={'150%'}
-              h={'150%'}
+              w="150%"
+              h="150%"
               position={'absolute'}
               top={'-20%'}
               left={0}
