@@ -1,25 +1,22 @@
 import {
   Button,
-  Checkbox,
   Flex,
   FormControl,
   FormLabel,
   Heading,
   Input,
-  Link,
   Stack,
   Image,
   Img,
   Text,
   Divider,
   useClipboard,
-  FormHelperText,
   useBreakpointValue,
 } from '@chakra-ui/react';
 
 import { firstName, lastName, cpfMask, phoneMask } from '../../utils/mask';
 // import { Link as ReactRouter } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 // import { format, formatDistanceToNow } from 'date-fns';
 // import ptBR from 'date-fns/locale/pt-BR';
@@ -150,7 +147,7 @@ export function Content() {
 
     await api
       .post(
-        '/users',
+        '/',
         {
           name: name,
           email: email,
