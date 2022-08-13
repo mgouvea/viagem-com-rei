@@ -2,14 +2,11 @@ import {
   Avatar,
   Box,
   chakra,
-  Container,
   Flex,
-  Icon,
   SimpleGrid,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { Crown } from 'phosphor-react';
-import { ReactNode } from 'react';
 
 import jl from '../../assets/ganhadores/jl.png';
 import jf from '../../assets/ganhadores/jf.png';

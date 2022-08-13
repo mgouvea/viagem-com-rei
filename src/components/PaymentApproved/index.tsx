@@ -21,8 +21,8 @@ interface ContentProps {
   number?: Array<number>;
 }
 
-export function PaymentApproved({ name, phoneNumber }: ContentProps) {
-  const number = [2301, 1233, 3213];
+export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
+  // const number = [2301, 1233, 3213];
 
   const isWideVersion = useBreakpointValue({
     base: false,
