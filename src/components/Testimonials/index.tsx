@@ -21,7 +21,7 @@ const testimonials = [
     name: 'Júlio Cesar',
     role: 'Prêmio Principal',
     content:
-      'It really saves me time and effort. It is exactly what our business has been lacking. EEZY is the most valuable business resource we have EVER purchased. After using EEZY my business skyrocketed!',
+      '“No ano de 2021 eu participei  da promoção Viaje com o Rei adquirindo uma cota mensal, gostei muito da maneira como aconteceu esta promoção pois todos os meses concorri a prêmios de boa qualidade e fui contemplado no derradeiro sorteio com um Celular IPhone XR, e além da premiação o que me moveu a participar é saber que o recurso arrecadado serve a uma causa nobre de melhorar a infraestrutura do nosso Núcleo, o que me fez continuar participando desta nova edição em 2022.”',
     avatar: `${jl}`,
   },
   {
