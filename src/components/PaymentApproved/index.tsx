@@ -10,16 +10,14 @@ import {
   Button,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Navbar } from '../Navbar';
-// import { Card } from './Card';
 
 import home from '../../assets/funHome2.png';
 import phone from '../../assets/iphone5.png';
 
 interface ContentProps {
-  name: string;
-  phoneNumber: string;
-  number: Array<number>;
+  name?: string;
+  phoneNumber?: string;
+  number?: Array<number>;
 }
 
 export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
@@ -38,7 +36,7 @@ export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
         <Text color="gray.400" mt="1rem">
           Veja abaixo seus números da sorte
         </Text>
-        {number.map((num) => (
+        {number?.map((num) => (
           <Flex>
             <Center py={6}>
               <Box
