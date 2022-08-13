@@ -18,12 +18,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/Jeri" element={<Jeri />} />
-          <Route path="/Pacotes" element={<Pacotes />} />
-          <Route path="/Checkout" element={<Checkout />} />
-          <Route path="/Checkout20" element={<Checkout20 />} />
-          <Route path="/Checkout30" element={<Checkout30 />} />
-          <Route path="/PaymentApproved" element={<PaymentApproved />} />
+          <Route path="/jeri" element={<Jeri />} />
+          <Route path="/pacotes" element={<Pacotes />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout20" element={<Checkout20 />} />
+          <Route path="/checkout30" element={<Checkout30 />} />
+          <Route path="/paymentApproved" element={<PaymentApproved />} />
           {/* <Route path='/Iphone' element={} /> */}
         </Routes>
       </BrowserRouter>
