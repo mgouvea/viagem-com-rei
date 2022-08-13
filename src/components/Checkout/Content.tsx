@@ -31,6 +31,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { pix } from '../../services/pix';
 import { pixResponse } from '../../services/pixResponse';
+import { PaymentApproved } from '../PaymentApproved';
 
 export function Content() {
   const isWideVersion = useBreakpointValue({
@@ -58,12 +59,14 @@ export function Content() {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [cpf, setCpf] = useState('');
+  const [luckyNumbers, setLuckyNumbers] = useState<number[]>([]);
 
   // salva estado atual de tickets
   const [updateLuckyNumbers, setUpdateLuckyNumbers] = useState<number[]>([]);
   const [postLuckyNumbers, setPostLuckyNumbers] = useState<number[]>([]);
 
-  const [checkoutPathName, setCheckoutPathName] = useState('');
+  // const [checkoutPathName, setCheckoutPathName] = useState('');
+  const [isPay, setIsPay] = useState(false);
 
   async function getAllTickets() {
     try {
@@ -81,8 +84,8 @@ export function Content() {
     window.location.pathname === '/Checkout'
       ? (setValue(1), setTicket(5))
       : window.location.pathname === '/Checkout30'
-      ? (setValue(1), setTicket(3), setCheckoutPathName('30'))
-      : (setValue(1), setTicket(1), setCheckoutPathName('20'));
+      ? (setValue(1), setTicket(3))
+      : (setValue(1), setTicket(1));
 
     // PROD
     // window.location.pathname === '/Checkout'
@@ -92,7 +95,7 @@ export function Content() {
     //   : (setValue(20), setTicket(1));
   }, [window.location.pathname, hasPix]);
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   useEffect(() => {
     if (pixHasCreated) {
       const interval = setInterval(() => {
@@ -106,7 +109,8 @@ export function Content() {
       } else if (paymentStatus === 'approved') {
         clearInterval(interval);
         handleDataPost();
-        navigate('/PaymentApproved');
+        setIsPay(true);
+        // navigate('/PaymentApproved');
       }
     }
   }, [pixHasCreated, paymentStatus]);
@@ -141,7 +145,7 @@ export function Content() {
 
       luckyNumber.push(num);
     }
-
+    setLuckyNumbers(luckyNumber);
     setPostLuckyNumbers(luckyNumber.concat(updateLuckyNumbers));
 
     await api
@@ -224,7 +228,7 @@ export function Content() {
       });
   };
 
-  return (
+  return !isPay ? (
     <>
       <Flex minH={'79vh'} direction={{ base: 'column', md: 'row' }}>
         <Flex p={8} flex={1} align={'center'} justify={'center'}>
@@ -376,5 +380,11 @@ export function Content() {
         <Img src={cpSegura} w="25rem" />
       </Flex>
     </>
+  ) : (
+    <PaymentApproved
+      name={firstName(name)}
+      phoneNumber={phone}
+      number={luckyNumbers}
+    />
   );
 }
