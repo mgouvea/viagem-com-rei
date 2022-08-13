@@ -12,7 +12,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 
-import home from '../../assets/funHome2.png';
+import home from '../../assets/funHome3.jpg';
 import phone from '../../assets/iphone5.png';
 
 interface ContentProps {

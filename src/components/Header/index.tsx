@@ -8,7 +8,8 @@ import {
 } from '@chakra-ui/react';
 import { Navbar } from '../Navbar';
 
-import fundoHome from '../../assets/funHome2.png';
+// import fundoHome from '../../assets/funHome2.png';
+import fundoHome from '../../assets/funHome3.jpg';
 import Infos from './Infos';
 // import styles from './Header.module.css';
 
