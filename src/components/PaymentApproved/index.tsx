@@ -9,6 +9,7 @@ import {
   Stack,
   Button,
   useColorModeValue,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 
 import home from '../../assets/funHome2.png';
@@ -20,7 +21,14 @@ interface ContentProps {
   number?: Array<number>;
 }
 
-export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
+export function PaymentApproved({ name, phoneNumber }: ContentProps) {
+  const number = [2301, 1233, 3213];
+
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   return (
     <Flex direction="column" bg="gray.100" h="100vh">
       <Flex
@@ -30,64 +38,71 @@ export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
         h="100%"
         pt="3rem"
       >
-        <Text fontSize={'2xl'} color="orange.400" fontWeight={'bold'}>
+        <Text
+          fontSize={isWideVersion ? '2xl' : 'xl'}
+          w={isWideVersion ? '' : '15rem'}
+          color="orange.400"
+          fontWeight={'bold'}
+        >
           Parabéns {name}, seu pagamento foi aprovado com sucesso
         </Text>
         <Text color="gray.400" mt="1rem">
           Veja abaixo seus números da sorte
         </Text>
-        {number?.map((num) => (
-          <Flex>
-            <Center py={6}>
-              <Box
-                maxW={'270px'}
-                w={'full'}
-                bg={useColorModeValue('white', 'gray.800')}
-                boxShadow={'2xl'}
-                rounded={'md'}
-                overflow={'hidden'}
-              >
-                <Image
-                  h={'120px'}
+        <Flex direction={isWideVersion ? 'row' : 'column'}>
+          {number?.map((num) => (
+            <Flex px="1rem">
+              <Center py={6}>
+                <Box
+                  maxW={'270px'}
                   w={'full'}
-                  src={`${home}`}
-                  objectFit={'cover'}
-                />
-                <Flex justify={'center'} mt={-12}>
-                  <Avatar
-                    size={'xl'}
-                    src={`${phone}`}
-                    css={{
-                      border: '2px solid white',
-                    }}
+                  bg={useColorModeValue('white', 'gray.800')}
+                  boxShadow={'2xl'}
+                  rounded={'md'}
+                  overflow={'hidden'}
+                >
+                  <Image
+                    h={'120px'}
+                    w={'full'}
+                    src={`${home}`}
+                    objectFit={'cover'}
                   />
-                </Flex>
+                  <Flex justify={'center'} mt={-12}>
+                    <Avatar
+                      size={'xl'}
+                      src={`${phone}`}
+                      css={{
+                        border: '2px solid white',
+                      }}
+                    />
+                  </Flex>
 
-                <Box p={6}>
-                  <Stack spacing={0} align={'center'} mb={5}>
-                    <Heading
-                      fontSize={'2xl'}
-                      fontWeight={500}
-                      fontFamily={'body'}
-                    >
-                      {num}
-                    </Heading>
-                    <Text color={'gray.500'}>Viaje com o Rei 2022</Text>
-                  </Stack>
-
-                  <Stack direction={'row'} justify={'center'} spacing={6}>
-                    <Stack spacing={0} align={'center'}>
-                      <Text fontWeight={600}>{name}</Text>
-                      <Text fontSize={'sm'} color={'gray.500'}>
-                        {phoneNumber}
-                      </Text>
+                  <Box p={6}>
+                    <Stack spacing={0} align={'center'} mb={5}>
+                      <Heading
+                        fontSize={'2xl'}
+                        fontWeight={500}
+                        fontFamily={'body'}
+                      >
+                        {num}
+                      </Heading>
+                      <Text color={'gray.500'}>Viaje com o Rei 2022</Text>
                     </Stack>
-                  </Stack>
+
+                    <Stack direction={'row'} justify={'center'} spacing={6}>
+                      <Stack spacing={0} align={'center'}>
+                        <Text fontWeight={600}>{name}</Text>
+                        <Text fontSize={'sm'} color={'gray.500'}>
+                          {phoneNumber}
+                        </Text>
+                      </Stack>
+                    </Stack>
+                  </Box>
                 </Box>
-              </Box>
-            </Center>
-          </Flex>
-        ))}
+              </Center>
+            </Flex>
+          ))}
+        </Flex>
       </Flex>
 
       <Flex h="100vh" justifyContent="center" alignItems="center">
