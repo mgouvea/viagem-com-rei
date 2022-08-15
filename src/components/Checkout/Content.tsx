@@ -96,8 +96,12 @@ export function Content() {
 
   const handleWebHooks = async (id: string) => {
     try {
-      const response = await pixResponse.get(`/${id}`);
-      setPaymentStatus(response?.data?.status);
+      if (pixId === '') {
+        return;
+      } else {
+        const response = await pixResponse.get(`/${id}`);
+        setPaymentStatus(response?.data?.status);
+      }
     } catch (error) {
       console.error(error);
     }
@@ -105,8 +109,8 @@ export function Content() {
 
   useEffect(() => {
     if (pixHasCreated) {
-      console.log('luckyNumbers', postLuckyNumbers);
-      console.log('updateLuckyNumbers', updateLuckyNumbers);
+      // console.log('luckyNumbers', postLuckyNumbers);
+      // console.log('updateLuckyNumbers', updateLuckyNumbers);
       const interval = setInterval(() => {
         handleWebHooks(pixId);
       }, 20000);
@@ -114,10 +118,12 @@ export function Content() {
       if (paymentStatus === 'pending') {
         setTimeout(() => {
           clearInterval(interval);
-        }, 240000);
+        }, 180000);
       } else if (paymentStatus === 'approved') {
         clearInterval(interval);
         handleDataPost();
+        setPixId('');
+        setPixHasCreated(false);
         setIsPay(true);
         // navigate('/PaymentApproved');
       }
