@@ -93,6 +93,16 @@ export function Content() {
   }, [window.location.pathname, hasPix]);
 
   // let navigate = useNavigate();
+
+  const handleWebHooks = async (id: string) => {
+    try {
+      const response = await pixResponse.get(`/${id}`);
+      setPaymentStatus(response?.data?.status);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     if (pixHasCreated) {
       console.log('luckyNumbers', postLuckyNumbers);
@@ -136,16 +146,24 @@ export function Content() {
   const handleDataPost = async () => {
     let luckyNumber: number[] = [];
 
-    for (let i = 0; i < ticket; i++) {
-      let num = getRandom(2000, 3000);
-      do {
-        num = getRandom(2000, 3000);
-      } while (updateLuckyNumbers?.includes(num));
+    if (updateLuckyNumbers.length >= 1000) {
+      console.log('Não há mais números disponíveis');
+      return;
+    } else {
+      for (let i = 0; i < ticket; i++) {
+        let num = getRandom(2000, 3000);
+        do {
+          num = getRandom(2000, 3000);
+        } while (
+          updateLuckyNumbers?.includes(num) ||
+          luckyNumber?.includes(num)
+        );
 
-      luckyNumber.push(num);
+        luckyNumber.push(num);
+      }
     }
-    setLuckyNumbers(luckyNumber);
-    let patchLuckyNumbers: number[] = luckyNumber.concat(updateLuckyNumbers);
+    setLuckyNumbers(luckyNumber.sort());
+    let patchLuckyNumbers = luckyNumber.concat(updateLuckyNumbers);
 
     await api
       .post(
@@ -159,15 +177,19 @@ export function Content() {
         { headers }
       )
       .then(function (response) {
-        console.log('resp', response);
+        // console.log('resp', response);
+        handlePatchLuckyNumbers(patchLuckyNumbers);
+        debugger;
       })
       .catch(function (error) {
         console.error('err', error);
       });
+  };
 
-    await api
+  const handlePatchLuckyNumbers = async (array: Array<number>) => {
+    return await api
       .patch(`/tickets/${idTickets}`, {
-        luckyNumbers: patchLuckyNumbers,
+        luckyNumbers: array,
       })
       .then(function (response) {
         console.log('resp', response);
@@ -175,15 +197,6 @@ export function Content() {
       .catch(function (error) {
         console.error('err', error);
       });
-  };
-
-  const handleWebHooks = async (id: string) => {
-    try {
-      const response = await pixResponse.get(`/${id}`);
-      setPaymentStatus(response?.data?.status);
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   const handlePix = async () => {
