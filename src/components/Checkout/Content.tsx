@@ -111,7 +111,7 @@ export function Content() {
     if (pixHasCreated) {
       // console.log('luckyNumbers', postLuckyNumbers);
       // console.log('updateLuckyNumbers', updateLuckyNumbers);
-      const interval = setInterval(() => {
+      let interval = setInterval(() => {
         handleWebHooks(pixId);
       }, 20000);
 
@@ -120,13 +120,14 @@ export function Content() {
           clearInterval(interval);
         }, 180000);
       } else if (paymentStatus === 'approved') {
-        clearInterval(interval);
         handleDataPost();
         setPixId('');
         setPixHasCreated(false);
         setIsPay(true);
         // navigate('/PaymentApproved');
       }
+
+      return () => clearInterval(interval);
     }
   }, [pixHasCreated, paymentStatus]);
 
