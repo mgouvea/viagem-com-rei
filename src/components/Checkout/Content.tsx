@@ -73,7 +73,7 @@ export function Content() {
       console.log(e);
     }
   }
-  const idTickets = '62f65e2585e585a0e681736f';
+  const idTickets = '62fad70ed2b962e5cf148693';
 
   useEffect(() => {
     getAllTickets();
