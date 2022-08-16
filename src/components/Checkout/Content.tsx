@@ -200,7 +200,7 @@ export function Content() {
   const handlePatchLuckyNumbers = async (array: Array<number>) => {
     return await api
       .put(`/tickets/${idTickets}`, {
-        luckyNumbers: array,
+        array,
       })
       .then(function (response) {
         console.log('resp', response);
