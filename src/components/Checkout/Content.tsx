@@ -176,6 +176,8 @@ export function Content() {
       }
     }
     setLuckyNumbers(luckyNumberUser.sort());
+    console.log('éAgora', luckyNumberTickets);
+    debugger;
     // let patchLuckyNumbers = luckyNumber.concat(updateLuckyNumbers);
     // let patchLuckyNumbers = luckyNumber.concat(
     //   updateLuckyNumbers.map((item) => {
