@@ -72,7 +72,6 @@ export function Content() {
     try {
       const respTickets = await api.get('/tickets');
       setUpdateLuckyNumbers(respTickets?.data);
-      console.log('respTickets', respTickets?.data);
       respTickets?.data.forEach((item: any) => {
         luckyNumberTickets.push(item?.luckyNumbers);
       });
@@ -159,6 +158,7 @@ export function Content() {
 
   const handleDataPost = async () => {
     let luckyNumberUser: number[] = [];
+    let luckyNumberPut: number[] = [];
     if (updateLuckyNumbers.length >= 1000) {
       console.log('Não há mais números disponíveis');
       return;
@@ -177,16 +177,9 @@ export function Content() {
       }
     }
     setLuckyNumbers(luckyNumberUser.sort());
-    console.log('éAgora', luckyNumberTickets);
-    debugger;
+    luckyNumberPut = luckyNumberTickets.concat(luckyNumberUser);
+    console.log('éAgora', luckyNumberPut);
     // let patchLuckyNumbers = luckyNumber.concat(updateLuckyNumbers);
-    // let patchLuckyNumbers = luckyNumber.concat(
-    //   updateLuckyNumbers.map((item) => {
-    //     return item;
-    //   })
-    // );
-
-    // let putLuckyNumbers = { ...luckyNumber, ...updateLuckyNumbers };
 
     await api
       .post(
@@ -201,14 +194,14 @@ export function Content() {
       )
       .then(async function (response) {
         // console.log('resp', response);
-        handlePutLuckyNumbers(luckyNumberTickets);
+        handlePutLuckyNumbers(luckyNumberPut);
       })
       .catch(function (error) {
         console.error('err', error);
       });
   };
 
-  const handlePutLuckyNumbers = async (array: Array<number>) => {
+  const handlePutLuckyNumbers = async (array: number[]) => {
     return await api
       .patch(`/tickets/${idTickets}`, {
         luckyNumbers: array,
