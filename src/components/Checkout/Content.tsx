@@ -158,7 +158,7 @@ export function Content() {
 
   const handleDataPost = async () => {
     let luckyNumberUser: number[] = [];
-    let luckyNumberPut: number[] = [];
+    // let luckyNumberPut: number[] = [];
     if (updateLuckyNumbers.length >= 1000) {
       console.log('Não há mais números disponíveis');
       return;
@@ -172,13 +172,13 @@ export function Content() {
           luckyNumberTickets?.includes(num)
         );
 
-        luckyNumberTickets.push(num);
+        // luckyNumberTickets.push(num);
         luckyNumberUser.push(num);
       }
     }
     setLuckyNumbers(luckyNumberUser.sort());
-    luckyNumberPut = luckyNumberTickets.concat(luckyNumberUser);
-    console.log('éAgora', luckyNumberPut);
+    luckyNumberTickets = luckyNumberTickets.concat(luckyNumberUser);
+    console.log('éAgora', luckyNumberTickets);
     // let patchLuckyNumbers = luckyNumber.concat(updateLuckyNumbers);
 
     await api
@@ -194,7 +194,7 @@ export function Content() {
       )
       .then(async function (response) {
         // console.log('resp', response);
-        handlePutLuckyNumbers(luckyNumberPut);
+        handlePutLuckyNumbers(luckyNumberTickets);
       })
       .catch(function (error) {
         console.error('err', error);
