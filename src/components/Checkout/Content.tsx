@@ -170,7 +170,11 @@ export function Content() {
       }
     }
     setLuckyNumbers(luckyNumber.sort());
-    let patchLuckyNumbers = luckyNumber.concat(updateLuckyNumbers);
+    let patchLuckyNumbers = luckyNumber.concat(
+      updateLuckyNumbers.map((item) => {
+        return item;
+      })
+    );
 
     await api
       .post(
@@ -195,7 +199,7 @@ export function Content() {
 
   const handlePatchLuckyNumbers = async (array: Array<number>) => {
     return await api
-      .patch(`/tickets/${idTickets}`, {
+      .put(`/tickets/${idTickets}`, {
         luckyNumbers: array,
       })
       .then(function (response) {
