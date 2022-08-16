@@ -178,7 +178,7 @@ export function Content() {
     }
     setLuckyNumbers(luckyNumberUser.sort());
     // luckyNumberPut = luckyNumberTickets.concat(luckyNumberUser);
-    console.log('éAgora', luckyNumberTickets);
+    console.log('éAgora', luckyNumberUser);
 
     await api
       .post(
@@ -193,7 +193,7 @@ export function Content() {
       )
       .then(async function (response) {
         // console.log('resp', response);
-        handlePostLuckyNumbers(luckyNumberTickets);
+        handlePostLuckyNumbers(luckyNumberUser);
       })
       .catch(function (error) {
         console.error('err', error);
