@@ -158,7 +158,7 @@ export function Content() {
 
   const handleDataPost = async () => {
     let luckyNumberUser: number[] = [];
-    let luckyNumberPut: number[] = [];
+    // let luckyNumberPut: number[] = [];
     if (updateLuckyNumbers.length >= 1000) {
       console.log('Não há mais números disponíveis');
       return;
@@ -177,9 +177,8 @@ export function Content() {
       }
     }
     setLuckyNumbers(luckyNumberUser.sort());
-    luckyNumberPut = luckyNumberTickets.concat(luckyNumberUser);
-    console.log('éAgora', luckyNumberPut);
-    // let patchLuckyNumbers = luckyNumber.concat(updateLuckyNumbers);
+    // luckyNumberPut = luckyNumberTickets.concat(luckyNumberUser);
+    console.log('éAgora', luckyNumberTickets);
 
     await api
       .post(
@@ -194,18 +193,22 @@ export function Content() {
       )
       .then(async function (response) {
         // console.log('resp', response);
-        handlePutLuckyNumbers(luckyNumberPut);
+        handlePostLuckyNumbers(luckyNumberTickets);
       })
       .catch(function (error) {
         console.error('err', error);
       });
   };
 
-  const handlePutLuckyNumbers = async (array: number[]) => {
+  const handlePostLuckyNumbers = async (array: number[]) => {
     return await api
-      .patch(`/tickets/${idTickets}`, {
-        luckyNumbers: array,
-      })
+      .post(
+        `/tickets`,
+        {
+          luckyNumbers: array,
+        },
+        { headers }
+      )
       .then(function (response) {
         console.log('resp', response);
       })
