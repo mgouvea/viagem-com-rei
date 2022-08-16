@@ -12,6 +12,7 @@ import {
   Divider,
   useClipboard,
   useBreakpointValue,
+  useToast,
 } from '@chakra-ui/react';
 
 import { firstName, lastName, cpfMask, phoneMask } from '../../utils/mask';
@@ -31,12 +32,14 @@ import { pixResponse } from '../../services/pixResponse';
 import { PaymentApproved } from '../PaymentApproved';
 
 export function Content() {
+  const toast = useToast();
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
 
   const [value, setValue] = useState(0);
+  const [valueTx, setValueTx] = useState(0);
   const [qtd, setQtd] = useState(1);
   const [ticket, setTicket] = useState(0);
 
@@ -65,7 +68,7 @@ export function Content() {
   // const [checkoutPathName, setCheckoutPathName] = useState('');
   const [isPay, setIsPay] = useState(false);
 
-  const idTickets = '62fad70ed2b962e5cf148693';
+  // const idTickets = '62fad70ed2b962e5cf148693';
   let luckyNumberTickets: number[] = [];
 
   async function getAllTickets() {
@@ -75,7 +78,6 @@ export function Content() {
       respTickets?.data.forEach((item: any) => {
         luckyNumberTickets.push(item?.luckyNumbers);
       });
-      console.log('EEra', luckyNumberTickets);
     } catch (e) {
       console.log(e);
     }
@@ -83,19 +85,20 @@ export function Content() {
 
   useEffect(() => {
     getAllTickets();
+
     // TEST
-    window.location.pathname === '/Checkout'
-      ? (setValue(1), setTicket(5))
-      : window.location.pathname === '/Checkout30'
-      ? (setValue(1), setTicket(3))
-      : (setValue(1), setTicket(1));
+    // window.location.pathname === '/Checkout'
+    //   ? (setValue(1), setTicket(5))
+    //   : window.location.pathname === '/Checkout30'
+    //   ? (setValue(1), setTicket(3))
+    //   : (setValue(1), setTicket(1));
 
     // PROD
-    // window.location.pathname === '/Checkout'
-    //   ? (setValue(50), setTicket(5))
-    //   : window.location.pathname === '/Checkout30'
-    //   ? (setValue(30), setTicket(3))
-    //   : (setValue(20), setTicket(1));
+    window.location.pathname === '/Checkout'
+      ? (setValue(50), setTicket(5), setValueTx(50.5))
+      : window.location.pathname === '/Checkout30'
+      ? (setValue(30), setTicket(3), setValueTx(30.3))
+      : (setValue(20), setTicket(1), setValueTx(20.2));
   }, [window.location.pathname, hasPix]);
 
   // let navigate = useNavigate();
@@ -115,8 +118,6 @@ export function Content() {
 
   useEffect(() => {
     if (pixHasCreated) {
-      // console.log('luckyNumbers', postLuckyNumbers);
-      // console.log('updateLuckyNumbers', updateLuckyNumbers);
       let interval = setInterval(() => {
         handleWebHooks(pixId);
       }, 20000);
@@ -159,18 +160,20 @@ export function Content() {
   const handleDataPost = async () => {
     let luckyNumberUser: number[] = [];
     // let luckyNumberPut: number[] = [];
-    if (updateLuckyNumbers.length >= 1000) {
-      console.log('Não há mais números disponíveis');
+    if (luckyNumberTickets.length >= 1000) {
+      toast({
+        title: 'Não há mais números disponíveis',
+        position: 'top-right',
+        status: 'error',
+        isClosable: true,
+      });
       return;
     } else {
       for (let i = 0; i < ticket; i++) {
         let num = getRandom(2000, 3000);
         do {
           num = getRandom(2000, 3000);
-        } while (
-          updateLuckyNumbers?.includes(num) ||
-          luckyNumberTickets?.includes(num)
-        );
+        } while (luckyNumberTickets?.includes(num));
 
         // luckyNumberTickets.push(num);
         luckyNumberUser.push(num);
@@ -178,7 +181,6 @@ export function Content() {
     }
     setLuckyNumbers(luckyNumberUser.sort());
     // luckyNumberPut = luckyNumberTickets.concat(luckyNumberUser);
-    console.log('éAgora', luckyNumberUser);
 
     await api
       .post(
@@ -192,7 +194,6 @@ export function Content() {
         { headers }
       )
       .then(async function (response) {
-        // console.log('resp', response);
         handlePostLuckyNumbers(luckyNumberUser);
       })
       .catch(function (error) {
@@ -218,11 +219,18 @@ export function Content() {
   };
 
   const handlePix = async () => {
+    toast({
+      title: 'Uma taxa de 0,1% será cobrada para custear a transação!',
+      position: 'top-right',
+      status: 'warning',
+      variant: 'left-accent',
+      isClosable: true,
+    });
     await pix
       .post(
         '/',
         {
-          transaction_amount: value,
+          transaction_amount: valueTx,
           payment_method_id: 'pix',
           payer: {
             first_name: firstName(name),

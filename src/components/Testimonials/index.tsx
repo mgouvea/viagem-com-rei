@@ -18,30 +18,30 @@ const testimonials = [
     name: 'Júlio Cesar',
     role: 'Prêmio Principal',
     content:
-      '“No ano de 2021 eu participei  da promoção Viaje com o Rei adquirindo uma cota mensal, gostei muito da maneira como aconteceu esta promoção pois todos os meses concorri a prêmios de boa qualidade e fui contemplado no derradeiro sorteio com um Celular IPhone XR, e além da premiação o que me moveu a participar é saber que o recurso arrecadado serve a uma causa nobre de melhorar a infraestrutura do nosso Núcleo, o que me fez continuar participando desta nova edição em 2022.”',
+      '“No ano de 2021 eu participei  da promoção Viaje com o Rei. Todos os meses concorri a prêmios de boa qualidade e fui contemplado no derradeiro sorteio com um Celular IPhone XR, e além da premiação, o que me moveu a participar é saber que o recurso arrecadado serve a uma causa nobre, o que me fez continuar participando desta nova edição em 2022.”',
     avatar: `${jl}`,
   },
   {
     name: 'João Felipe',
     role: 'Prêmio mensal',
     content:
-      'Participei na promoção Viaje com o Rei em 2021 e, para minha surpresa, ganhei o primeiro sorteio dos prêmios mensais! Gostei tanto que decidi continuar participando em 2022 também.',
+      '"Participei na promoção Viaje com o Rei em 2021 e, para minha surpresa, ganhei o primeiro sorteio dos prêmios mensais! Gostei tanto que decidi continuar participando em 2022 também."',
     avatar: `${jf}`,
   },
-  {
-    name: 'Marilda Bezerra',
-    role: 'Prêmio mensal',
-    content:
-      "Thank you for making it painless, pleasant and most of all, hassle free! I'm good to go. No matter where you go, EEZY is the coolest, most happening thing around! I love EEZY!",
-    avatar: `${md}`,
-  },
-  {
-    name: 'Maurício Corrêa',
-    role: 'Prêmio mensal',
-    content:
-      'I am so pleased with this product. EEZY is both attractive and highly adaptable. Without EEZY, we would have gone bankrupt by now. Thank you for creating this product!',
-    avatar: `${mc}`,
-  },
+  // {
+  //   name: 'Marilda Bezerra',
+  //   role: 'Prêmio mensal',
+  //   content:
+  //     "Thank you for making it painless, pleasant and most of all, hassle free! I'm good to go. No matter where you go, EEZY is the coolest, most happening thing around! I love EEZY!",
+  //   avatar: `${md}`,
+  // },
+  // {
+  //   name: 'Maurício Corrêa',
+  //   role: 'Prêmio mensal',
+  //   content:
+  //     'I am so pleased with this product. EEZY is both attractive and highly adaptable. Without EEZY, we would have gone bankrupt by now. Thank you for creating this product!',
+  //   avatar: `${mc}`,
+  // },
 ];
 
 const backgrounds = [
