@@ -76,6 +76,7 @@ export function Content() {
       respTickets?.data.forEach((item: any) => {
         luckyNumberTickets.push(item?.luckyNumbers);
       });
+      console.log('EEra', luckyNumberTickets);
     } catch (e) {
       console.log(e);
     }
@@ -209,7 +210,7 @@ export function Content() {
 
   const handlePutLuckyNumbers = async (array: Array<number>) => {
     return await api
-      .put(`/tickets/${idTickets}`, {
+      .patch(`/tickets/${idTickets}`, {
         luckyNumbers: array,
       })
       .then(function (response) {
