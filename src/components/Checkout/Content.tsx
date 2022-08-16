@@ -170,11 +170,12 @@ export function Content() {
       }
     }
     setLuckyNumbers(luckyNumber.sort());
-    let patchLuckyNumbers = luckyNumber.concat(
-      updateLuckyNumbers.map((item) => {
-        return item;
-      })
-    );
+    let patchLuckyNumbers = luckyNumber.concat(updateLuckyNumbers);
+    // let patchLuckyNumbers = luckyNumber.concat(
+    //   updateLuckyNumbers.map((item) => {
+    //     return item;
+    //   })
+    // );
 
     await api
       .post(
@@ -187,9 +188,19 @@ export function Content() {
         },
         { headers }
       )
-      .then(function (response) {
+      .then(async function (response) {
         // console.log('resp', response);
-        handlePatchLuckyNumbers(patchLuckyNumbers);
+        // handlePatchLuckyNumbers(patchLuckyNumbers);
+        await api
+          .put(`/tickets/${idTickets}`, {
+            luckyNumbers: patchLuckyNumbers,
+          })
+          .then(function (response) {
+            console.log('resp', response);
+          })
+          .catch(function (error) {
+            console.error('err', error);
+          });
         debugger;
       })
       .catch(function (error) {
