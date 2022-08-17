@@ -21,13 +21,14 @@ interface ContentProps {
   name?: string;
   phoneNumber?: string;
   number?: Array<number>;
+  tickets?: number
 }
 
 // const numberTeste = [2301,2302,2303,2304,2305]
 // const phoneTeste = '(61) 98210-7187 '
 // const nameTeste = 'Mateus Gouvêa '
 
-export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
+export function PaymentApproved({ name, phoneNumber, number, tickets }: ContentProps) {
   // const number = [2301, 1233, 3213];
 
   const isWideVersion = useBreakpointValue({
@@ -62,7 +63,7 @@ export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
           Parabéns {name}, seu pagamento foi aprovado com sucesso
         </Text>
         <Text color="gray.400" mt="1rem">
-          Veja abaixo seus números da sorte
+          {tickets === 1 ? 'Veja abaixo seu número da sorte' : 'Veja abaixo seus números da sorte'}
         </Text>
         <Flex direction={isWideVersion ? 'row' : 'column'} ref={componentRef} >
           {number?.map((num) => (

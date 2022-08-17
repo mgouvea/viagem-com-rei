@@ -442,6 +442,7 @@ export function Content() {
       name={firstName(name)}
       phoneNumber={phone}
       number={luckyNumbers}
+      tickets={ticket}
     />
   );
 }
