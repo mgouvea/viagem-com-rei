@@ -11,6 +11,8 @@ import {
   useColorModeValue,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 import home from '../../assets/funHome3.jpg';
 import phone from '../../assets/iphone5.png';
@@ -21,6 +23,10 @@ interface ContentProps {
   number?: Array<number>;
 }
 
+// const numberTeste = [2301,2302,2303,2304,2305]
+// const phoneTeste = '(61) 98210-7187 '
+// const nameTeste = 'Mateus Gouvêa '
+
 export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
   // const number = [2301, 1233, 3213];
 
@@ -28,6 +34,15 @@ export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
     base: false,
     lg: true,
   });
+
+  
+    const componentRef =  useRef<HTMLDivElement>(null);
+    const handlePrint = useReactToPrint({
+      content: ()=> componentRef.current,
+      documentTitle: 'emp-data',
+      onAfterPrint: ()=> console.log('success')
+    })
+  
 
   return (
     <Flex direction="column" bg="gray.100" h="100vh">
@@ -49,7 +64,7 @@ export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
         <Text color="gray.400" mt="1rem">
           Veja abaixo seus números da sorte
         </Text>
-        <Flex direction={isWideVersion ? 'row' : 'column'}>
+        <Flex direction={isWideVersion ? 'row' : 'column'} ref={componentRef} >
           {number?.map((num) => (
             <Flex px="1rem">
               <Center py={6}>
@@ -93,7 +108,7 @@ export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
                       <Stack spacing={0} align={'center'}>
                         <Text fontWeight={600}>{name}</Text>
                         <Text fontSize={'sm'} color={'gray.500'}>
-                          {phoneNumber}
+                          {phone}
                         </Text>
                       </Stack>
                     </Stack>
@@ -123,7 +138,7 @@ export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
           _focus={{
             bg: 'orange.500',
           }}
-          onClick={() => window.print()}
+          onClick={handlePrint}
         >
           Imprimir
         </Button>

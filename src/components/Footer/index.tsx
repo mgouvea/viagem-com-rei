@@ -100,8 +100,13 @@ export function Footer() {
         >
           <Text>© {year} Viaje com o Rei. Todos os direitos reservados</Text>
           <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'Whatsapp'} href={'#'}>
-              <FaWhatsapp />
+            <SocialButton label={'Whatsapp'} href={'#'} >
+              <Link
+                href='https://api.whatsapp.com/send?phone=5561982107187&text=Ol%C3%A1%2C%20quero%20saber%20mais%20informa%C3%A7%C3%B5es%20a%20respeito%20da%20promo%C3%A7%C3%A3o%20Viaje%20com%20o%20Rei!'
+                isExternal
+              >
+                <FaWhatsapp />
+              </Link>
             </SocialButton>
             {/* <SocialButton label={'YouTube'} href={'#'}>
               <FaYoutube />
