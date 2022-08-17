@@ -35,14 +35,14 @@ export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
     lg: true,
   });
 
-  
-    const componentRef =  useRef<HTMLDivElement>(null);
-    const handlePrint = useReactToPrint({
-      content: ()=> componentRef.current,
-      documentTitle: 'emp-data',
-      onAfterPrint: ()=> console.log('success')
-    })
-  
+
+  const componentRef = useRef<HTMLDivElement>(null);
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: 'emp-data',
+    onAfterPrint: () => console.log('success')
+  })
+
 
   return (
     <Flex direction="column" bg="gray.100" h="100vh">
@@ -108,7 +108,7 @@ export function PaymentApproved({ name, phoneNumber, number }: ContentProps) {
                       <Stack spacing={0} align={'center'}>
                         <Text fontWeight={600}>{name}</Text>
                         <Text fontSize={'sm'} color={'gray.500'}>
-                          {phone}
+                          {phoneNumber}
                         </Text>
                       </Stack>
                     </Stack>
