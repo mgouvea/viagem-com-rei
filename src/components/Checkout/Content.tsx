@@ -41,7 +41,6 @@ export function Content() {
   });
 
   const [value, setValue] = useState(0);
-  const [valueTx, setValueTx] = useState(0);
   const [qtd, setQtd] = useState(1);
   const [ticket, setTicket] = useState(0);
 
@@ -97,10 +96,10 @@ export function Content() {
 
     // PROD
     window.location.pathname === '/Checkout'
-      ? (setValue(50), setTicket(5), setValueTx(50.5))
+      ? (setValue(50), setTicket(5))
       : window.location.pathname === '/Checkout30'
-        ? (setValue(30), setTicket(3), setValueTx(30.3))
-        : (setValue(20), setTicket(1), setValueTx(20.2));
+        ? (setValue(30), setTicket(3))
+        : (setValue(20), setTicket(1));
   }, [window.location.pathname, hasPix]);
 
   // let navigate = useNavigate();
@@ -221,18 +220,18 @@ export function Content() {
   };
 
   const handlePix = async () => {
-    toast({
-      title: 'Uma taxa de 0,1% será cobrada para custear a transação!',
-      position: 'top-right',
-      status: 'warning',
-      variant: 'left-accent',
-      isClosable: true,
-    });
+    // toast({
+    //   title: 'Uma taxa de 0,1% será cobrada para custear a transação!',
+    //   position: 'top-right',
+    //   status: 'warning',
+    //   variant: 'left-accent',
+    //   isClosable: true,
+    // });
     await pix
       .post(
         '/',
         {
-          transaction_amount: valueTx,
+          transaction_amount: value,
           payment_method_id: 'pix',
           payer: {
             first_name: firstName(name),
