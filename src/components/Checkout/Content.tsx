@@ -13,6 +13,8 @@ import {
   useClipboard,
   useBreakpointValue,
   useToast,
+  FormHelperText,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 
 import { firstName, lastName, cpfMask, phoneMask } from '../../utils/mask';
@@ -97,8 +99,8 @@ export function Content() {
     window.location.pathname === '/Checkout'
       ? (setValue(50), setTicket(5), setValueTx(50.5))
       : window.location.pathname === '/Checkout30'
-      ? (setValue(30), setTicket(3), setValueTx(30.3))
-      : (setValue(20), setTicket(1), setValueTx(20.2));
+        ? (setValue(30), setTicket(3), setValueTx(30.3))
+        : (setValue(20), setTicket(1), setValueTx(20.2));
   }, [window.location.pathname, hasPix]);
 
   // let navigate = useNavigate();
@@ -266,6 +268,13 @@ export function Content() {
       });
   };
 
+  const isErrorName = name === ''
+  const isErrorEmail = email === ''
+  const isErrorPhone = phone === ''
+  const isErrorCpf = cpf === ''
+
+  const [isError, setIsEror] = useState(false)
+
   return !isPay ? (
     <>
       <Flex minH={'79vh'} direction={{ base: 'column', md: 'row' }}>
@@ -277,16 +286,18 @@ export function Content() {
               </Heading>
               <Text>Qtd: {qtd}</Text>
             </Flex>
-            <FormControl id="name">
+            <FormControl id="name" isInvalid={isErrorName && isError}>
               <FormLabel>Nome completo:</FormLabel>
               <Input type="text" onChange={(e) => setName(e.target.value)} />
+              {isErrorName ? <FormErrorMessage>Nome é obrigatório.</FormErrorMessage> : null}
             </FormControl>
-            <FormControl id="email">
+            <FormControl id="email" isInvalid={isErrorEmail && isError}>
               <FormLabel>Email:</FormLabel>
               <Input type="email" onChange={(e) => setEmail(e.target.value)} />
+              {isErrorEmail ? <FormErrorMessage>Email é obrigatório.</FormErrorMessage> : null}
             </FormControl>
             <Flex gap="0.5rem">
-              <FormControl id="phone">
+              <FormControl id="phone" isInvalid={isErrorPhone && isError}>
                 <FormLabel>Celular:</FormLabel>
                 <Input
                   type="text"
@@ -294,14 +305,16 @@ export function Content() {
                   value={phoneMask(phone)}
                   onChange={(e) => setPhone(e.target.value)}
                 />
+                {isErrorPhone ? <FormErrorMessage>Celular é obrigatório.</FormErrorMessage> : null}
               </FormControl>
-              <FormControl id="cpf">
+              <FormControl id="cpf" isInvalid={isErrorCpf && isError}>
                 <FormLabel>CPF:</FormLabel>
                 <Input
                   type="text"
                   value={cpfMask(cpf)}
                   onChange={(e) => setCpf(e.target.value)}
                 />
+                {isErrorCpf ? <FormErrorMessage>CPF é obrigatório.</FormErrorMessage> : null}
               </FormControl>
             </Flex>
             <Stack spacing={6}>
@@ -309,6 +322,13 @@ export function Content() {
                 colorScheme={'orange'}
                 variant={'solid'}
                 onClick={(e) => {
+                  if (name === '' ||
+                    email === '' ||
+                    phone === '' ||
+                    cpf === '') {
+                    setIsEror(true)
+                    return
+                  }
                   handlePix();
                 }}
               >
@@ -386,7 +406,7 @@ export function Content() {
                 w={isWideVersion ? '25rem' : '20rem'}
                 value={dataPastePix}
                 isReadOnly
-                // placeholder="Welcome"
+              // placeholder="Welcome"
               />
               <Button
                 onClick={onCopy}
