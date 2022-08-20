@@ -98,8 +98,8 @@ export function Content() {
     window.location.pathname === '/Checkout'
       ? (setValue(50), setTicket(5))
       : window.location.pathname === '/Checkout30'
-        ? (setValue(30), setTicket(3))
-        : (setValue(20), setTicket(1));
+      ? (setValue(30), setTicket(3))
+      : (setValue(20), setTicket(1));
   }, [window.location.pathname, hasPix]);
 
   // let navigate = useNavigate();
@@ -191,6 +191,7 @@ export function Content() {
           email: email,
           phone: phone,
           luckyNumber: luckyNumberUser,
+          package: value,
         },
         { headers }
       )
@@ -267,12 +268,12 @@ export function Content() {
       });
   };
 
-  const isErrorName = name === ''
-  const isErrorEmail = email === ''
-  const isErrorPhone = phone === ''
-  const isErrorCpf = cpf === ''
+  const isErrorName = name === '';
+  const isErrorEmail = email === '';
+  const isErrorPhone = phone === '';
+  const isErrorCpf = cpf === '';
 
-  const [isError, setIsEror] = useState(false)
+  const [isError, setIsEror] = useState(false);
 
   return !isPay ? (
     <>
@@ -288,12 +289,16 @@ export function Content() {
             <FormControl id="name" isInvalid={isErrorName && isError}>
               <FormLabel>Nome completo:</FormLabel>
               <Input type="text" onChange={(e) => setName(e.target.value)} />
-              {isErrorName ? <FormErrorMessage>Nome é obrigatório.</FormErrorMessage> : null}
+              {isErrorName ? (
+                <FormErrorMessage>Nome é obrigatório.</FormErrorMessage>
+              ) : null}
             </FormControl>
             <FormControl id="email" isInvalid={isErrorEmail && isError}>
               <FormLabel>Email:</FormLabel>
               <Input type="email" onChange={(e) => setEmail(e.target.value)} />
-              {isErrorEmail ? <FormErrorMessage>Email é obrigatório.</FormErrorMessage> : null}
+              {isErrorEmail ? (
+                <FormErrorMessage>Email é obrigatório.</FormErrorMessage>
+              ) : null}
             </FormControl>
             <Flex gap="0.5rem">
               <FormControl id="phone" isInvalid={isErrorPhone && isError}>
@@ -304,7 +309,9 @@ export function Content() {
                   value={phoneMask(phone)}
                   onChange={(e) => setPhone(e.target.value)}
                 />
-                {isErrorPhone ? <FormErrorMessage>Celular é obrigatório.</FormErrorMessage> : null}
+                {isErrorPhone ? (
+                  <FormErrorMessage>Celular é obrigatório.</FormErrorMessage>
+                ) : null}
               </FormControl>
               <FormControl id="cpf" isInvalid={isErrorCpf && isError}>
                 <FormLabel>CPF:</FormLabel>
@@ -313,7 +320,9 @@ export function Content() {
                   value={cpfMask(cpf)}
                   onChange={(e) => setCpf(e.target.value)}
                 />
-                {isErrorCpf ? <FormErrorMessage>CPF é obrigatório.</FormErrorMessage> : null}
+                {isErrorCpf ? (
+                  <FormErrorMessage>CPF é obrigatório.</FormErrorMessage>
+                ) : null}
               </FormControl>
             </Flex>
             <Stack spacing={6}>
@@ -321,12 +330,14 @@ export function Content() {
                 colorScheme={'orange'}
                 variant={'solid'}
                 onClick={(e) => {
-                  if (name === '' ||
+                  if (
+                    name === '' ||
                     email === '' ||
                     phone === '' ||
-                    cpf === '') {
-                    setIsEror(true)
-                    return
+                    cpf === ''
+                  ) {
+                    setIsEror(true);
+                    return;
                   }
                   handlePix();
                 }}
@@ -405,7 +416,7 @@ export function Content() {
                 w={isWideVersion ? '25rem' : '20rem'}
                 value={dataPastePix}
                 isReadOnly
-              // placeholder="Welcome"
+                // placeholder="Welcome"
               />
               <Button
                 onClick={onCopy}

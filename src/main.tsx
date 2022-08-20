@@ -11,6 +11,7 @@ import { Checkout } from './components/Checkout';
 import { Checkout20 } from './components/Checkout/Checkout20';
 import { Checkout30 } from './components/Checkout/Checkout30';
 import { PaymentApproved } from './components/PaymentApproved';
+import { Admin } from './components/admin';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/checkout20" element={<Checkout20 />} />
           <Route path="/checkout30" element={<Checkout30 />} />
           <Route path="/paymentApproved" element={<PaymentApproved />} />
+          <Route path="/admin" element={<Admin />} />
           {/* <Route path='/Iphone' element={} /> */}
         </Routes>
       </BrowserRouter>
