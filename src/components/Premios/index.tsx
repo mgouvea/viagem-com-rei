@@ -61,7 +61,7 @@ export function Premios() {
             // border="1px solid red"
             justify={isWideVersion ? 'space-between' : 'center'}
             alignItems={isWideVersion ? '' : 'center'}
-            border="1px solid red"
+            // border="1px solid red"
           >
             <Flex
               boxShadow={'2xl'}

@@ -47,7 +47,11 @@ export default function Infos() {
               Viaje com o Rei
             </Text>{' '}
           </Heading>
-          <Text fontSize={{ base: 'md', lg: 'lg' }} color={'white'}>
+          <Text
+            fontSize={{ base: 'md', lg: 'lg' }}
+            color={'white'}
+            fontWeight={isWideVersion ? '' : 'bold'}
+          >
             Sua oportunidade de contribuir com as benfeitorias do Núcleo Rei
             Hoasqueiro e ainda concorrer a um pacote turístico de 5 dias para
             Jericoacoara - CE, um Iphone de última geração e diversos premios
