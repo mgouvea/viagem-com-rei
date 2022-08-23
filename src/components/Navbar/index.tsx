@@ -134,6 +134,7 @@ export function Navbar() {
               </SocialButton>
             </Flex>
             {window.location.pathname === '/Pacotes' ||
+            window.location.pathname === '/pacotes' ||
             window.location.pathname === '/Checkout' ||
             window.location.pathname === '/Checkout20' ||
             window.location.pathname === '/Checkout30' ? null : (

@@ -18,135 +18,141 @@ import { Navbar } from '../Navbar';
 
 import fundoJeri from '../../assets/jeri7.jpg';
 import JeriImages from './JeriImages';
+import { useNavigate } from 'react-router-dom';
+import { Iphone } from '../Iphone';
 
 export function Jeri() {
+  let navigate = useNavigate();
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
   return (
-    <Box
-      mt="0.1rem"
-      bgImage={fundoJeri}
-      bgSize="cover"
-      bgRepeat="no-repeat"
-      bgPosition="left"
-      height="100vh"
-      justifyContent="flex-end"
-    >
-      <Navbar />
-      <Container maxW={isWideVersion ? '7xl' : '5xl'}>
-        <Stack
-          align={isWideVersion ? 'center' : ''}
-          spacing={{ base: 8, md: 10 }}
-          py={{ base: 20, md: '5rem' }}
-          direction={{ base: 'column', md: 'row' }}
-        >
-          <Stack flex={1} spacing={{ base: 5, md: 10 }}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'red.400',
-                  zIndex: -1,
-                }}
-                color="white"
-              >
-                Viaje com o Rei
-              </Text>
-              <br />
-              <Text as={'span'} color={'red.400'}>
-                Jericoacoara - CE
-              </Text>
-            </Heading>
-            <Text
-              color={'gray.50'}
-              fontWeight="bold"
-              fontSize={isWideVersion ? '1.1rem' : '1.1rem'}
-              textAlign={isWideVersion ? 'justify' : 'left'}
-              // border="1px solid red"
-              w={isWideVersion ? '30rem' : '23rem'}
-            >
-              Compre um bilhete e concorra a 5 diárias em hotel padrão 4
-              estrelas em Jericoacoara, com direito a 1 acompanhante, café da
-              manhã incluso e bilhete aéreo ida e volta.
-            </Text>
-            <Stack
-              spacing={{ base: 4, sm: 6 }}
-              direction={{ base: 'column', sm: 'row' }}
-            >
-              <Button
-                rounded={'full'}
-                size={isWideVersion ? 'lg' : 'md'}
-                fontWeight={'normal'}
-                w="22rem"
-                px={6}
-                colorScheme={'red'}
-                bg={'red.400'}
-                _hover={{ bg: 'red.500' }}
-              >
-                Comprar bilhete
-              </Button>
-            </Stack>
-          </Stack>
-          <Flex
-            flex={1}
-            justify={'center'}
-            align={'center'}
-            position={'relative'}
-            w={'full'}
+    <>
+      <Box
+        mt="0.1rem"
+        bgImage={fundoJeri}
+        bgSize="cover"
+        bgRepeat="no-repeat"
+        bgPosition="left"
+        height="100vh"
+        justifyContent="flex-end"
+      >
+        <Navbar />
+        <Container maxW={isWideVersion ? '7xl' : '5xl'}>
+          <Stack
+            align={isWideVersion ? 'center' : ''}
+            spacing={{ base: 8, md: 10 }}
+            py={{ base: 20, md: '5rem' }}
+            direction={{ base: 'column', md: 'row' }}
           >
-            <Blob
-              w="150%"
-              h="150%"
-              position={'absolute'}
-              top={'-20%'}
-              left={0}
-              zIndex={-1}
-              color={useColorModeValue('red.50', 'red.400')}
-            />
-            <Box
+            <Stack flex={1} spacing={{ base: 5, md: 10 }}>
+              <Heading
+                lineHeight={1.1}
+                fontWeight={600}
+                fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+              >
+                <Text
+                  as={'span'}
+                  position={'relative'}
+                  _after={{
+                    content: "''",
+                    width: 'full',
+                    height: '30%',
+                    position: 'absolute',
+                    bottom: 1,
+                    left: 0,
+                    bg: 'red.400',
+                    zIndex: -1,
+                  }}
+                  color="white"
+                >
+                  Viaje com o Rei
+                </Text>
+                <br />
+                <Text as={'span'} color={'red.400'}>
+                  Jericoacoara - CE
+                </Text>
+              </Heading>
+              <Text
+                color={'gray.50'}
+                fontWeight="bold"
+                fontSize={isWideVersion ? '1.1rem' : '1.1rem'}
+                textAlign={isWideVersion ? 'justify' : 'left'}
+                // border="1px solid red"
+                w={isWideVersion ? '30rem' : '22rem'}
+              >
+                Compre um bilhete e concorra a 5 diárias em hotel padrão 4
+                estrelas em Jericoacoara, com direito a 1 acompanhante, café da
+                manhã incluso e bilhete aéreo ida e volta.
+              </Text>
+              <Stack
+                spacing={{ base: 4, sm: 6 }}
+                direction={{ base: 'column', sm: 'row' }}
+                align={isWideVersion ? '' : 'center'}
+              >
+                <Button
+                  rounded={'full'}
+                  // size={isWideVersion ? '5xl' : 'md'}
+                  fontWeight={'normal'}
+                  w={isWideVersion ? '22rem' : '16rem'}
+                  px={6}
+                  colorScheme={'red'}
+                  bg={'red.400'}
+                  _hover={{ bg: 'red.500' }}
+                  onClick={() => navigate('/Pacotes')}
+                >
+                  Comprar bilhete
+                </Button>
+              </Stack>
+            </Stack>
+            <Flex
+              flex={1}
+              justify={'center'}
+              align={'center'}
               position={'relative'}
-              height={'315px'}
-              rounded={'2xl'}
-              boxShadow={'2xl'}
-              width={'560px'}
-              overflow={'hidden'}
-              // border={'1px solid red'}
+              w={'full'}
             >
-              <IconButton
-                aria-label={'Play Button'}
-                variant={'ghost'}
-                _hover={{ bg: 'transparent' }}
-                // icon={<PlayIcon w={12} h={12} />}
-                size={'lg'}
-                color={'white'}
+              <Blob
+                w="150%"
+                h="150%"
                 position={'absolute'}
-                left={'50%'}
-                top={'50%'}
-                transform={'translateX(-50%) translateY(-50%)'}
+                top={'-20%'}
+                left={0}
+                zIndex={-1}
+                color={useColorModeValue('red.50', 'red.400')}
               />
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/7sE_TegNIlo"
-                title="YouTube video player"
-                // frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                // allowfullscreen
-              ></iframe>
-              {/* <Image
+              <Box
+                position={'relative'}
+                height={'315px'}
+                rounded={'2xl'}
+                boxShadow={'2xl'}
+                width={'560px'}
+                overflow={'hidden'}
+                // border={'1px solid red'}
+              >
+                <IconButton
+                  aria-label={'Play Button'}
+                  variant={'ghost'}
+                  _hover={{ bg: 'transparent' }}
+                  // icon={<PlayIcon w={12} h={12} />}
+                  size={'lg'}
+                  color={'white'}
+                  position={'absolute'}
+                  left={'50%'}
+                  top={'50%'}
+                  transform={'translateX(-50%) translateY(-50%)'}
+                />
+                <iframe
+                  width="560"
+                  height="315"
+                  src="https://www.youtube.com/embed/7sE_TegNIlo"
+                  title="YouTube video player"
+                  // frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  // allowfullscreen
+                ></iframe>
+                {/* <Image
                 alt={'Hero Image'}
                 fit={'cover'}
                 align={'center'}
@@ -154,12 +160,16 @@ export function Jeri() {
                 h={'100%'}
                 src={'https://www.youtube.com/watch?v=7sE_TegNIlo'}
               /> */}
-            </Box>
-          </Flex>
-        </Stack>
-        <JeriImages />
-      </Container>
-    </Box>
+              </Box>
+            </Flex>
+          </Stack>
+          {/* <JeriImages /> */}
+        </Container>
+      </Box>
+      <Box>
+        <Iphone />
+      </Box>
+    </>
   );
 }
 
