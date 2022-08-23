@@ -11,8 +11,12 @@ import {
   createIcon,
   Flex,
   useBreakpointValue,
+  Grid,
+  GridItem,
 } from '@chakra-ui/react';
 import { Itens } from './Itens';
+
+import { SwiperImages } from '../SwiperImages';
 
 import jeri from '../../assets/jeri4.jpg';
 import iphone from '../../assets/iphone5.png';
@@ -57,7 +61,46 @@ export function Premios() {
             // border="1px solid red"
             justify={'space-between'}
           >
-            <Itens
+            <Flex
+              // border="1px solid red"
+              boxShadow={'2xl'}
+              w="20.625rem"
+              h="23rem"
+              mt="2.5rem"
+              justifyContent={'center'}
+              bg="white"
+              borderRadius="lg"
+            >
+              <Flex
+                direction={'column'}
+                // border="1px solid red"
+              >
+                <SwiperImages />
+                <Box mt="1rem">
+                  <Text color="gray.600">1° Lugar</Text>
+                  <Text color="orange.400" fontSize={'lg'}>
+                    5 diárias em Jericoacoara - CE
+                  </Text>
+
+                  <Grid
+                    templateColumns="repeat(2, 1fr)"
+                    gap={1}
+                    color="gray.400"
+                    fontSize="sm"
+                    pt="0.5rem"
+                    // pb="0.5rem"
+                  >
+                    <GridItem w="100%" h="10">
+                      <Text>Café da Manhã</Text>
+                    </GridItem>
+                    <GridItem w="100%" h="10">
+                      <Text>1 acompanhante</Text>
+                    </GridItem>
+                  </Grid>
+                </Box>
+              </Flex>
+            </Flex>
+            {/* <Itens
               title="1° Lugar"
               highlight="5 diárias em Jericoacoara - CE"
               benefit1="Hotel 4 estrelas"
@@ -65,7 +108,8 @@ export function Premios() {
               // benefit2="Café da Manhã"
               // benefit3="1 acompanhante"
               image={jeri}
-            />
+            /> */}
+
             <Itens
               title="2° Lugar"
               highlight="1 Iphone"
