@@ -67,20 +67,32 @@ export function Footer() {
       >
         <Img src={logo} w="9rem" />
         <Stack direction={'row'} spacing={6}>
-          <Link as={ReactRouter} to={'/'}>
-            Home
+          <Link as={ReactRouter} to={'/'} style={{ textDecoration: 'none' }}>
+            <Text _hover={{ color: 'orange.400' }}>Home</Text>
           </Link>
-          <Link as={ReactRouter} to={'/Jeri'}>
-            Prêmios
+          <Link
+            as={ReactRouter}
+            to={'/Jeri'}
+            style={{ textDecoration: 'none' }}
+          >
+            <Text _hover={{ color: 'orange.400' }}>Prêmios</Text>
           </Link>
-          <Link as={ReactRouter} to={'/Pacotes'}>
-            Pacotes
+          <Link
+            as={ReactRouter}
+            to={'/Pacotes'}
+            style={{ textDecoration: 'none' }}
+          >
+            <Text _hover={{ color: 'orange.400' }}>Pacotes</Text>
           </Link>
-          {/* <Link as={ReactRouter} to={'/'}>
+          {/* <Link as={ReactRouter} to={'/'} style={{ textDecoration: 'none' }}>
             Doação
           </Link> */}
-          <Link as={ReactRouter} to={'/Pacotes'}>
-            Comprar bilhete
+          <Link
+            as={ReactRouter}
+            to={'/Pacotes'}
+            style={{ textDecoration: 'none' }}
+          >
+            <Text _hover={{ color: 'orange.400' }}>Comprar bilhete</Text>
           </Link>
         </Stack>
       </Container>
