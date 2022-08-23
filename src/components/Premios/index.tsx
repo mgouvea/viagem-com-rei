@@ -59,10 +59,11 @@ export function Premios() {
           <Flex
             direction={isWideVersion ? 'row' : 'column'}
             // border="1px solid red"
-            justify={'space-between'}
+            justify={isWideVersion ? 'space-between' : 'center'}
+            alignItems={isWideVersion ? '' : 'center'}
+            border="1px solid red"
           >
             <Flex
-              // border="1px solid red"
               boxShadow={'2xl'}
               w="20.625rem"
               h="23rem"
