@@ -4,6 +4,7 @@ import {
   Text,
   IconButton,
   Button,
+  chakra,
   Stack,
   Collapse,
   Icon,
@@ -15,6 +16,7 @@ import {
   useBreakpointValue,
   useDisclosure,
   Img,
+  VisuallyHidden,
 } from '@chakra-ui/react';
 import {
   HamburgerIcon,
@@ -22,9 +24,43 @@ import {
   ChevronDownIcon,
   ChevronRightIcon,
 } from '@chakra-ui/icons';
+import { FaWhatsapp } from 'react-icons/fa';
 import { Link as ReactRouter, useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/logoSvg.svg';
+import { ReactNode } from 'react';
+
+const SocialButton = ({
+  children,
+  label,
+  href,
+}: {
+  children: ReactNode;
+  label: string;
+  href: string;
+}) => {
+  return (
+    <chakra.button
+      bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+      rounded={'full'}
+      w={8}
+      h={8}
+      cursor={'pointer'}
+      as={'a'}
+      href={href}
+      display={'inline-flex'}
+      alignItems={'center'}
+      justifyContent={'center'}
+      transition={'background 0.3s ease'}
+      _hover={{
+        bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
+      }}
+    >
+      <VisuallyHidden>{label}</VisuallyHidden>
+      {children}
+    </chakra.button>
+  );
+};
 
 export function Navbar() {
   const { isOpen, onToggle } = useDisclosure();
@@ -87,6 +123,16 @@ export function Navbar() {
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10} align="center">
             <DesktopNav />
+            <Flex mx="0.5rem" _hover={{ bg: 'green.400', borderRadius: 'xl' }}>
+              <SocialButton label={'Whatsapp'} href={'#'}>
+                <Link
+                  href="https://api.whatsapp.com/send?phone=556192049304&text=Ol%C3%A1%2C%20quero%20saber%20mais%20informa%C3%A7%C3%B5es%20a%20respeito%20da%20promo%C3%A7%C3%A3o%20Viaje%20com%20o%20Rei!"
+                  isExternal
+                >
+                  <FaWhatsapp fontSize={'1.3rem'} />
+                </Link>
+              </SocialButton>
+            </Flex>
             {window.location.pathname === '/Pacotes' ||
             window.location.pathname === '/Checkout' ||
             window.location.pathname === '/Checkout20' ||

@@ -2,6 +2,7 @@ import {
   Box,
   chakra,
   Container,
+  Flex,
   Img,
   Link,
   Stack,
@@ -9,7 +10,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import { FaInstagram, FaTwitter, FaYoutube, FaWhatsapp } from 'react-icons/fa';
+import { FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { ReactNode } from 'react';
 
 import logo from '../../assets/logoSvg.svg';
@@ -100,20 +101,23 @@ export function Footer() {
         >
           <Text>© {year} Viaje com o Rei. Todos os direitos reservados</Text>
           <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'Whatsapp'} href={'#'} >
-              <Link
-                href='https://api.whatsapp.com/send?phone=5561982107187&text=Ol%C3%A1%2C%20quero%20saber%20mais%20informa%C3%A7%C3%B5es%20a%20respeito%20da%20promo%C3%A7%C3%A3o%20Viaje%20com%20o%20Rei!'
-                isExternal
-              >
-                <FaWhatsapp />
-              </Link>
-            </SocialButton>
+            <Flex _hover={{ bg: 'green.400', borderRadius: 'xl' }}>
+              <SocialButton label={'Whatsapp'} href={'#'}>
+                <Link
+                  href="https://api.whatsapp.com/send?phone=556192049304&text=Ol%C3%A1%2C%20quero%20saber%20mais%20informa%C3%A7%C3%B5es%20a%20respeito%20da%20promo%C3%A7%C3%A3o%20Viaje%20com%20o%20Rei!"
+                  isExternal
+                >
+                  <FaWhatsapp />
+                </Link>
+              </SocialButton>
+            </Flex>
+
             {/* <SocialButton label={'YouTube'} href={'#'}>
               <FaYoutube />
             </SocialButton> */}
-            <SocialButton label={'Instagram'} href={'#'}>
+            {/* <SocialButton label={'Instagram'} href={'#'}>
               <FaInstagram />
-            </SocialButton>
+            </SocialButton> */}
           </Stack>
         </Container>
       </Box>

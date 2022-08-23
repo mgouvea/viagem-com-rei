@@ -5,15 +5,14 @@ import {
   FormLabel,
   Input,
   InputGroup,
-  HStack,
   InputRightElement,
   Stack,
   Button,
   Heading,
   Text,
   useColorModeValue,
-  Link,
   useToast,
+  FormErrorMessage,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
@@ -37,16 +36,25 @@ export function Admin() {
       userPassword: 'Verde123',
       userName: 'Mateus Gouvêa',
     },
+    {
+      userEmail: 'joaogabriel@gmail.com',
+      userPassword: 'Verde123',
+      userName: 'João Gabriel',
+    },
   ];
 
   const toast = useToast();
 
   const handleLogin = () => {
     if (dbUsers.map((user) => user.userEmail).includes(userEmail)) {
-      console.log('Email', true);
+      // console.log('Email', true);
       if (dbUsers.map((user) => user.userPassword).includes(password)) {
-        console.log('password', true);
-        const name = dbUsers.map((user) => `${user.userName}`);
+        const name = dbUsers.map((user) => {
+          if (user.userEmail === userEmail) {
+            return `${user.userName}`;
+          }
+        });
+        console.log('password', name);
         setNameUser(name.toString());
         setSpinner(true);
         setTimeout(() => {
@@ -66,9 +74,20 @@ export function Admin() {
         console.log('password', false);
       }
     } else {
-      console.log('Email', false);
+      toast({
+        title: 'Email não encontrado',
+        status: 'warning',
+        duration: 1000,
+        position: 'bottom',
+        isClosable: true,
+      });
     }
   };
+
+  const isErrorEmail = userEmail === '';
+  const isErrorPassword = password === '';
+
+  const [isError, setIsEror] = useState(false);
 
   return !pageAdmin ? (
     <Flex
@@ -93,14 +112,17 @@ export function Admin() {
           p={8}
         >
           <Stack spacing={4}>
-            <FormControl id="email" isRequired>
-              <FormLabel>Email</FormLabel>
+            <FormControl id="email" isInvalid={isErrorEmail && isError}>
+              <FormLabel>Email:</FormLabel>
               <Input
                 type="email"
                 onChange={(e) => setUserEmail(e.target.value)}
               />
+              {isErrorEmail ? (
+                <FormErrorMessage>Email é obrigatório.</FormErrorMessage>
+              ) : null}
             </FormControl>
-            <FormControl id="password" isRequired>
+            <FormControl id="password" isInvalid={isErrorPassword && isError}>
               <FormLabel>Senha</FormLabel>
               <InputGroup>
                 <Input
@@ -118,6 +140,9 @@ export function Admin() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+              {isErrorPassword ? (
+                <FormErrorMessage>Senha obrigatória.</FormErrorMessage>
+              ) : null}
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
@@ -129,7 +154,13 @@ export function Admin() {
                 _hover={{
                   bg: 'blue.500',
                 }}
-                onClick={handleLogin}
+                onClick={() => {
+                  if (userEmail === '' || password === '') {
+                    setIsEror(true);
+                    return;
+                  }
+                  handleLogin();
+                }}
               >
                 Entrar
               </Button>
