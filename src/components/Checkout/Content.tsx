@@ -98,7 +98,7 @@ export function Content() {
     window.location.pathname === '/Checkout'
       ? (setValue(50), setTicket(5))
       : window.location.pathname === '/Checkout30'
-      ? (setValue(30), setTicket(3))
+      ? (setValue(30), setTicket(2))
       : (setValue(20), setTicket(1));
   }, [window.location.pathname, hasPix]);
 

@@ -148,12 +148,12 @@ export default function Pacotes() {
               >
                 <List spacing={3} textAlign="start" px={12}>
                   <ListItem>
-                    <ListIcon as={FaCheckCircle} color="green.500" />3 bilhetes
+                    <ListIcon as={FaCheckCircle} color="green.500" />2 bilhetes
                     por R$ 30 reais
                   </ListItem>
                   <ListItem>
                     <ListIcon as={FaCheckCircle} color="green.500" />
-                    3x mais chances de ganhar
+                    2x mais chances de ganhar
                   </ListItem>
                 </List>
                 <Box w="80%" pt={7}>
