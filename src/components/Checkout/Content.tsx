@@ -87,6 +87,16 @@ export function Content() {
   useEffect(() => {
     getAllTickets();
 
+    toast({
+      title:
+        'Após o pagamento AGUARDE e será redirecionado automaticamente para seus números da sorte!',
+      position: 'top-right',
+      status: 'warning',
+      variant: 'left-accent',
+      duration: 9000,
+      isClosable: true,
+    });
+
     // TEST
     // window.location.pathname === '/Checkout'
     //   ? (setValue(1), setTicket(5))
@@ -191,7 +201,6 @@ export function Content() {
           email: email,
           phone: phone,
           luckyNumber: luckyNumberUser,
-          package: value,
         },
         { headers }
       )
@@ -221,13 +230,15 @@ export function Content() {
   };
 
   const handlePix = async () => {
-    // toast({
-    //   title: 'Uma taxa de 0,1% será cobrada para custear a transação!',
-    //   position: 'top-right',
-    //   status: 'warning',
-    //   variant: 'left-accent',
-    //   isClosable: true,
-    // });
+    toast({
+      title:
+        'Após o pagamento AGUARDE e será redirecionado para seus números da sorte!',
+      position: 'top-right',
+      status: 'warning',
+      variant: 'left-accent',
+      duration: 9000,
+      isClosable: true,
+    });
     await pix
       .post(
         '/',
@@ -454,6 +465,7 @@ export function Content() {
       phoneNumber={phone}
       number={luckyNumbers}
       tickets={ticket}
+      email={email}
     />
   );
 }

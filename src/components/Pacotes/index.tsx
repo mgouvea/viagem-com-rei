@@ -85,8 +85,8 @@ export default function Pacotes() {
                   R$ 20,00 reais
                 </ListItem>
                 <ListItem>
-                  <ListIcon as={FaCheckCircle} color="green.500" />1 chance de
-                  ganhar
+                  <ListIcon as={FaCheckCircle} color="green.500" />
+                  Chances mensais de ganhar
                 </ListItem>
               </List>
               <Box w="80%" pt={7}>

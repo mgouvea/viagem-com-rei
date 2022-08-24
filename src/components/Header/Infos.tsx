@@ -54,7 +54,7 @@ export default function Infos() {
           >
             Sua oportunidade de contribuir com as benfeitorias do Núcleo Rei
             Hoasqueiro e ainda concorrer a um pacote turístico de 5 dias para
-            Jericoacoara - CE, um Iphone de última geração e diversos premios
+            Jericoacoara - CE, um Iphone de última geração e diversos prêmios
             mensais.
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>

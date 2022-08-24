@@ -19,16 +19,23 @@ import phone from '../../assets/iphone5.png';
 
 interface ContentProps {
   name?: string;
+  email?: string;
   phoneNumber?: string;
   number?: Array<number>;
-  tickets?: number
+  tickets?: number;
 }
 
 // const numberTeste = [2301,2302,2303,2304,2305]
 // const phoneTeste = '(61) 98210-7187 '
 // const nameTeste = 'Mateus Gouvêa '
 
-export function PaymentApproved({ name, phoneNumber, number, tickets }: ContentProps) {
+export function PaymentApproved({
+  name,
+  phoneNumber,
+  number,
+  tickets,
+  email,
+}: ContentProps) {
   // const number = [2301, 1233, 3213];
 
   const isWideVersion = useBreakpointValue({
@@ -36,14 +43,12 @@ export function PaymentApproved({ name, phoneNumber, number, tickets }: ContentP
     lg: true,
   });
 
-
   const componentRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: 'emp-data',
-    onAfterPrint: () => console.log('success')
-  })
-
+    onAfterPrint: () => console.log('success'),
+  });
 
   return (
     <Flex direction="column" bg="gray.100" h="100vh">
@@ -63,9 +68,11 @@ export function PaymentApproved({ name, phoneNumber, number, tickets }: ContentP
           Parabéns {name}, seu pagamento foi aprovado com sucesso
         </Text>
         <Text color="gray.400" mt="1rem">
-          {tickets === 1 ? 'Veja abaixo seu número da sorte' : 'Veja abaixo seus números da sorte'}
+          {tickets === 1
+            ? 'Veja abaixo seu número da sorte'
+            : 'Veja abaixo seus números da sorte'}
         </Text>
-        <Flex direction={isWideVersion ? 'row' : 'column'} ref={componentRef} >
+        <Flex direction={isWideVersion ? 'row' : 'column'} ref={componentRef}>
           {number?.map((num) => (
             <Flex px="1rem">
               <Center py={6}>
