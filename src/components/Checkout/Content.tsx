@@ -131,7 +131,7 @@ export function Content() {
     if (pixHasCreated) {
       let interval = setInterval(() => {
         handleWebHooks(pixId);
-      }, 12000);
+      }, 10000);
 
       if (paymentStatus === 'pending') {
         setTimeout(() => {

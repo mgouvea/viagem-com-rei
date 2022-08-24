@@ -15,7 +15,7 @@ import md from '../../assets/ganhadores/md.png';
 
 const testimonials = [
   {
-    name: 'Júlio Cesar',
+    name: 'Júlio Cezar',
     role: 'Prêmio Principal',
     content:
       '“No ano de 2021 eu participei  da promoção Viaje com o Rei. Todos os meses concorri a prêmios de boa qualidade e fui contemplado no derradeiro sorteio com um Celular IPhone XR, e além da premiação, o que me moveu a participar é saber que o recurso arrecadado serve a uma causa nobre, o que me fez continuar participando desta nova edição em 2022.”',
