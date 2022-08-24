@@ -15,6 +15,16 @@ import {
   useToast,
   FormHelperText,
   FormErrorMessage,
+  Checkbox,
+  CheckboxGroup,
+  ModalOverlay,
+  useDisclosure,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
 } from '@chakra-ui/react';
 
 import { firstName, lastName, cpfMask, phoneMask } from '../../utils/mask';
@@ -42,6 +52,7 @@ export function Content() {
 
   const [value, setValue] = useState(0);
   const [qtd, setQtd] = useState(1);
+
   const [ticket, setTicket] = useState(0);
 
   // Mercado pago states
@@ -171,7 +182,7 @@ export function Content() {
       });
       return;
     } else {
-      for (let i = 0; i < ticket; i++) {
+      for (let i = 0; i < ticket * qtd; i++) {
         let num = getRandom(2000, 3000);
         do {
           num = getRandom(2000, 3000);
@@ -235,7 +246,7 @@ export function Content() {
       .post(
         '/',
         {
-          transaction_amount: value,
+          transaction_amount: value * qtd,
           payment_method_id: 'pix',
           payer: {
             first_name: firstName(name),
@@ -271,6 +282,16 @@ export function Content() {
       });
   };
 
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.100"
+      backdropFilter="blur(5px) hue-rotate(10deg)"
+    />
+  );
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [overlay, setOverlay] = useState(<OverlayOne />);
+  const [checkboxState, setCheckboxState] = useState(true);
+
   const isErrorName = name === '';
   const isErrorEmail = email === '';
   const isErrorPhone = phone === '';
@@ -287,7 +308,38 @@ export function Content() {
               <Heading fontSize={'2xl'} color="orange.400">
                 Pacote {value}
               </Heading>
-              <Text>Qtd: {qtd}</Text>
+              <Flex align={'center'}>
+                <Text
+                  color="orange.400"
+                  fontSize="md"
+                  fontWeight="bold"
+                  mr="0.5rem"
+                >
+                  Qtd:
+                </Text>
+                <Button
+                  colorScheme={'blackAlpha'}
+                  onClick={() => setQtd(qtd - 1)}
+                  disabled={qtd <= 1}
+                >
+                  -
+                </Button>
+                <Text
+                  color="orange.400"
+                  fontSize="md"
+                  fontWeight="bold"
+                  mx="0.4rem"
+                >
+                  {qtd}
+                </Text>
+                <Button
+                  colorScheme={'blackAlpha'}
+                  onClick={() => setQtd(qtd + 1)}
+                  disabled={qtd === 5}
+                >
+                  +
+                </Button>
+              </Flex>
             </Flex>
             <FormControl id="name" isInvalid={isErrorName && isError}>
               <FormLabel>Nome completo:</FormLabel>
@@ -328,6 +380,32 @@ export function Content() {
                 ) : null}
               </FormControl>
             </Flex>
+            <Flex py="2rem" direction={'column'} align="center">
+              <Checkbox
+                colorScheme="orange"
+                onChange={() => setCheckboxState(false)}
+              >
+                <Text
+                  fontSize="sm"
+                  color={isError && checkboxState ? 'red.500' : 'gray.500'}
+                >
+                  Compreendo e aceito a política de armazenamento de dados.
+                </Text>
+              </Checkbox>
+              <Button
+                mt="0.5rem"
+                textAlign={'right'}
+                fontSize="sm"
+                width={'15rem'}
+                onClick={() => {
+                  setOverlay(<OverlayOne />);
+                  onOpen();
+                }}
+                colorScheme="gray"
+              >
+                <Text color="orange.400">Clique para saber mais.</Text>
+              </Button>
+            </Flex>
             <Stack spacing={6}>
               <Button
                 colorScheme={'orange'}
@@ -339,7 +417,8 @@ export function Content() {
                     name === '' ||
                     email === '' ||
                     phone === '' ||
-                    cpf === ''
+                    cpf === '' ||
+                    checkboxState
                   ) {
                     setIsEror(true);
                     return;
@@ -351,6 +430,35 @@ export function Content() {
                 Gerar Pix
               </Button>
             </Stack>
+            <Modal isCentered isOpen={isOpen} onClose={onClose}>
+              {overlay}
+              <ModalContent>
+                <ModalHeader>Política de armazenamento de dados</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Text textAlign={'justify'}>
+                    Para os organizadores desta promoção é de extrema
+                    importância garantir a proteção das informações que nos são
+                    confiadas pelos participantes e todos aqueles com quem nos
+                    comunicamos. Estamos comprometidos em manter os mais altos
+                    padrões de privacidade e proteção de dados, e atender aos
+                    extensos requisitos legais e regulatórios no que diz
+                    respeito ao manuseio das informações fornecidas. Nesse
+                    sentido, estamos comprometidos em cumprir os requisitos da
+                    Lei 13.709/2018, Lei Geral de Proteção de Dados (LGPD), e as
+                    informações coletadas serão, assim, respeitadas e utilizadas
+                    para o fim específico da promoção, sem compartilhamento de
+                    dados ou divulgação para terceiros. Caso esteja de acordo em
+                    prosseguir, marque a caixa acima.
+                  </Text>
+                </ModalBody>
+                <ModalFooter>
+                  <Button onClick={onClose} colorScheme="orange">
+                    Fechar
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
 
             <Flex justify={'center'}>
               <Img src={pixImg} w="5rem" />
@@ -395,7 +503,7 @@ export function Content() {
           <Flex justify={'space-between'} px="5rem" mt="1.3rem">
             <Heading fontSize={'xl'}>Você pagará:</Heading>
             <Text fontSize="xl" color="white" fontWeight="bold">
-              R$ {value}
+              R$ {value * qtd}
             </Text>
           </Flex>
           <Divider mt="1rem" w="25rem" mx="auto" />
