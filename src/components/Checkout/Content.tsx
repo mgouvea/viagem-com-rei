@@ -131,7 +131,7 @@ export function Content() {
     if (pixHasCreated) {
       let interval = setInterval(() => {
         handleWebHooks(pixId);
-      }, 20000);
+      }, 12000);
 
       if (paymentStatus === 'pending') {
         setTimeout(() => {
@@ -201,6 +201,7 @@ export function Content() {
           email: email,
           phone: phone,
           luckyNumber: luckyNumberUser,
+          package: value,
         },
         { headers }
       )
