@@ -17,7 +17,6 @@ import {
 import { Navbar } from '../Navbar';
 
 import fundoJeri from '../../assets/jeri7.jpg';
-import JeriImages from './JeriImages';
 import { useNavigate } from 'react-router-dom';
 import { Iphone } from '../Iphone';
 
@@ -163,7 +162,6 @@ export function Jeri() {
               </Box>
             </Flex>
           </Stack>
-          {/* <JeriImages /> */}
         </Container>
       </Box>
       <Box>
