@@ -68,6 +68,7 @@ export function Content() {
 
   // const [checkoutPathName, setCheckoutPathName] = useState('');
   const [isPay, setIsPay] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // const idTickets = '62fad70ed2b962e5cf148693';
   let luckyNumberTickets: number[] = [];
@@ -86,16 +87,6 @@ export function Content() {
 
   useEffect(() => {
     getAllTickets();
-
-    toast({
-      title:
-        'Após o pagamento AGUARDE e será redirecionado automaticamente para seus números da sorte!',
-      position: 'top-right',
-      status: 'warning',
-      variant: 'left-accent',
-      duration: 9000,
-      isClosable: true,
-    });
 
     // TEST
     // window.location.pathname === '/Checkout'
@@ -341,6 +332,8 @@ export function Content() {
               <Button
                 colorScheme={'orange'}
                 variant={'solid'}
+                isLoading={isLoading ? true : false}
+                loadingText="Aguardando pagamento"
                 onClick={(e) => {
                   if (
                     name === '' ||
@@ -352,6 +345,7 @@ export function Content() {
                     return;
                   }
                   handlePix();
+                  setIsLoading(true);
                 }}
               >
                 Gerar Pix
