@@ -19,7 +19,7 @@ import { MdPhoneIphone, MdDevicesOther } from 'react-icons/md';
 import { SiYourtraveldottv } from 'react-icons/si';
 import { ReactElement } from 'react';
 
-import iphone from '../../assets/iphone5.png';
+import iphone from '../../assets/iph.png';
 
 interface FeatureProps {
   text: string;
@@ -101,9 +101,6 @@ export function Iphone() {
             rounded={'md'}
             alt={'feature image'}
             src={iphone}
-            // src={
-            //   'https://images.unsplash.com/photo-1554200876-56c2f25224fa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-            // }
             objectFit={'cover'}
           />
           <Text textAlign={'right'} fontSize="xs" color="red.500">

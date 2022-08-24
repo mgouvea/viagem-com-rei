@@ -15,7 +15,7 @@ import { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
 import home from '../../assets/funHome3.jpg';
-import phone from '../../assets/iphone5.png';
+import phone from '../../assets/iph.png';
 
 interface ContentProps {
   name?: string;

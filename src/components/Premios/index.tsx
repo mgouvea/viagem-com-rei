@@ -18,8 +18,8 @@ import { Itens } from './Itens';
 
 import { SwiperImages } from '../SwiperImages';
 
-import jeri from '../../assets/jeri4.jpg';
-import iphone from '../../assets/iphone5.png';
+// import jeri from '../../assets/jeri4.jpg';
+import iphone from '../../assets/iph.png';
 import { useNavigate } from 'react-router-dom';
 
 export function Premios() {
