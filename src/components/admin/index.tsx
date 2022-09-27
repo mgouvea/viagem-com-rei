@@ -37,8 +37,8 @@ export function Admin() {
       userName: 'Mateus Gouvêa',
     },
     {
-      userEmail: 'joaogabriel@gmail.com',
-      userPassword: 'Verde123',
+      userEmail: 'joms_guedes@hotmail.com',
+      userPassword: '123456',
       userName: 'João Gabriel',
     },
   ];
@@ -147,7 +147,7 @@ export function Admin() {
             <Stack spacing={10} pt={2}>
               <Button
                 isLoading={spinner ? true : false}
-                loadingText="Deus tá vendo!"
+                loadingText="Carregando!"
                 size="lg"
                 bg={'blue.400'}
                 color={'white'}

@@ -61,12 +61,12 @@ export function Home({ nameUser }: homeProps) {
               Learn more
             </Button>
           </Stack> */}
-          <Flex w={'full'}>
+          {/* <Flex w={'full'}>
             <Illustration
               height={{ sm: '24rem', lg: '28rem' }}
               mt={{ base: 12, sm: 16 }}
             />
-          </Flex>
+          </Flex> */}
         </Stack>
       </Container>
     </>
