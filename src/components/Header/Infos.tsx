@@ -18,7 +18,7 @@ export default function Infos() {
     <Stack
       // minH={'100vh'}
       direction={{ base: 'column', md: 'row' }}
-      mt="-40rem"
+      mt="-47rem"
       // border="1px solid red"
     >
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
