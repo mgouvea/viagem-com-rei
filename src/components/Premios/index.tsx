@@ -53,7 +53,7 @@ export function Premios() {
           </Heading>
           <Text color={'gray.500'} textAlign="center" fontSize="lg">
             Você pode adquirir quantos bilhetes quiser e puder. Cada bilhete
-            corresponde a um número exclusivo, que aumentará suas chances na
+            corresponde a um número exclusivo que aumentará suas chances na
             premiação. <strong> Todo mês haverá sorteio de prêmios</strong>, e
             em janeiro de 2024 acontecem os sorteios dos 2 prêmios principais:
           </Text>

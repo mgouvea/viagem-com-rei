@@ -17,7 +17,7 @@ const testimonials = [
     name: 'Juliana Mandai',
     role: 'Prêmio Principal',
     content:
-      '"Fiquei bem feliz em ter participado da ação entre amigos Viaje com Rei e ganhar a viagem para Jericoacaora. O principal motivador de participar dessas ações é contribuir com para essa nobre causa do Centro, mas como adoro viajar, foi bem legal ganhar o prêmio principal de 2022."',
+      '"Fiquei bem feliz em ter participado da ação entre amigos Viaje com Rei e ganhar a viagem para Jericoacaora. O principal motivador de participar dessas ações de promoção é contribuir para essa nobre causa do Centro, mas como adoro viajar, foi bem legal ganhar o prêmio principal de 2022. Já tinha participado em 2021 também, e sempre que podemos compramos um bom número de bilhetes para aumentar as chances de ganhar."',
     avatar: `${jm}`,
   },
   {
