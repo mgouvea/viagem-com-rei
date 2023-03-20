@@ -15,7 +15,8 @@ import {
 } from '@chakra-ui/react';
 import { Navbar } from '../Navbar';
 
-import fundoViagem from '../../assets/alter/9.png';
+// import fundoViagem from '../../assets/alter/6.png';
+import fundoViagem from '../../assets/alter/13.jpg';
 import { useNavigate } from 'react-router-dom';
 import { Iphone } from '../Iphone';
 
@@ -32,7 +33,7 @@ export function PremioViagem() {
         bgImage={fundoViagem}
         bgSize="cover"
         bgRepeat="no-repeat"
-        bgPosition="left"
+        bgPosition="center"
         height="100vh"
         justifyContent="flex-end"
       >
