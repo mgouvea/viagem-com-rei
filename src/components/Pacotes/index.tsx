@@ -10,7 +10,6 @@ import {
   List,
   ListItem,
   ListIcon,
-  Button,
   Img,
   Flex,
   Link,
@@ -95,9 +94,9 @@ export default function Pacotes() {
                   to={'/Checkout20'}
                   style={{ textDecoration: 'none' }}
                 >
-                  <Button w="full" colorScheme="orange" variant="outline">
+                  {/* <Button w="full" colorScheme="orange" variant="outline">
                     Comprar
-                  </Button>
+                  </Button> */}
                 </Link>
               </Box>
             </VStack>
@@ -136,9 +135,6 @@ export default function Pacotes() {
                   <Text fontSize="5xl" fontWeight="900">
                     30
                   </Text>
-                  {/* <Text fontSize="3xl" color="gray.500">
-                    /month
-                  </Text> */}
                 </HStack>
               </Box>
               <VStack
@@ -162,9 +158,9 @@ export default function Pacotes() {
                     to={'/Checkout30'}
                     style={{ textDecoration: 'none' }}
                   >
-                    <Button w="full" colorScheme="orange">
+                    {/* <Button w="full" colorScheme="orange">
                       Comprar
-                    </Button>
+                    </Button> */}
                   </Link>
                 </Box>
               </VStack>
@@ -182,9 +178,6 @@ export default function Pacotes() {
                 <Text fontSize="5xl" fontWeight="900">
                   50
                 </Text>
-                {/* <Text fontSize="3xl" color="gray.500">
-                  /month
-                </Text> */}
               </HStack>
             </Box>
             <VStack
@@ -208,9 +201,9 @@ export default function Pacotes() {
                   to={'/Checkout'}
                   style={{ textDecoration: 'none' }}
                 >
-                  <Button w="full" colorScheme="orange" variant="outline">
+                  {/* <Button w="full" colorScheme="orange" variant="outline">
                     Comprar
-                  </Button>
+                  </Button> */}
                 </Link>
               </Box>
             </VStack>

@@ -5,13 +5,15 @@ import App from './App';
 
 import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from './styles/theme';
-import { Jeri } from './components/Jeri';
+
 import Pacotes from './components/Pacotes';
 import { Checkout } from './components/Checkout';
 import { Checkout20 } from './components/Checkout/Checkout20';
 import { Checkout30 } from './components/Checkout/Checkout30';
 import { PaymentApproved } from './components/PaymentApproved';
 import { Admin } from './components/admin';
+import { PremioViagem } from './components/PremioViagem';
+import Ganhadores from './components/Ganhadores';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -19,7 +21,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />} />
-          <Route path="/jeri" element={<Jeri />} />
+          <Route path="/premios" element={<PremioViagem />} />
+          <Route path="/ganhadores" element={<Ganhadores />} />
           <Route path="/pacotes" element={<Pacotes />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout20" element={<Checkout20 />} />

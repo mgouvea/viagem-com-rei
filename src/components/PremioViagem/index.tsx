@@ -6,7 +6,6 @@ import {
   Heading,
   Text,
   Button,
-  Image,
   Icon,
   IconButton,
   createIcon,
@@ -16,11 +15,11 @@ import {
 } from '@chakra-ui/react';
 import { Navbar } from '../Navbar';
 
-import fundoJeri from '../../assets/jeri7.jpg';
+import fundoViagem from '../../assets/alter/9.png';
 import { useNavigate } from 'react-router-dom';
 import { Iphone } from '../Iphone';
 
-export function Jeri() {
+export function PremioViagem() {
   let navigate = useNavigate();
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -30,7 +29,7 @@ export function Jeri() {
     <>
       <Box
         mt="0.1rem"
-        bgImage={fundoJeri}
+        bgImage={fundoViagem}
         bgSize="cover"
         bgRepeat="no-repeat"
         bgPosition="left"
@@ -70,7 +69,7 @@ export function Jeri() {
                 </Text>
                 <br />
                 <Text as={'span'} color={'red.400'}>
-                  Jericoacoara - CE
+                  Alter do chão - PA
                 </Text>
               </Heading>
               <Text
@@ -82,7 +81,7 @@ export function Jeri() {
                 w={isWideVersion ? '30rem' : '22rem'}
               >
                 Compre um bilhete e concorra a 5 diárias em hotel padrão 4
-                estrelas em Jericoacoara, com direito a 1 acompanhante, café da
+                estrelas em Alter do chão, com direito a 1 acompanhante, café da
                 manhã incluso e bilhete aéreo ida e volta.
               </Text>
               <Stack
@@ -145,20 +144,20 @@ export function Jeri() {
                 <iframe
                   width="560"
                   height="315"
+                  src="https://www.youtube.com/embed/Hn89IFD4ECU"
+                  title="ALTER DO CHÃO | GUIA COMPLETO com O QUE FAZER, PASSEIOS, QUANDO IR, COMO CHEGAR e outras DICAS"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  // allowfullscreen
+                ></iframe>
+                {/* <iframe
+                  width="560"
+                  height="315"
                   src="https://www.youtube.com/embed/7sE_TegNIlo"
                   title="YouTube video player"
                   // frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   // allowfullscreen
-                ></iframe>
-                {/* <Image
-                alt={'Hero Image'}
-                fit={'cover'}
-                align={'center'}
-                w={'100%'}
-                h={'100%'}
-                src={'https://www.youtube.com/watch?v=7sE_TegNIlo'}
-              /> */}
+                ></iframe> */}
               </Box>
             </Flex>
           </Stack>

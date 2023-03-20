@@ -340,7 +340,7 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: 'Prêmios',
-    href: '/jeri',
+    href: '/premios',
     // children: [
     //   {
     //     label: '5 dias em Jericoacoara - CE',
@@ -354,6 +354,10 @@ const NAV_ITEMS: Array<NavItem> = [
     //   },
     // ],
   },
+  // {
+  //   label: 'Ganhadores',
+  //   href: '/ganhadores',
+  // },
   {
     label: 'Pacotes',
     href: '/pacotes',

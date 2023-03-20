@@ -18,9 +18,9 @@ import { Itens } from './Itens';
 
 import { SwiperImages } from '../SwiperImages';
 
-// import jeri from '../../assets/jeri4.jpg';
 import iphone from '../../assets/iph.png';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 export function Premios() {
   const isWideVersion = useBreakpointValue({
@@ -28,6 +28,7 @@ export function Premios() {
     lg: true,
   });
   let navigate = useNavigate();
+  // const nextYear = moment().add(1, 'years');
 
   return (
     <>
@@ -54,7 +55,7 @@ export function Premios() {
             Você pode adquirir quantos bilhetes quiser e puder. Cada bilhete
             corresponde a um número exclusivo, que aumentará suas chances na
             premiação. <strong> Todo mês haverá sorteio de prêmios</strong>, e
-            em janeiro/2023 acontecem os sorteios dos 2 prêmios principais:
+            em janeiro de 2024 acontecem os sorteios dos 2 prêmios principais:
           </Text>
           <Flex
             direction={isWideVersion ? 'row' : 'column'}
@@ -80,7 +81,7 @@ export function Premios() {
                 <Box mt="1rem">
                   <Text color="gray.600">1° Lugar</Text>
                   <Text color="orange.400" fontSize={'lg'}>
-                    5 diárias em Jericoacoara - CE
+                    5 diárias em Alter do Chão - PA
                   </Text>
 
                   <Grid
@@ -101,20 +102,11 @@ export function Premios() {
                 </Box>
               </Flex>
             </Flex>
-            {/* <Itens
-              title="1° Lugar"
-              highlight="5 diárias em Jericoacoara - CE"
-              benefit1="Hotel 4 estrelas"
-              // benefit1="Ida e volta"
-              // benefit2="Café da Manhã"
-              // benefit3="1 acompanhante"
-              image={jeri}
-            /> */}
 
             <Itens
               title="2° Lugar"
-              highlight="1 Iphone"
-              benefit1="Última geração"
+              highlight="1 iPhone 12"
+              benefit1="128 GB"
               image={iphone}
             />
           </Flex>

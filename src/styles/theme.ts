@@ -9,6 +9,11 @@ export const theme = extendTheme({
     mgreen: {
       500: '#789684',
     },
+    mpBlue: {
+      500: '#00bcff',
+      600: '#008bc8',
+      700: '#0a0080',
+    },
   },
   styles: {
     global: {

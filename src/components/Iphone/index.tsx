@@ -10,11 +10,6 @@ import {
   Icon,
   useColorModeValue,
 } from '@chakra-ui/react';
-import {
-  IoAnalyticsSharp,
-  IoLogoBitcoin,
-  IoSearchSharp,
-} from 'react-icons/io5';
 import { MdPhoneIphone, MdDevicesOther } from 'react-icons/md';
 import { SiYourtraveldottv } from 'react-icons/si';
 import { ReactElement } from 'react';
@@ -62,10 +57,11 @@ export function Iphone() {
           >
             2° Lugar
           </Text>
-          <Heading color="orange.400">1 Iphone de última geração</Heading>
+          <Heading color="orange.400">1 iPhone 12</Heading>
           <Text color={'gray.500'} fontSize={'lg'}>
-            Como segundo prêmio principal, será sorteado 1 Iphone de última
-            geração. Além disso teremos diversos prêmios sorteados mensalmente.
+            Como segundo prêmio principal, será sorteado 1 iPhone 12 de 128GB.
+            Além disso, teremos diversos prêmios que serão sorteados
+            mensalmente.
           </Text>
           <Stack
             spacing={4}
@@ -80,12 +76,12 @@ export function Iphone() {
                 <Icon as={SiYourtraveldottv} color={'yellow.500'} w={5} h={5} />
               }
               iconBg={useColorModeValue('yellow.100', 'yellow.900')}
-              text={'Viagem Jericoacoara'}
+              text={'Viagem Alter do chão - PA'}
             />
             <Feature
               icon={<Icon as={MdPhoneIphone} color={'green.500'} w={5} h={5} />}
               iconBg={useColorModeValue('green.100', 'green.900')}
-              text={'1 Iphone'}
+              text={'1 iPhone 12'}
             />
             <Feature
               icon={

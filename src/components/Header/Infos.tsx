@@ -2,7 +2,6 @@ import {
   Button,
   Flex,
   Heading,
-  Image,
   Stack,
   Text,
   useBreakpointValue,
@@ -19,7 +18,7 @@ export default function Infos() {
     <Stack
       // minH={'100vh'}
       direction={{ base: 'column', md: 'row' }}
-      mt="-37rem"
+      mt="-40rem"
       // border="1px solid red"
     >
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
@@ -43,19 +42,18 @@ export default function Infos() {
               Promoção
             </Text>
             <br />{' '}
-            <Text color={'yellow.300'} as={'span'}>
+            <Text color={'orange.400'} as={'span'}>
               Viaje com o Rei
             </Text>{' '}
           </Heading>
           <Text
-            fontSize={{ base: 'md', lg: 'lg' }}
+            fontSize={{ base: 'md', lg: 'xl' }}
             color={'white'}
             fontWeight={isWideVersion ? '' : 'bold'}
           >
             Sua oportunidade de contribuir com as benfeitorias do Núcleo Rei
             Hoasqueiro e ainda concorrer a um pacote turístico de 5 dias para
-            Jericoacoara - CE, um Iphone de última geração e diversos prêmios
-            mensais.
+            Alter do Chão - PA, um iPhone 12 e diversos prêmios mensais.
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
             <Button

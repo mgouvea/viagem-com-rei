@@ -11,11 +11,15 @@ import {
   useColorModeValue,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
 import home from '../../assets/funHome3.jpg';
 import phone from '../../assets/iph.png';
+import { Routes, Route, useParams } from 'react-router-dom';
+import { getParams } from '../../utils/getParams';
+import { Navbar } from '../Navbar';
+import { Details } from './Details';
 
 interface ContentProps {
   name?: string;
@@ -37,11 +41,18 @@ export function PaymentApproved({
   email,
 }: ContentProps) {
   // const number = [2301, 1233, 3213];
+  const { id } = useParams();
 
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
+
+  var idTransaction = getParams('payment_id');
+
+  useEffect(() => {
+    console.log(idTransaction);
+  }, []);
 
   const componentRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
@@ -52,7 +63,9 @@ export function PaymentApproved({
 
   return (
     <Flex direction="column" bg="gray.100" h="100vh">
-      <Flex
+      <Navbar />
+      <Details />
+      {/* <Flex
         direction={'column'}
         justify={'top'}
         align="center"
@@ -130,8 +143,6 @@ export function PaymentApproved({
 
       <Flex h="100vh" justifyContent="center" alignItems="center">
         <Button
-          // {...props}
-          /* flex={1} */
           px={4}
           fontSize={'sm'}
           rounded={'full'}
@@ -150,7 +161,7 @@ export function PaymentApproved({
         >
           Imprimir
         </Button>
-      </Flex>
+      </Flex> */}
     </Flex>
   );
 }

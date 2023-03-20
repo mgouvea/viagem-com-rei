@@ -10,10 +10,16 @@ import { Crown } from 'phosphor-react';
 
 import jl from '../../assets/ganhadores/jl.png';
 import jf from '../../assets/ganhadores/jf.png';
-import mc from '../../assets/ganhadores/mc.png';
-import md from '../../assets/ganhadores/md.png';
+import jm from '../../assets/ganhadores/jm.png';
 
 const testimonials = [
+  {
+    name: 'Juliana Mandai',
+    role: 'Prêmio Principal',
+    content:
+      '"Fiquei bem feliz em ter participado da ação entre amigos Viaje com Rei e ganhar a viagem para Jericoacaora. O principal motivador de participar dessas ações é contribuir com para essa nobre causa do Centro, mas como adoro viajar, foi bem legal ganhar o prêmio principal de 2022."',
+    avatar: `${jm}`,
+  },
   {
     name: 'Júlio Cezar',
     role: 'Prêmio Principal',

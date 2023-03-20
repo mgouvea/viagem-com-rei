@@ -10,11 +10,14 @@ import './styles.css';
 
 // import required modules
 import { EffectCards } from 'swiper';
-import jeri1 from '../../assets/jeri4.jpg';
-import jeri2 from '../../assets/1.jpg';
-import jeri3 from '../../assets/2.jpg';
-import jeri4 from '../../assets/3.png';
-import jeri5 from '../../assets/4.jpg';
+import img1 from '../../assets/alter/imgs/1.jpg';
+import img2 from '../../assets/alter/imgs/2.jpg';
+import img3 from '../../assets/alter/imgs/3.jpg';
+import img4 from '../../assets/alter/imgs/4.jpg';
+import img5 from '../../assets/alter/imgs/5.jpg';
+import img6 from '../../assets/alter/imgs/6.jpg';
+import img7 from '../../assets/alter/imgs/7.jpg';
+import img8 from '../../assets/alter/imgs/8.jpg';
 import { Img } from '@chakra-ui/react';
 
 export function SwiperImages() {
@@ -27,28 +30,29 @@ export function SwiperImages() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <Img src={jeri1} />
+          <Img src={img1} />
         </SwiperSlide>
         <SwiperSlide>
-          <Img src={jeri2} />
+          <Img src={img2} />
         </SwiperSlide>
         <SwiperSlide>
-          <Img src={jeri3} />
+          <Img src={img3} />
         </SwiperSlide>
         <SwiperSlide>
-          <Img src={jeri4} />
+          <Img src={img4} />
         </SwiperSlide>
         <SwiperSlide>
-          <Img src={jeri5} />
+          <Img src={img5} />
         </SwiperSlide>
-
-        {/* <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
+        <SwiperSlide>
+          <Img src={img6} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Img src={img7} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Img src={img8} />
+        </SwiperSlide>
       </Swiper>
     </>
   );
