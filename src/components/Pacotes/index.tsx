@@ -13,6 +13,8 @@ import {
   Img,
   Flex,
   Link,
+  useBreakpointValue,
+  Button,
 } from '@chakra-ui/react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { Navbar } from '../Navbar';
@@ -37,6 +39,10 @@ function PriceWrapper({ children }: { children: ReactNode }) {
 }
 
 export default function Pacotes() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <Flex direction="column" bg="gray.100" h="100vh">
       <Navbar />
@@ -59,7 +65,7 @@ export default function Pacotes() {
           <PriceWrapper>
             <Box py={4} px={12}>
               <Text fontWeight="500" fontSize="2xl">
-                Pacote 20
+                {isWideVersion ? 'Bilhete individual' : 'Plano 20'}
               </Text>
               <HStack justifyContent="center">
                 <Text fontSize="3xl" fontWeight="600">
@@ -94,9 +100,9 @@ export default function Pacotes() {
                   to={'/Checkout20'}
                   style={{ textDecoration: 'none' }}
                 >
-                  {/* <Button w="full" colorScheme="orange" variant="outline">
+                  <Button w="full" colorScheme="orange" variant="outline">
                     Comprar
-                  </Button> */}
+                  </Button>
                 </Link>
               </Box>
             </VStack>
@@ -126,7 +132,7 @@ export default function Pacotes() {
               </Box>
               <Box py={4} px={12}>
                 <Text fontWeight="500" fontSize="2xl">
-                  Pacote 30
+                  Plano 30
                 </Text>
                 <HStack justifyContent="center">
                   <Text fontSize="3xl" fontWeight="600">
@@ -158,9 +164,9 @@ export default function Pacotes() {
                     to={'/Checkout30'}
                     style={{ textDecoration: 'none' }}
                   >
-                    {/* <Button w="full" colorScheme="orange">
+                    <Button w="full" colorScheme="orange">
                       Comprar
-                    </Button> */}
+                    </Button>
                   </Link>
                 </Box>
               </VStack>
@@ -169,7 +175,7 @@ export default function Pacotes() {
           <PriceWrapper>
             <Box py={4} px={12}>
               <Text fontWeight="500" fontSize="2xl">
-                Pacote 50
+                Plano 50
               </Text>
               <HStack justifyContent="center">
                 <Text fontSize="3xl" fontWeight="600">
@@ -201,9 +207,9 @@ export default function Pacotes() {
                   to={'/Checkout'}
                   style={{ textDecoration: 'none' }}
                 >
-                  {/* <Button w="full" colorScheme="orange" variant="outline">
+                  <Button w="full" colorScheme="orange" variant="outline">
                     Comprar
-                  </Button> */}
+                  </Button>
                 </Link>
               </Box>
             </VStack>

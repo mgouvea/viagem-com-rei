@@ -17,11 +17,17 @@ import {
 
 import iconApproved from '../../assets/iconApproved.jpg';
 
-export function Details() {
+interface DetailsProps {
+  name?: string;
+  numbers?: Array<number>;
+}
+
+export function Details({ name, numbers }: DetailsProps) {
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
   });
+
   return (
     <Container maxW={'7xl'}>
       <SimpleGrid
@@ -55,7 +61,7 @@ export function Details() {
               color={'orange.400'}
               fontSize={{ base: '2xl', sm: '4xl', lg: '5xl' }}
             >
-              Parabéns, seu pagamento foi aprovado!
+              Parabéns {name}, seu pagamento foi aprovado!
             </Heading>
             {/* <Text
               color={useColorModeValue('gray.900', 'gray.400')}
@@ -85,7 +91,7 @@ export function Details() {
                 parte da nossa história
               </Text>
               <Text fontSize={'lg'}>
-                Você já está concorrendo aos prêmios mensais e prêmios
+                Você já está concorrendo aos prêmios mensais e aos prêmios
                 principais. Veja abaixo seus números da sorte.
               </Text>
             </VStack>
@@ -99,18 +105,12 @@ export function Details() {
               >
                 Seus números
               </Text>
-
               <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-                <List spacing={2}>
-                  <ListItem>Chronograph</ListItem>
-                  <ListItem>Master Chronometer Certified</ListItem>{' '}
-                  <ListItem>Tachymeter</ListItem>
-                </List>
-                <List spacing={2}>
-                  <ListItem>Anti‑magnetic</ListItem>
-                  <ListItem>Chronometer</ListItem>
-                  <ListItem>Small seconds</ListItem>
-                </List>
+                {numbers?.map((n, i) => (
+                  <List key={i} spacing={2}>
+                    <ListItem>{n}</ListItem>
+                  </List>
+                ))}
               </SimpleGrid>
             </Box>
             <Box>
@@ -129,13 +129,13 @@ export function Details() {
                   <Text as={'span'} fontWeight={'bold'}>
                     1° Prêmio principal:
                   </Text>{' '}
-                  Viagem ida e volta para Alter do chão - PA (2 pessoas)
+                  Viagem ida e volta para Alter do chão - PA
                 </ListItem>
                 <ListItem>
                   <Text as={'span'} fontWeight={'bold'}>
                     2° Prêmio principal:
                   </Text>{' '}
-                  1 Iphone de última geração
+                  1 iPhone 12 de 128GB
                 </ListItem>
                 <ListItem>
                   <Text as={'span'} fontWeight={'bold'}>

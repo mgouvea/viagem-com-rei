@@ -13,10 +13,8 @@ import {
   useClipboard,
   useBreakpointValue,
   useToast,
-  FormHelperText,
   FormErrorMessage,
   Checkbox,
-  CheckboxGroup,
   ModalOverlay,
   useDisclosure,
   Modal,
@@ -42,6 +40,7 @@ import { api } from '../../services/api';
 import { pix } from '../../services/pix';
 import { pixResponse } from '../../services/pixResponse';
 import { PaymentApproved } from '../PaymentApproved';
+import { useNavigate } from 'react-router-dom';
 
 export function Content() {
   const toast = useToast();
@@ -49,6 +48,8 @@ export function Content() {
     base: false,
     lg: true,
   });
+
+  let navigate = useNavigate();
 
   const [value, setValue] = useState(0);
   const [qtd, setQtd] = useState(1);
@@ -84,27 +85,27 @@ export function Content() {
   // const idTickets = '62fad70ed2b962e5cf148693';
   let luckyNumberTickets: number[] = [];
 
-  async function getAllTickets() {
-    try {
-      const respTickets = await api.get('/tickets');
-      setUpdateLuckyNumbers(respTickets?.data);
-      respTickets?.data.forEach((item: any) => {
-        luckyNumberTickets.push(item?.luckyNumbers);
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  // async function getAllTickets() {
+  //   try {
+  //     const respTickets = await api.get('/tickets');
+  //     setUpdateLuckyNumbers(respTickets?.data);
+  //     respTickets?.data.forEach((item: any) => {
+  //       luckyNumberTickets.push(item?.luckyNumbers);
+  //     });
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
   useEffect(() => {
-    getAllTickets();
+    // getAllTickets();
 
     // TEST
     // window.location.pathname === '/Checkout'
-    //   ? (setValue(1), setTicket(5))
+    //   ? (setValue(0.01), setTicket(5))
     //   : window.location.pathname === '/Checkout30'
     //   ? (setValue(1), setTicket(3))
-    //   : (setValue(1), setTicket(1));
+    //   : (setValue(0.01), setTicket(1));
 
     // PROD
     window.location.pathname === '/Checkout'
@@ -173,7 +174,7 @@ export function Content() {
   const handleDataPost = async () => {
     let luckyNumberUser: number[] = [];
     // let luckyNumberPut: number[] = [];
-    if (luckyNumberTickets.length >= 1000) {
+    if (luckyNumberTickets.length >= 3000) {
       toast({
         title: 'Não há mais números disponíveis',
         position: 'top-right',
@@ -186,7 +187,10 @@ export function Content() {
         let num = getRandom(2000, 3000);
         do {
           num = getRandom(2000, 3000);
-        } while (luckyNumberTickets?.includes(num));
+        } while (
+          luckyNumberTickets?.includes(num) ||
+          luckyNumberUser?.includes(num)
+        );
 
         // luckyNumberTickets.push(num);
         luckyNumberUser.push(num);
@@ -532,17 +536,30 @@ export function Content() {
                 isReadOnly
                 // placeholder="Welcome"
               />
-              <Button
-                onClick={onCopy}
-                ml={2}
-                w={isWideVersion ? '' : '7rem'}
-                fontSize={isWideVersion ? '' : 'lg'}
-                colorScheme="orange"
-                mt={isWideVersion ? '0.5rem' : '1rem'}
-                mb={isWideVersion ? '' : '0.5rem'}
-              >
-                {hasCopied ? 'Copiado' : 'Copiar'}
-              </Button>
+              <Flex>
+                <Button
+                  onClick={onCopy}
+                  ml={2}
+                  w={isWideVersion ? '' : '7rem'}
+                  fontSize={isWideVersion ? '' : 'lg'}
+                  colorScheme="blue"
+                  mt={isWideVersion ? '0.5rem' : '1rem'}
+                  mb={isWideVersion ? '' : '0.5rem'}
+                >
+                  {hasCopied ? 'Copiado' : 'Copiar'}
+                </Button>
+                <Button
+                  onClick={() => navigate('/Pacotes')}
+                  ml={2}
+                  w={isWideVersion ? '' : '7rem'}
+                  fontSize={isWideVersion ? '' : 'lg'}
+                  colorScheme="orange"
+                  mt={isWideVersion ? '0.5rem' : '1rem'}
+                  mb={isWideVersion ? '' : '0.5rem'}
+                >
+                  Cancelar pix
+                </Button>
+              </Flex>
               {/* <Flex
                   direction={'column'}
                   fontSize="sm"

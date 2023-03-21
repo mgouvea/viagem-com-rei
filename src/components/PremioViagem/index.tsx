@@ -123,10 +123,10 @@ export function PremioViagem() {
               />
               <Box
                 position={'relative'}
-                height={'315px'}
                 rounded={'2xl'}
                 boxShadow={'2xl'}
-                width={'560px'}
+                width={isWideVersion ? '560' : '360'}
+                height={isWideVersion ? '315' : '215'}
                 overflow={'hidden'}
                 // border={'1px solid red'}
               >
@@ -143,8 +143,9 @@ export function PremioViagem() {
                   transform={'translateX(-50%) translateY(-50%)'}
                 />
                 <iframe
-                  width="560"
-                  height="315"
+                  width={isWideVersion ? '560' : '360'}
+                  height={isWideVersion ? '315' : '215'}
+                  // height="315"
                   src="https://www.youtube.com/embed/Hn89IFD4ECU"
                   title="ALTER DO CHÃO | GUIA COMPLETO com O QUE FAZER, PASSEIOS, QUANDO IR, COMO CHEGAR e outras DICAS"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

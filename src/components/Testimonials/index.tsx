@@ -203,7 +203,7 @@ export function Testimonials() {
         mx={'auto'}
       >
         {testimonials.map((cardInfo, index) => (
-          <TestimonialCard {...cardInfo} index={index} />
+          <TestimonialCard {...cardInfo} index={index} key={index} />
         ))}
       </SimpleGrid>
       <Flex justify="center" mt="2rem">
