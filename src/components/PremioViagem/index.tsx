@@ -15,7 +15,6 @@ import {
 } from '@chakra-ui/react';
 import { Navbar } from '../Navbar';
 
-// import fundoViagem from '../../assets/alter/6.png';
 import fundoViagem from '../../assets/alter/13.jpg';
 import { useNavigate } from 'react-router-dom';
 import { Iphone } from '../Iphone';
@@ -78,7 +77,6 @@ export function PremioViagem() {
                 fontWeight="bold"
                 fontSize={isWideVersion ? '1.1rem' : '1.1rem'}
                 textAlign={isWideVersion ? 'justify' : 'left'}
-                // border="1px solid red"
                 w={isWideVersion ? '30rem' : '22rem'}
               >
                 Compre um bilhete e concorra a 5 diárias em hotel padrão 4
@@ -92,7 +90,6 @@ export function PremioViagem() {
               >
                 <Button
                   rounded={'full'}
-                  // size={isWideVersion ? '5xl' : 'md'}
                   fontWeight={'normal'}
                   w={isWideVersion ? '22rem' : '16rem'}
                   px={6}
@@ -128,13 +125,11 @@ export function PremioViagem() {
                 width={isWideVersion ? '560' : '360'}
                 height={isWideVersion ? '315' : '215'}
                 overflow={'hidden'}
-                // border={'1px solid red'}
               >
                 <IconButton
                   aria-label={'Play Button'}
                   variant={'ghost'}
                   _hover={{ bg: 'transparent' }}
-                  // icon={<PlayIcon w={12} h={12} />}
                   size={'lg'}
                   color={'white'}
                   position={'absolute'}
@@ -145,20 +140,16 @@ export function PremioViagem() {
                 <iframe
                   width={isWideVersion ? '560' : '360'}
                   height={isWideVersion ? '315' : '215'}
-                  // height="315"
                   src="https://www.youtube.com/embed/Hn89IFD4ECU"
                   title="ALTER DO CHÃO | GUIA COMPLETO com O QUE FAZER, PASSEIOS, QUANDO IR, COMO CHEGAR e outras DICAS"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  // allowfullscreen
                 ></iframe>
                 {/* <iframe
                   width="560"
                   height="315"
                   src="https://www.youtube.com/embed/7sE_TegNIlo"
                   title="YouTube video player"
-                  // frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  // allowfullscreen
                 ></iframe> */}
               </Box>
             </Flex>

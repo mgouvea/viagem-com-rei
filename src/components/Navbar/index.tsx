@@ -341,18 +341,6 @@ const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Prêmios',
     href: '/premios',
-    // children: [
-    //   {
-    //     label: '5 dias em Jericoacoara - CE',
-    //     subLabel: 'Hotel padrão 4 estrelas',
-    //     href: '/Jeri',
-    //   },
-    //   {
-    //     label: '1 Iphone',
-    //     subLabel: 'Última Geração',
-    //     href: '#',
-    //   },
-    // ],
   },
   // {
   //   label: 'Ganhadores',

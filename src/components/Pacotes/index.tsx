@@ -74,9 +74,6 @@ export default function Pacotes() {
                 <Text fontSize="5xl" fontWeight="900">
                   20
                 </Text>
-                {/* <Text fontSize="3xl" color="gray.500">
-                  /month
-                </Text> */}
               </HStack>
             </Box>
             <VStack
@@ -121,7 +118,6 @@ export default function Pacotes() {
                   bg={useColorModeValue('green.300', 'green.700')}
                   px={3}
                   py={1}
-                  // color={useColorModeValue('gray.900', 'gray.300')}
                   fontSize="sm"
                   fontWeight="600"
                   rounded="xl"

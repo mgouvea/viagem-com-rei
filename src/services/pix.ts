@@ -18,8 +18,3 @@ export const pix = axios.create({
   // prettier-ignore
   headers: { 'Authorization': `Bearer ${token}` },
 });
-// export const pixResponse = axios.create({
-//   baseURL: 'https://api.mercadopago.com/point/integration-api/payment-intents',
-//   // prettier-ignore
-//   headers: { 'Authorization': `Bearer ${token}` },
-// });

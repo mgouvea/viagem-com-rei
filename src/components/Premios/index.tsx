@@ -1,4 +1,3 @@
-// import Head from 'next/head';
 import {
   Box,
   Heading,
@@ -20,7 +19,6 @@ import { SwiperImages } from '../SwiperImages';
 
 import iphone from '../../assets/iph.png';
 import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
 
 export function Premios() {
   const isWideVersion = useBreakpointValue({
@@ -28,7 +26,6 @@ export function Premios() {
     lg: true,
   });
   let navigate = useNavigate();
-  // const nextYear = moment().add(1, 'years');
 
   return (
     <>
@@ -73,10 +70,7 @@ export function Premios() {
               bg="white"
               borderRadius="lg"
             >
-              <Flex
-                direction={'column'}
-                // border="1px solid red"
-              >
+              <Flex direction={'column'}>
                 <SwiperImages />
                 <Box mt="1rem">
                   <Text color="gray.600">1° Lugar</Text>
@@ -90,7 +84,6 @@ export function Premios() {
                     color="gray.400"
                     fontSize="sm"
                     pt="0.5rem"
-                    // pb="0.5rem"
                   >
                     <GridItem w="100%" h="10">
                       <Text>Café da Manhã</Text>

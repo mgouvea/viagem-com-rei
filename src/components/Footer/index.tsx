@@ -111,26 +111,18 @@ export function Footer() {
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}
         >
-          <Text>© {year} Viaje com o Rei. Todos os direitos reservados</Text>
-          <Stack direction={'row'} spacing={6}>
-            <Flex _hover={{ bg: 'green.400', borderRadius: 'xl' }}>
-              <SocialButton label={'Whatsapp'} href={'#'}>
-                <Link
-                  href="https://api.whatsapp.com/send?phone=556192049304&text=Ol%C3%A1%2C%20quero%20saber%20mais%20informa%C3%A7%C3%B5es%20a%20respeito%20da%20promo%C3%A7%C3%A3o%20Viaje%20com%20o%20Rei!"
-                  isExternal
-                >
-                  <FaWhatsapp />
-                </Link>
-              </SocialButton>
-            </Flex>
-
-            {/* <SocialButton label={'YouTube'} href={'#'}>
-              <FaYoutube />
-            </SocialButton> */}
-            {/* <SocialButton label={'Instagram'} href={'#'}>
-              <FaInstagram />
-            </SocialButton> */}
-          </Stack>
+          <Text style={{ cursor: 'default' }} fontSize={'small'}>
+            © {year} Viaje com o Rei. Todos os direitos reservados
+          </Text>
+          <Link
+            href="https://wa.me/5561982107187?text=Ol%C3%A1+GouTech+Digital%2C+tenho+interesse+em+saber+mais+sobre+seu+trabalho%21"
+            isExternal
+            style={{ textDecoration: 'none' }}
+          >
+            <Text _hover={{ color: 'orange.400' }} fontSize={'small'}>
+              Desenvolvido por GouTech Digital
+            </Text>
+          </Link>
         </Container>
       </Box>
     </Box>

@@ -1,7 +1,6 @@
 import { Box, Flex, useBreakpointValue } from '@chakra-ui/react';
 import { Navbar } from '../Navbar';
 
-// import fundoHome from '../../assets/alter/10.png';
 import fundoHome from '../../assets/alter/12.jpg';
 import Infos from './Infos';
 

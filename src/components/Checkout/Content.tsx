@@ -26,14 +26,8 @@ import {
 } from '@chakra-ui/react';
 
 import { firstName, lastName, cpfMask, phoneMask } from '../../utils/mask';
-// import { Link as ReactRouter } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
-
-// import { format, formatDistanceToNow } from 'date-fns';
-// import ptBR from 'date-fns/locale/pt-BR';
 
 import pixImg from '../../assets/pix.svg';
-// import logoY from '../../assets/logoYellow.png';
 import cpSegura from '../../assets/cpSegura.png';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
@@ -61,8 +55,6 @@ export function Content() {
   const [hasPix, sethasPix] = useState(false);
   const [dataQR, setDataQR] = useState();
   const [dataPastePix, setDataPastePix] = useState('');
-  // const [expiration, setExpiration] = useState<Date>(new Date());
-  // const [urlPayment, setUrlPayment] = useState('');
   const [pixHasCreated, setPixHasCreated] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState('');
 
@@ -78,28 +70,12 @@ export function Content() {
   const [updateLuckyNumbers, setUpdateLuckyNumbers] = useState<number[]>([]);
   const [postLuckyNumbers, setPostLuckyNumbers] = useState<number[]>([]);
 
-  // const [checkoutPathName, setCheckoutPathName] = useState('');
   const [isPay, setIsPay] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const idTickets = '62fad70ed2b962e5cf148693';
   let luckyNumberTickets: number[] = [];
 
-  // async function getAllTickets() {
-  //   try {
-  //     const respTickets = await api.get('/tickets');
-  //     setUpdateLuckyNumbers(respTickets?.data);
-  //     respTickets?.data.forEach((item: any) => {
-  //       luckyNumberTickets.push(item?.luckyNumbers);
-  //     });
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
   useEffect(() => {
-    // getAllTickets();
-
     // TEST
     // window.location.pathname === '/Checkout'
     //   ? (setValue(0.01), setTicket(5))
@@ -114,8 +90,6 @@ export function Content() {
       ? (setValue(30), setTicket(2))
       : (setValue(20), setTicket(1));
   }, [window.location.pathname, hasPix]);
-
-  // let navigate = useNavigate();
 
   const handleWebHooks = async (id: string) => {
     try {
@@ -145,25 +119,15 @@ export function Content() {
         setPixId('');
         setPixHasCreated(false);
         setIsPay(true);
-        // navigate('/PaymentApproved');
       }
 
       return () => clearInterval(interval);
     }
   }, [pixHasCreated, paymentStatus]);
 
-  // useEffect(() => {
-  //   if (paymentStatus === 'approved') {
-  //     clearInterval(webHookInterval());
-  //   }
-  // }, [paymentStatus]);
-
   const getRandom = (a: number, b: number) => {
     return Math.floor(Math.random() * (b - a + 1)) + a;
   };
-
-  // pending
-  //approved
 
   const headers = {
     'Content-Type': 'application/json;charset=utf-8',
@@ -173,7 +137,6 @@ export function Content() {
 
   const handleDataPost = async () => {
     let luckyNumberUser: number[] = [];
-    // let luckyNumberPut: number[] = [];
     if (luckyNumberTickets.length >= 3000) {
       toast({
         title: 'Não há mais números disponíveis',
@@ -197,7 +160,6 @@ export function Content() {
       }
     }
     setLuckyNumbers(luckyNumberUser.sort());
-    // luckyNumberPut = luckyNumberTickets.concat(luckyNumberUser);
 
     await api
       .post(
@@ -273,9 +235,6 @@ export function Content() {
         setDataPastePix(
           response.data.point_of_interaction.transaction_data.qr_code
         );
-        // setUrlPayment(
-        //   response?.data.point_of_interaction.transaction_data.ticket_url
-        // );
         sethasPix(true);
         setPixHasCreated(true);
 
@@ -479,9 +438,6 @@ export function Content() {
           color="white"
           direction={'column'}
         >
-          {/* <Flex justify="center" mt="2rem" mb="3rem">
-            <Img src={logoY} w="5rem" />
-          </Flex> */}
           <Heading
             fontSize={isWideVersion ? 'xl' : '2xl'}
             textAlign={isWideVersion ? 'start' : 'center'}
@@ -534,7 +490,6 @@ export function Content() {
                 w={isWideVersion ? '25rem' : '20rem'}
                 value={dataPastePix}
                 isReadOnly
-                // placeholder="Welcome"
               />
               <Flex>
                 <Button
@@ -560,17 +515,6 @@ export function Content() {
                   Cancelar pix
                 </Button>
               </Flex>
-              {/* <Flex
-                  direction={'column'}
-                  fontSize="sm"
-                  align={'center'}
-                  color="gray.300"
-                >
-                  <Text>Informações importantes</Text>
-                  <Text>
-                    Pague seu pix até{' '}
-                  </Text>
-                </Flex> */}
             </Flex>
           ) : null}
         </Flex>
