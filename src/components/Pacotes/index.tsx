@@ -128,7 +128,7 @@ export default function Pacotes() {
               </Box>
               <Box py={4} px={12}>
                 <Text fontWeight="500" fontSize="2xl">
-                  Plano 30
+                  Pacote 30
                 </Text>
                 <HStack justifyContent="center">
                   <Text fontSize="3xl" fontWeight="600">
@@ -171,7 +171,7 @@ export default function Pacotes() {
           <PriceWrapper>
             <Box py={4} px={12}>
               <Text fontWeight="500" fontSize="2xl">
-                Plano 50
+                Pacote 50
               </Text>
               <HStack justifyContent="center">
                 <Text fontSize="3xl" fontWeight="600">
