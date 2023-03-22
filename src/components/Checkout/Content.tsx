@@ -62,6 +62,7 @@ export function Content() {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [indicacao, setIndicacao] = useState('');
   const [phone, setPhone] = useState('');
   const [cpf, setCpf] = useState('');
   const [luckyNumbers, setLuckyNumbers] = useState<number[]>([]);
@@ -167,6 +168,7 @@ export function Content() {
         {
           name: name,
           email: email,
+          indicacao: indicacao,
           phone: phone,
           luckyNumber: luckyNumberUser,
           package: value,
@@ -257,6 +259,7 @@ export function Content() {
 
   const isErrorName = name === '';
   const isErrorEmail = email === '';
+  const isErrorIndicacao = indicacao === '';
   const isErrorPhone = phone === '';
   const isErrorCpf = cpf === '';
 
@@ -316,6 +319,16 @@ export function Content() {
               <Input type="email" onChange={(e) => setEmail(e.target.value)} />
               {isErrorEmail ? (
                 <FormErrorMessage>Email é obrigatório.</FormErrorMessage>
+              ) : null}
+            </FormControl>
+            <FormControl id="indicacao" isInvalid={isErrorIndicacao && isError}>
+              <FormLabel>Indicado por:</FormLabel>
+              <Input
+                type="text"
+                onChange={(e) => setIndicacao(e.target.value)}
+              />
+              {isErrorEmail ? (
+                <FormErrorMessage>Indicação é obrigatório.</FormErrorMessage>
               ) : null}
             </FormControl>
             <Flex gap="0.5rem">
@@ -379,6 +392,7 @@ export function Content() {
                   if (
                     name === '' ||
                     email === '' ||
+                    indicacao === '' ||
                     phone === '' ||
                     cpf === '' ||
                     checkboxState

@@ -4,21 +4,16 @@ import {
   Heading,
   Stack,
   Text,
-  Button,
-  Icon,
-  IconProps,
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
   TableCaption,
   TableContainer,
-  Box,
 } from '@chakra-ui/react';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
 import { api } from '../../services/api';
 
@@ -81,6 +76,7 @@ export function Tables() {
                   <Tr>
                     <Th>Nome</Th>
                     <Th>Email</Th>
+                    <Th>Indicado por</Th>
                     <Th>Celular</Th>
                     <Th isNumeric>Números</Th>
                   </Tr>
@@ -90,6 +86,7 @@ export function Tables() {
                     <Tr key={idx}>
                       <Td>{user.name}</Td>
                       <Td>{user.email}</Td>
+                      <Td>{user.indicacao}</Td>
                       <Td>{user.phone}</Td>
                       <Flex flexDirection={'column'}>
                         {user.luckyNumber.map((item: number) => (
@@ -99,13 +96,6 @@ export function Tables() {
                     </Tr>
                   ))}
                 </Tbody>
-                {/* <Tfoot>
-          <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
-          </Tr>
-        </Tfoot> */}
               </Table>
             </TableContainer>
           </Flex>

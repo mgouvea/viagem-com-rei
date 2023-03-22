@@ -65,7 +65,7 @@ export default function Pacotes() {
           <PriceWrapper>
             <Box py={4} px={12}>
               <Text fontWeight="500" fontSize="2xl">
-                {isWideVersion ? 'Bilhete individual' : 'Plano 20'}
+                {isWideVersion ? 'Bilhete Individual' : 'Individual'}
               </Text>
               <HStack justifyContent="center">
                 <Text fontSize="3xl" fontWeight="600">
