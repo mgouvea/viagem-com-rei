@@ -97,9 +97,9 @@ export default function Pacotes() {
                   to={'/Checkout20'}
                   style={{ textDecoration: 'none' }}
                 >
-                  <Button w="full" colorScheme="orange" variant="outline">
+                  {/* <Button w="full" colorScheme="orange" variant="outline">
                     Comprar
-                  </Button>
+                  </Button> */}
                 </Link>
               </Box>
             </VStack>
@@ -160,9 +160,9 @@ export default function Pacotes() {
                     to={'/Checkout30'}
                     style={{ textDecoration: 'none' }}
                   >
-                    <Button w="full" colorScheme="orange">
+                    {/* <Button w="full" colorScheme="orange">
                       Comprar
-                    </Button>
+                    </Button> */}
                   </Link>
                 </Box>
               </VStack>
@@ -203,9 +203,9 @@ export default function Pacotes() {
                   to={'/Checkout'}
                   style={{ textDecoration: 'none' }}
                 >
-                  <Button w="full" colorScheme="orange" variant="outline">
+                  {/* <Button w="full" colorScheme="orange" variant="outline">
                     Comprar
-                  </Button>
+                  </Button> */}
                 </Link>
               </Box>
             </VStack>
