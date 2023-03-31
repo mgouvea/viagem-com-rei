@@ -111,9 +111,18 @@ export function Footer() {
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}
         >
-          <Text style={{ cursor: 'default' }} fontSize={'small'}>
+          <Link
+            as={ReactRouter}
+            to={'/painel'}
+            style={{ textDecoration: 'none' }}
+          >
+            <Text style={{ cursor: 'default' }} fontSize={'small'}>
+              © {year} Viaje com o Rei. Todos os direitos reservados
+            </Text>
+          </Link>
+          {/* <Text style={{ cursor: 'default' }} fontSize={'small'}>
             © {year} Viaje com o Rei. Todos os direitos reservados
-          </Text>
+          </Text> */}
           <Link
             href="https://wa.me/5561982107187?text=Ol%C3%A1+GouTech+Digital%2C+tenho+interesse+em+saber+mais+sobre+seu+trabalho%21"
             isExternal
