@@ -28,7 +28,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/checkout20" element={<Checkout20 />} />
           <Route path="/checkout30" element={<Checkout30 />} />
           <Route path="/paymentApproved" element={<PaymentApproved />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/painel" element={<Admin />} />
           {/* <Route path='/Iphone' element={} /> */}
         </Routes>
       </BrowserRouter>

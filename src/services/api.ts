@@ -5,7 +5,7 @@ let baseURL = '';
 if (process.env.NODE_ENV === 'development') {
   baseURL = 'http://localhost:3001';
 } else {
-  baseURL = 'https://89.116.214.181:3333';
+  baseURL = 'http://89.116.214.181:3333';
 }
 
 export const api = axios.create({
