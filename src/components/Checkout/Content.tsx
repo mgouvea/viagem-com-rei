@@ -138,7 +138,7 @@ export function Content() {
 
   const handleDataPost = async () => {
     let luckyNumberUser: number[] = [];
-    if (luckyNumberTickets.length >= 3000) {
+    if (luckyNumberTickets.length >= 3999) {
       toast({
         title: 'Não há mais números disponíveis',
         position: 'top-right',
@@ -148,9 +148,9 @@ export function Content() {
       return;
     } else {
       for (let i = 0; i < ticket * qtd; i++) {
-        let num = getRandom(2000, 3000);
+        let num = getRandom(6000, 9999);
         do {
-          num = getRandom(2000, 3000);
+          num = getRandom(6000, 9999);
         } while (
           luckyNumberTickets?.includes(num) ||
           luckyNumberUser?.includes(num)
