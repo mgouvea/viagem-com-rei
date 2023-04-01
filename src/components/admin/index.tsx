@@ -19,10 +19,6 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { Dashboard } from './Dashboard';
 
-export const removeChar = (str: string) => {
-  str.replace(/,/g, '');
-};
-
 export function Admin() {
   let navigate = useNavigate();
 

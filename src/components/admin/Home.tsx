@@ -1,13 +1,13 @@
 import { Flex, Container, Heading, Stack, Text } from '@chakra-ui/react';
 import { FiChevronRight } from 'react-icons/fi';
-import { removeChar } from '.';
 
 interface homeProps {
   nameUser: string;
 }
 
 export function Home({ nameUser }: homeProps) {
-  console.log(nameUser);
+  const welcomeMessage = `Bem vindo ${nameUser.replace(/,/g, '')}`;
+
   return (
     <>
       <Flex>
@@ -15,7 +15,7 @@ export function Home({ nameUser }: homeProps) {
         <Flex m="0.3rem">
           <FiChevronRight />
         </Flex>
-        <Text color="orange.400">Bem vindo</Text>
+        <Text color="orange.400">{welcomeMessage}</Text>
       </Flex>
       <Container maxW={'5xl'}>
         <Stack

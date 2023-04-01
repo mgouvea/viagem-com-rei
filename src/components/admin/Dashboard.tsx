@@ -253,9 +253,9 @@ const MobileNav = ({
                   spacing="1px"
                   ml="2"
                 >
-                  <Text fontSize="sm">{name}</Text>
+                  <Text fontSize="sm">{name.replace(/,/g, '')}</Text>
                   <Text fontSize="xs" color="gray.600">
-                    Administrator
+                    Admin
                   </Text>
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>

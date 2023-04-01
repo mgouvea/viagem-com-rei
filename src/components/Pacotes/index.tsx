@@ -31,7 +31,8 @@ function PriceWrapper({ children }: { children: ReactNode }) {
       alignSelf={{ base: 'center', lg: 'flex-start' }}
       borderColor={useColorModeValue('gray.200', 'gray.500')}
       borderRadius={'xl'}
-      bg="gray.200"
+      // bg="teal.700"
+      bg="#214539"
     >
       {children}
     </Box>
@@ -64,10 +65,19 @@ export default function Pacotes() {
         >
           <PriceWrapper>
             <Box py={4} px={12}>
-              <Text fontWeight="500" fontSize="2xl">
-                {isWideVersion ? 'Bilhete Individual' : 'Individual'}
-              </Text>
-              <HStack justifyContent="center">
+              <Heading
+                display="inline-block"
+                as="h2"
+                size="xl"
+                bgGradient="linear(to-r, #FFCD97, #DA9D5C)"
+                backgroundClip="text"
+              >
+                Bronze
+              </Heading>
+              {/* <Text fontWeight="500" fontSize="2xl">
+                Bronze
+              </Text> */}
+              <HStack justifyContent="center" color="#f6f6f6">
                 <Text fontSize="3xl" fontWeight="600">
                   R$
                 </Text>
@@ -115,7 +125,7 @@ export default function Pacotes() {
               >
                 <Text
                   textTransform="uppercase"
-                  bg={useColorModeValue('green.300', 'green.700')}
+                  bg={useColorModeValue('orange.500', 'green.700')}
                   px={3}
                   py={1}
                   fontSize="sm"
@@ -127,10 +137,19 @@ export default function Pacotes() {
                 </Text>
               </Box>
               <Box py={4} px={12}>
-                <Text fontWeight="500" fontSize="2xl">
-                  Pacote 30
-                </Text>
-                <HStack justifyContent="center">
+                <Heading
+                  display="inline-block"
+                  as="h2"
+                  size="xl"
+                  bgGradient="linear(to-r, #D3D3D3, #6E7685)"
+                  backgroundClip="text"
+                >
+                  Prata
+                </Heading>
+                {/* <Text fontWeight="500" fontSize="2xl">
+                  Prata
+                </Text> */}
+                <HStack justifyContent="center" color="#f6f6f6">
                   <Text fontSize="3xl" fontWeight="600">
                     R$
                   </Text>
@@ -170,10 +189,19 @@ export default function Pacotes() {
           </PriceWrapper>
           <PriceWrapper>
             <Box py={4} px={12}>
-              <Text fontWeight="500" fontSize="2xl">
-                Pacote 50
-              </Text>
-              <HStack justifyContent="center">
+              <Heading
+                display="inline-block"
+                as="h2"
+                size="xl"
+                bgGradient="linear(to-r, #FFD860, #C29200)"
+                backgroundClip="text"
+              >
+                Ouro
+              </Heading>
+              {/* <Text fontWeight="500" fontSize="2xl">
+                Ouro
+              </Text> */}
+              <HStack justifyContent="center" color="#f6f6f6">
                 <Text fontSize="3xl" fontWeight="600">
                   R$
                 </Text>

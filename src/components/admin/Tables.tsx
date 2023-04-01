@@ -12,6 +12,8 @@ import {
   Td,
   TableCaption,
   TableContainer,
+  Spinner,
+  useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
@@ -26,15 +28,31 @@ interface User {
 
 export function Tables() {
   const [allUsers, setAllUsers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const toast = useToast();
 
   const currentTime = new Date();
   const year = currentTime.getFullYear();
 
   const getAllUsers = async () => {
     try {
+      setIsLoading(true);
       const resp = await api.get('/users');
       setAllUsers(resp.data);
+      setIsLoading(false);
     } catch (e) {
+      setIsError(true);
+      setIsLoading(false);
+      toast({
+        title:
+          'Ocorreu um erro ao buscar os dados! Tente novamente mais tarde.',
+        status: 'error',
+        duration: 5000,
+        position: 'top-right',
+        isClosable: true,
+      });
       console.log(e);
     }
   };
@@ -72,30 +90,45 @@ export function Tables() {
             <TableContainer w="100%">
               <Table variant="striped" colorScheme={'blackAlpha'}>
                 <TableCaption>Viaje com o Rei {year}</TableCaption>
-                <Thead>
-                  <Tr>
-                    <Th>Nome</Th>
-                    <Th>Email</Th>
-                    <Th>Indicado por</Th>
-                    <Th>Celular</Th>
-                    <Th isNumeric>Números</Th>
-                  </Tr>
-                </Thead>
-                <Tbody>
-                  {allUsers.map((user: any, idx: any) => (
-                    <Tr key={idx}>
-                      <Td>{user.name}</Td>
-                      <Td>{user.email}</Td>
-                      <Td>{user.indicacao}</Td>
-                      <Td>{user.phone}</Td>
-                      <Flex flexDirection={'column'}>
-                        {user.luckyNumber.map((item: number) => (
-                          <Td isNumeric>{item}</Td>
-                        ))}
-                      </Flex>
-                    </Tr>
-                  ))}
-                </Tbody>
+
+                {isLoading ? (
+                  <Flex justify={'center'}>
+                    <Spinner
+                      thickness="2px"
+                      speed="0.65s"
+                      emptyColor="gray.200"
+                      color="blue.500"
+                      size="xl"
+                    />
+                  </Flex>
+                ) : (
+                  <>
+                    <Thead>
+                      <Tr>
+                        <Th>Nome</Th>
+                        <Th>Email</Th>
+                        <Th>Indicado por</Th>
+                        <Th>Celular</Th>
+                        <Th isNumeric>Números</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      {allUsers.map((user: any, idx: any) => (
+                        <Tr key={idx}>
+                          <Td>{user.name}</Td>
+                          <Td>{user.email}</Td>
+                          <Td>{user.indicacao}</Td>
+                          <Td>{user.phone}</Td>
+                          <Flex flexDirection={'column'}>
+                            {user.luckyNumber.map((item: number) => (
+                              <Td isNumeric>{item}</Td>
+                            ))}
+                          </Flex>
+                        </Tr>
+                      ))}
+                    </Tbody>
+                  </>
+                )}
               </Table>
             </TableContainer>
           </Flex>
