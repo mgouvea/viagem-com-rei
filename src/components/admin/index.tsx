@@ -19,6 +19,10 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { Dashboard } from './Dashboard';
 
+export const removeChar = (str: string) => {
+  str.replace(/,/g, '');
+};
+
 export function Admin() {
   let navigate = useNavigate();
 
@@ -41,6 +45,11 @@ export function Admin() {
       userPassword: '123456',
       userName: 'João Gabriel',
     },
+    {
+      userEmail: 'jfelipe@gmail.com',
+      userPassword: '22071961',
+      userName: 'João Felipe',
+    },
   ];
 
   const toast = useToast();
@@ -54,7 +63,7 @@ export function Admin() {
             return `${user.userName}`;
           }
         });
-        console.log('password', name);
+        // console.log('password', name);
         setNameUser(name.toString());
         setSpinner(true);
         setTimeout(() => {

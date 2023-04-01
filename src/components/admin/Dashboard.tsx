@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import { useState } from 'react';
 import {
   IconButton,
   Avatar,
@@ -18,29 +18,16 @@ import {
   FlexProps,
   Menu,
   MenuButton,
-  MenuDivider,
   MenuItem,
   MenuList,
-  Img,
   useBreakpointValue,
-  Button,
 } from '@chakra-ui/react';
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-  FiBell,
-  FiChevronDown,
-  FiChevronUp,
-} from 'react-icons/fi';
+import { FiHome, FiTrendingUp, FiMenu, FiChevronDown } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Home } from './Home';
 import { Tables } from './Tables';
+import { Link as ReactRouter } from 'react-router-dom';
 
 interface LinkItemProps {
   name: string;
@@ -49,9 +36,6 @@ interface LinkItemProps {
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome },
   { name: 'Tabelas', icon: FiTrendingUp },
-  // { name: 'Explore', icon: FiCompass },
-  // { name: 'Favourites', icon: FiStar },
-  // { name: 'Settings', icon: FiSettings },
 ];
 
 interface DashProps {
@@ -87,7 +71,6 @@ export function Dashboard({ nameUser }: DashProps) {
           <SidebarContent onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      {/* mobilenav */}
       <MobileNav onOpen={onOpen} name={nameUser} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {pageNumber ? <Home nameUser={nameUser} /> : <Tables />}
@@ -234,15 +217,6 @@ const MobileNav = ({
         aria-label="open menu"
         icon={<FiMenu />}
       />
-
-      {/* <Text
-        display={{ base: 'flex', md: 'none' }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        Viaje com Rei
-      </Text> */}
       <Text
         display={{ base: 'flex', md: 'none' }}
         fontSize={'1.5rem'}
@@ -258,22 +232,12 @@ const MobileNav = ({
           bg: 'green.100',
           zIndex: -1,
         }}
-        // border="1px solid"
-        // borderColor="orange.400"
-        // borderRadius={'8px'}
-        // px="1rem"
         color="blue.600"
       >
         Admin
       </Text>
 
       <HStack spacing={{ base: '0', md: '6' }}>
-        {/* <IconButton
-          size="lg"
-          variant="ghost"
-          aria-label="open menu"
-          icon={<FiBell />}
-        /> */}
         <Flex alignItems={'center'}>
           <Menu>
             <MenuButton
@@ -291,7 +255,7 @@ const MobileNav = ({
                 >
                   <Text fontSize="sm">{name}</Text>
                   <Text fontSize="xs" color="gray.600">
-                    Admin
+                    Administrator
                   </Text>
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
@@ -303,11 +267,13 @@ const MobileNav = ({
               bg={useColorModeValue('white', 'gray.900')}
               borderColor={useColorModeValue('gray.200', 'gray.700')}
             >
-              {/* <MenuItem>Profile</MenuItem>
-              <MenuItem>Settings</MenuItem>
-              <MenuItem>Billing</MenuItem> */}
-              {/* <MenuDivider /> */}
-              <MenuItem onClick={() => location.reload()}>Sair</MenuItem>
+              <Link
+                as={ReactRouter}
+                to={'/'}
+                style={{ textDecoration: 'none' }}
+              >
+                <MenuItem>Sair</MenuItem>
+              </Link>
             </MenuList>
           </Menu>
         </Flex>

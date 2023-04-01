@@ -1,20 +1,13 @@
-import {
-  Flex,
-  Container,
-  Heading,
-  Stack,
-  Text,
-  Button,
-  Icon,
-  IconProps,
-} from '@chakra-ui/react';
+import { Flex, Container, Heading, Stack, Text } from '@chakra-ui/react';
 import { FiChevronRight } from 'react-icons/fi';
+import { removeChar } from '.';
 
 interface homeProps {
   nameUser: string;
 }
 
 export function Home({ nameUser }: homeProps) {
+  console.log(nameUser);
   return (
     <>
       <Flex>
@@ -22,7 +15,7 @@ export function Home({ nameUser }: homeProps) {
         <Flex m="0.3rem">
           <FiChevronRight />
         </Flex>
-        <Text color="orange.400">Bem Vindo {nameUser}</Text>
+        <Text color="orange.400">Bem vindo</Text>
       </Flex>
       <Container maxW={'5xl'}>
         <Stack
@@ -43,30 +36,10 @@ export function Home({ nameUser }: homeProps) {
           </Heading>
           <Text color={'gray.500'} maxW={'3xl'}>
             Aqui no painel administrativo da promoção Viaje com o Rei nós
-            teremos os dados necessários e autorizados de pessoas que já
-            compraram algum bilhete pelo site e, futuramente, um dashboard com
-            os indicadores necessários para otimizar nossa promoção!
+            teremos futuramente um dashboard com os indicadores necessários para
+            otimizar nossa promoção. Aproveite e acesse no menu lateral a tabela
+            de participantes!
           </Text>
-          {/* <Stack spacing={6} direction={'row'}>
-            <Button
-              rounded={'full'}
-              px={6}
-              colorScheme={'orange'}
-              bg={'orange.400'}
-              _hover={{ bg: 'orange.500' }}
-            >
-              Get started
-            </Button>
-            <Button rounded={'full'} px={6}>
-              Learn more
-            </Button>
-          </Stack> */}
-          {/* <Flex w={'full'}>
-            <Illustration
-              height={{ sm: '24rem', lg: '28rem' }}
-              mt={{ base: 12, sm: 16 }}
-            />
-          </Flex> */}
         </Stack>
       </Container>
     </>
