@@ -49,10 +49,14 @@ export default function Pacotes() {
       <Navbar />
       <Box py={12}>
         <VStack spacing={2} textAlign="center">
-          <Heading as="h1" fontSize="4xl" color="orange.400">
+          <Heading
+            as="h1"
+            fontSize={isWideVersion ? '4xl' : '3xl'}
+            color="orange.400"
+          >
             Quanto mais bilhetes mais chances
           </Heading>
-          <Text fontSize="lg" color={'gray.500'}>
+          <Text fontSize={isWideVersion ? 'lg' : 'md'} color={'gray.500'}>
             Escolha quantos números da sorte você quer!
           </Text>
         </VStack>
