@@ -504,14 +504,17 @@ export function Content() {
             <Box mt="0.7rem">
               {isWideVersion ? (
                 <Tooltip label="Ver Números da sorte" fontSize="md">
-                  <Box
-                    cursor={'pointer'}
-                    onClick={() => {
-                      alert('Ver Números da sorte');
-                    }}
+                  <Button
+                    onClick={() => alert('ok')}
+                    ml={2}
+                    w={isWideVersion ? '' : '7rem'}
+                    fontSize={isWideVersion ? '' : 'lg'}
+                    colorScheme="green"
+                    mt={isWideVersion ? '0.5rem' : '1rem'}
+                    mb={isWideVersion ? '' : '0.5rem'}
                   >
-                    <BsFillSendCheckFill size={25} />
-                  </Box>
+                    Pagamento realizado!
+                  </Button>
                 </Tooltip>
               ) : (
                 <Button
@@ -551,7 +554,7 @@ export function Content() {
                 <Button
                   colorScheme={'blackAlpha'}
                   onClick={() => setQtd(qtd - 1)}
-                  disabled={qtd <= 1}
+                  isDisabled={qtd <= 1}
                 >
                   -
                 </Button>
@@ -566,7 +569,7 @@ export function Content() {
                 <Button
                   colorScheme={'blackAlpha'}
                   onClick={() => setQtd(qtd + 1)}
-                  disabled={qtd === 5}
+                  isDisabled={qtd === 5}
                 >
                   +
                 </Button>

@@ -22,12 +22,14 @@ import {
   MenuList,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { FiHome, FiTrendingUp, FiMenu, FiChevronDown } from 'react-icons/fi';
+import { FiHome, FiMenu, FiChevronDown, FiPlusCircle } from 'react-icons/fi';
 import { IconType } from 'react-icons';
+import { ImTable } from 'react-icons/im';
 import { ReactText } from 'react';
 import { Home } from './Home';
 import { Tables } from './Tables';
 import { Link as ReactRouter } from 'react-router-dom';
+import { NewUser } from './NewUser';
 
 interface LinkItemProps {
   name: string;
@@ -35,14 +37,14 @@ interface LinkItemProps {
 }
 const LinkItems: Array<LinkItemProps> = [
   { name: 'Home', icon: FiHome },
-  { name: 'Tabelas', icon: FiTrendingUp },
+  { name: 'Tabelas', icon: ImTable },
+  { name: 'Inserir', icon: FiPlusCircle },
 ];
 
 interface DashProps {
   nameUser: string;
 }
 
-// export function Dashboard({ children }: { children?: ReactNode }) {
 export function Dashboard({ nameUser }: DashProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [pageNumber, setPageNumber] = useState<number>(1);
@@ -73,7 +75,13 @@ export function Dashboard({ nameUser }: DashProps) {
       </Drawer>
       <MobileNav onOpen={onOpen} name={nameUser} />
       <Box ml={{ base: 0, md: 60 }} p="4">
-        {pageNumber ? <Home nameUser={nameUser} /> : <Tables />}
+        {pageNumber === 1 ? (
+          <Home nameUser={nameUser} />
+        ) : pageNumber === 2 ? (
+          <NewUser />
+        ) : (
+          <Tables />
+        )}
       </Box>
     </Box>
   );
@@ -88,12 +96,21 @@ const SidebarContent = ({ onClose, onPageChange, ...rest }: SidebarProps) => {
   const handlePageChangeToHome = () => {
     if (onPageChange) {
       const newPage = 0;
+      console.log(`NavItem0`, newPage);
       onPageChange(newPage);
     }
   };
   const handlePageChangeToTables = () => {
     if (onPageChange) {
       const newPage = 1;
+      console.log(`NavItem1`, newPage);
+      onPageChange(newPage);
+    }
+  };
+  const handlePageChangeToInserir = () => {
+    if (onPageChange) {
+      const newPage = 2;
+      console.log(`NavItem2`, newPage);
       onPageChange(newPage);
     }
   };
@@ -138,6 +155,8 @@ const SidebarContent = ({ onClose, onPageChange, ...rest }: SidebarProps) => {
           onClick={
             link.name === 'Home'
               ? handlePageChangeToTables
+              : link.name === 'Inserir'
+              ? handlePageChangeToInserir
               : handlePageChangeToHome
           }
         >
