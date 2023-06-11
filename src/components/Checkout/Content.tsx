@@ -67,6 +67,8 @@ export function Content() {
   const [value, setValue] = useState(0);
   const [qtd, setQtd] = useState(1);
 
+  const [paymentIsCheck, setPaymentIsCheck] = useState(false);
+
   const [ticket, setTicket] = useState(0);
 
   // Mercado pago states
@@ -76,6 +78,8 @@ export function Content() {
   const [dataPastePix, setDataPastePix] = useState('');
   const [pixHasCreated, setPixHasCreated] = useState(false);
   const [paymentStatus, setPaymentStatus] = useState('');
+  const [paymentIdToCheck, setPaymentIdToCheck] = useState('');
+  const [userIdToUpdate, setserIdToUpdate] = useState('');
 
   const { hasCopied, onCopy } = useClipboard(dataPastePix);
 
@@ -119,6 +123,35 @@ export function Content() {
         const response = await pixResponse.get(`/${id}`);
 
         if (response?.data?.status === 'approved') {
+          await api
+            .patch(
+              `/users/${userIdToUpdate}`,
+              { paymentStatus: 'approved' },
+              { headers }
+            )
+            .then((response) => {
+              setPaymentIsCheck(true);
+              toast({
+                title: 'Sucesso',
+                description: 'Pagamento confirmado',
+                status: 'success',
+                duration: 8000,
+                isClosable: true,
+                position: 'top-right',
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          toast({
+            title: 'Não foi possível confirmar seu pagamento',
+            position: 'top-right',
+            status: 'warning',
+            variant: 'left-accent',
+            duration: 8000,
+            isClosable: true,
+          });
         }
 
         setPaymentStatus(response?.data?.status);
@@ -280,6 +313,7 @@ export function Content() {
         setDataPastePix(
           response.data.point_of_interaction.transaction_data.qr_code
         );
+        setPaymentIdToCheck(response?.data?.id);
         sethasPix(true);
         setPixHasCreated(true);
 
@@ -329,7 +363,9 @@ export function Content() {
           // @ts-ignore
           .then(async function (response: UsersProps) {
             // handlePostLuckyNumbers(luckyNumberUser, response?._id!);
+            // @ts-ignore
             // console.log('meuID', response?.data?._id);
+            setserIdToUpdate(response?.data?._id);
             await api
               .post(
                 `/tickets`,
@@ -495,17 +531,26 @@ export function Content() {
             </Flex>
           ) : null}
           <Flex flexDirection="column" align="center" pt="1.5rem">
-            <HStack>
-              <FaInfoCircle color="#ed8936" size={23} />
-              <Text>
-                Caso já tenha efetivado o pagamento, clique no botão abaixo!
-              </Text>
+            <HStack w={isWideVersion ? '' : '22rem'}>
+              <Flex
+                flexDirection={isWideVersion ? 'row' : 'column'}
+                align={isWideVersion ? '' : 'center'}
+              >
+                <FaInfoCircle color="#ed8936" size={23} />
+                <Text
+                  // @ts-ignore
+                  textAlign={isWideVersion ? '' : 'center'}
+                  pl={isWideVersion ? '0.5rem' : ''}
+                >
+                  Caso já tenha efetivado o pagamento, clique no botão abaixo!
+                </Text>
+              </Flex>
             </HStack>
             <Box mt="0.7rem">
               {isWideVersion ? (
                 <Tooltip label="Ver Números da sorte" fontSize="md">
                   <Button
-                    onClick={() => alert('ok')}
+                    onClick={() => handleWebHooks(paymentIdToCheck)}
                     ml={2}
                     w={isWideVersion ? '' : '7rem'}
                     fontSize={isWideVersion ? '' : 'lg'}
@@ -513,15 +558,13 @@ export function Content() {
                     mt={isWideVersion ? '0.5rem' : '1rem'}
                     mb={isWideVersion ? '' : '0.5rem'}
                   >
-                    Pagamento realizado!
+                    Já fiz o pagamento!
                   </Button>
                 </Tooltip>
               ) : (
                 <Button
                   colorScheme={'orange'}
-                  onClick={() => {
-                    alert('Númer');
-                  }}
+                  onClick={() => handleWebHooks(paymentIdToCheck)}
                 >
                   Ver meus números
                 </Button>
@@ -715,6 +758,8 @@ export function Content() {
         <Img src={cpSegura} w="25rem" />
       </Flex>
     </>
+  ) : !!paymentIsCheck ? (
+    <PaymentApproved name={name} number={luckyNumbers} />
   ) : (
     <PaymentAreaQRCode />
     // <PaymentApproved

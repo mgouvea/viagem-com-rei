@@ -18,6 +18,7 @@ import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
 import { Dashboard } from './Dashboard';
+import { Dash } from './Dash';
 
 export function Admin() {
   let navigate = useNavigate();
@@ -184,6 +185,7 @@ export function Admin() {
       </Stack>
     </Flex>
   ) : (
-    <Dashboard nameUser={nameUser} />
+    <Dash nameUser={nameUser} />
+    // <Dashboard nameUser={nameUser} />
   );
 }

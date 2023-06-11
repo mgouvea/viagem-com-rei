@@ -25,6 +25,7 @@ import {
   ModalCloseButton,
   Button,
   useDisclosure,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
@@ -67,6 +68,11 @@ export function Tables() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const toast = useToast();
+
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
 
   const headers = {
     'Content-Type': 'application/json;charset=utf-8',
