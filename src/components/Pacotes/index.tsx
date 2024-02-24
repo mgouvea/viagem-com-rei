@@ -67,98 +67,32 @@ export default function Pacotes() {
           spacing={{ base: 4, lg: 10 }}
           py={10}
         >
-          <PriceWrapper>
-            <Box py={4} px={12}>
-              <Heading
-                display="inline-block"
-                as="h2"
-                size="xl"
-                bgGradient="linear(to-r, #FFCD97, #DA9D5C)"
-                backgroundClip="text"
-              >
-                Bronze
-              </Heading>
-              {/* <Text fontWeight="500" fontSize="2xl">
-                Bronze
-              </Text> */}
-              <HStack justifyContent="center" color="#f6f6f6">
-                <Text fontSize="3xl" fontWeight="600">
-                  R$
-                </Text>
-                <Text fontSize="5xl" fontWeight="900">
-                  20
-                </Text>
-              </HStack>
-            </Box>
-            <VStack
-              bg={useColorModeValue('gray.50', 'gray.700')}
-              py={4}
-              borderBottomRadius={'xl'}
-            >
-              <List spacing={3} textAlign="start" px={12}>
-                <ListItem>
-                  <ListIcon as={FaCheckCircle} color="green.500" />1 bilhete por
-                  R$ 20,00 reais
-                </ListItem>
-                <ListItem>
-                  <ListIcon as={FaCheckCircle} color="green.500" />
-                  Chances mensais de ganhar
-                </ListItem>
-              </List>
-              <Box w="80%" pt={7}>
-                <Link
-                  as={ReactRouter}
-                  to={'/Checkout20'}
-                  style={{ textDecoration: 'none' }}
-                >
-                  <Button w="full" colorScheme="orange" variant="outline">
-                    Comprar
-                  </Button>
-                </Link>
-              </Box>
-            </VStack>
-          </PriceWrapper>
-
-          <PriceWrapper>
-            <Box position="relative">
-              <Box
-                position="absolute"
-                top="-16px"
-                left="50%"
-                style={{ transform: 'translate(-50%)' }}
-              >
-                <Text
-                  textTransform="uppercase"
-                  bg={useColorModeValue('orange.500', 'green.700')}
-                  px={3}
-                  py={1}
-                  fontSize="sm"
-                  fontWeight="600"
-                  rounded="xl"
-                  color="white"
-                >
-                  Mais popular
-                </Text>
-              </Box>
+          <Box
+            _hover={{
+              transition: 'all 0.3s ease',
+              transform: 'scale(1.05)',
+            }}
+          >
+            <PriceWrapper>
               <Box py={4} px={12}>
                 <Heading
                   display="inline-block"
                   as="h2"
                   size="xl"
-                  bgGradient="linear(to-r, #D3D3D3, #6E7685)"
+                  bgGradient="linear(to-r, #FFCD97, #DA9D5C)"
                   backgroundClip="text"
                 >
-                  Prata
+                  Bronze
                 </Heading>
                 {/* <Text fontWeight="500" fontSize="2xl">
-                  Prata
-                </Text> */}
+                Bronze
+              </Text> */}
                 <HStack justifyContent="center" color="#f6f6f6">
                   <Text fontSize="3xl" fontWeight="600">
                     R$
                   </Text>
                   <Text fontSize="5xl" fontWeight="900">
-                    30
+                    20
                   </Text>
                 </HStack>
               </Box>
@@ -169,79 +103,164 @@ export default function Pacotes() {
               >
                 <List spacing={3} textAlign="start" px={12}>
                   <ListItem>
-                    <ListIcon as={FaCheckCircle} color="green.500" />2 bilhetes
-                    por R$ 30 reais
+                    <ListIcon as={FaCheckCircle} color="green.500" />1 bilhete
+                    por R$ 20,00 reais
                   </ListItem>
                   <ListItem>
                     <ListIcon as={FaCheckCircle} color="green.500" />
-                    2x mais chances de ganhar
+                    Chances mensais de ganhar
                   </ListItem>
                 </List>
                 <Box w="80%" pt={7}>
                   <Link
                     as={ReactRouter}
-                    to={'/Checkout30'}
+                    to={'/pacotes'}
+                    // to={'/Checkout20'}
                     style={{ textDecoration: 'none' }}
                   >
-                    <Button w="full" colorScheme="orange">
+                    <Button w="full" colorScheme="orange" variant="outline">
                       Comprar
                     </Button>
                   </Link>
                 </Box>
               </VStack>
-            </Box>
-          </PriceWrapper>
-          <PriceWrapper>
-            <Box py={4} px={12}>
-              <Heading
-                display="inline-block"
-                as="h2"
-                size="xl"
-                bgGradient="linear(to-r, #FFD860, #C29200)"
-                backgroundClip="text"
-              >
-                Ouro
-              </Heading>
-              {/* <Text fontWeight="500" fontSize="2xl">
-                Ouro
-              </Text> */}
-              <HStack justifyContent="center" color="#f6f6f6">
-                <Text fontSize="3xl" fontWeight="600">
-                  R$
-                </Text>
-                <Text fontSize="5xl" fontWeight="900">
-                  50
-                </Text>
-              </HStack>
-            </Box>
-            <VStack
-              bg={useColorModeValue('gray.50', 'gray.700')}
-              py={4}
-              borderBottomRadius={'xl'}
-            >
-              <List spacing={3} textAlign="start" px={12}>
-                <ListItem>
-                  <ListIcon as={FaCheckCircle} color="green.500" />5 bilhetes
-                  por R$ 50 reais
-                </ListItem>
-                <ListItem>
-                  <ListIcon as={FaCheckCircle} color="green.500" />
-                  5x mais chances de ganhar
-                </ListItem>
-              </List>
-              <Box w="80%" pt={7}>
-                <Link
-                  as={ReactRouter}
-                  to={'/Checkout'}
-                  style={{ textDecoration: 'none' }}
+            </PriceWrapper>
+          </Box>
+
+          <Box
+            _hover={{
+              transition: 'all 0.3s ease',
+              transform: 'scale(1.15)',
+            }}
+          >
+            <PriceWrapper>
+              <Box position="relative">
+                <Box
+                  position="absolute"
+                  top="-16px"
+                  left="50%"
+                  style={{ transform: 'translate(-50%)' }}
                 >
-                  <Button w="full" colorScheme="orange" variant="outline">
-                    Comprar
-                  </Button>
-                </Link>
+                  <Text
+                    textTransform="uppercase"
+                    bg={useColorModeValue('orange.500', 'green.700')}
+                    px={3}
+                    py={1}
+                    fontSize="sm"
+                    fontWeight="600"
+                    rounded="xl"
+                    color="white"
+                  >
+                    Mais popular
+                  </Text>
+                </Box>
+                <Box py={4} px={12}>
+                  <Heading
+                    display="inline-block"
+                    as="h2"
+                    size="xl"
+                    bgGradient="linear(to-r, #D3D3D3, #6E7685)"
+                    backgroundClip="text"
+                  >
+                    Prata
+                  </Heading>
+                  <HStack justifyContent="center" color="#f6f6f6">
+                    <Text fontSize="3xl" fontWeight="600">
+                      R$
+                    </Text>
+                    <Text fontSize="5xl" fontWeight="900">
+                      30
+                    </Text>
+                  </HStack>
+                </Box>
+                <VStack
+                  bg={useColorModeValue('gray.50', 'gray.700')}
+                  py={4}
+                  borderBottomRadius={'xl'}
+                >
+                  <List spacing={3} textAlign="start" px={12}>
+                    <ListItem>
+                      <ListIcon as={FaCheckCircle} color="green.500" />2
+                      bilhetes por R$ 30 reais
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={FaCheckCircle} color="green.500" />
+                      2x mais chances de ganhar
+                    </ListItem>
+                  </List>
+                  <Box w="80%" pt={7}>
+                    <Link
+                      as={ReactRouter}
+                      to={'/pacotes'}
+                      // to={'/Checkout30'}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <Button w="full" colorScheme="orange">
+                        Comprar
+                      </Button>
+                    </Link>
+                  </Box>
+                </VStack>
               </Box>
-            </VStack>
-          </PriceWrapper>
+            </PriceWrapper>
+          </Box>
+
+          <Box
+            _hover={{
+              transition: 'all 0.3s ease',
+              transform: 'scale(1.05)',
+            }}
+          >
+            <PriceWrapper>
+              <Box py={4} px={12}>
+                <Heading
+                  display="inline-block"
+                  as="h2"
+                  size="xl"
+                  bgGradient="linear(to-r, #FFD860, #C29200)"
+                  backgroundClip="text"
+                >
+                  Ouro
+                </Heading>
+                <HStack justifyContent="center" color="#f6f6f6">
+                  <Text fontSize="3xl" fontWeight="600">
+                    R$
+                  </Text>
+                  <Text fontSize="5xl" fontWeight="900">
+                    50
+                  </Text>
+                </HStack>
+              </Box>
+              <VStack
+                bg={useColorModeValue('gray.50', 'gray.700')}
+                py={4}
+                borderBottomRadius={'xl'}
+              >
+                <List spacing={3} textAlign="start" px={12}>
+                  <ListItem>
+                    <ListIcon as={FaCheckCircle} color="green.500" />5 bilhetes
+                    por R$ 50 reais
+                  </ListItem>
+                  <ListItem>
+                    <ListIcon as={FaCheckCircle} color="green.500" />
+                    5x mais chances de ganhar
+                  </ListItem>
+                </List>
+                <Box w="80%" pt={7}>
+                  <Link
+                    as={ReactRouter}
+                    to={'/pacotes'}
+                    // to={'/Checkout'}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <Button w="full" colorScheme="orange" variant="outline">
+                      Comprar
+                    </Button>
+                  </Link>
+                </Box>
+              </VStack>
+            </PriceWrapper>
+          </Box>
         </Stack>
       </Box>
       <Flex justify="center" mt="-3rem">

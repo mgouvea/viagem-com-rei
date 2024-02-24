@@ -65,7 +65,7 @@ export function Itens({
             rounded={'lg'}
             height={250}
             width={282}
-            objectFit={'cover'}
+            objectFit={'contain'}
             src={image}
           />
           <Text color="red.400" fontSize="xs" my="0.2rem" textAlign="right">

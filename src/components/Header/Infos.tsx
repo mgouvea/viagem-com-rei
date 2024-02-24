@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Flex,
   Heading,
@@ -13,9 +14,11 @@ export default function Infos() {
     base: false,
     lg: true,
   });
+
   let navigate = useNavigate();
+
   return (
-    <Stack direction={{ base: 'column', md: 'row' }} mt="-47rem">
+    <Stack direction={{ base: 'column', md: 'row' }} zIndex={2}>
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={6} w={'full'} maxW={'lg'}>
           <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
@@ -41,22 +44,29 @@ export default function Infos() {
               Viaje com o Rei
             </Text>{' '}
           </Heading>
-          <Text
-            fontSize={{ base: 'md', lg: 'xl' }}
-            color={'white'}
-            fontWeight={isWideVersion ? '' : 'bold'}
-          >
-            Sua oportunidade de contribuir com as benfeitorias do Núcleo Rei
-            Hoasqueiro e ainda concorrer a um pacote turístico de 5 dias para
-            Alter do Chão - PA, um iPhone 12 e diversos prêmios mensais.
-          </Text>
+          <Box bg="rgba(6, 78, 59, 0.1)" zIndex={1} borderRadius="xl">
+            <Text
+              fontSize={{ base: 'md', lg: 'xl' }}
+              color={'white'}
+              // fontWeight={isWideVersion ? '' : 'bold'}
+              fontWeight={'bold'}
+              letterSpacing={0.5}
+            >
+              Sua oportunidade de contribuir com as benfeitorias do Núcleo Rei
+              Hoasqueiro e ainda concorrer a um pacote turístico de 4 diárias
+              para 5 pessoas no Rio Quente Resorts e a um iPhone 13, além de
+              diversos outros prêmios mensais.
+            </Text>
+          </Box>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
             <Button
               rounded={'full'}
-              bg={'yellow.500'}
+              bg={'orange.500'}
               color={'white'}
               _hover={{
-                bg: 'yellow.400',
+                bg: 'orange.400',
+                transition: 'all 0.3s ease',
+                transform: 'scale(1.05)',
               }}
               onClick={() => navigate('/Pacotes')}
             >

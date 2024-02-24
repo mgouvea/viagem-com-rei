@@ -11,27 +11,35 @@ import { Crown } from 'phosphor-react';
 import jl from '../../assets/ganhadores/jl.png';
 import jf from '../../assets/ganhadores/jf.png';
 import jm from '../../assets/ganhadores/jm.png';
+import me from '../../assets/ganhadores/me.jpg';
 
 const testimonials = [
+  {
+    name: 'Márcia Elena',
+    role: 'Prêmio Principal',
+    content:
+      'Em dezembro (2023), incrédula, recebi uma notícia maravilhosa: havia sido sorteada com uma viagem de ida e volta a Alter do Chão - PA, com direito à cinco diárias em acomodação 4 estrelas e um (a) acompanhante. Participo dessa iniciativa praticamente desde o início, mas não me considerava uma pessoa inclinada à ganhar prêmios sorteados. Mesmo contribuindo mensalmente, acreditava que minhas chances eram poucas, por isso a sensação de incredulidade. Tenho amigos e parentes que tiveram a oportunidade de conhecer Alter do Chão e é unânime que o Lugar é um dos mais bonitos já vistos por eles. Quero poder aproveitar da melhor forma possível esta oportunidade, que considero um presente!',
+    avatar: `${me}`,
+  },
   {
     name: 'Juliana Mandai',
     role: 'Prêmio Principal',
     content:
-      '"Fiquei bem feliz em ter participado da ação entre amigos Viaje com Rei e ganhar a viagem para Jericoacaora. O principal motivador de participar dessas ações de promoção é contribuir para essa nobre causa do Centro, mas como adoro viajar, foi bem legal ganhar o prêmio principal de 2022. Já tinha participado em 2021 também, e sempre que podemos compramos um bom número de bilhetes para aumentar as chances de ganhar."',
+      'Fiquei bem feliz em ter participado da ação entre amigos Viaje com Rei e ganhar a viagem para Jericoacaora. O principal motivador de participar dessas ações de promoção é contribuir para essa nobre causa do Centro, mas como adoro viajar, foi bem legal ganhar o prêmio principal de 2022. Já tinha participado em 2021 também, e sempre que podemos compramos um bom número de bilhetes para aumentar as chances de ganhar.',
     avatar: `${jm}`,
   },
   {
     name: 'Júlio Cezar',
     role: 'Prêmio Principal',
     content:
-      '“No ano de 2021 eu participei  da promoção Viaje com o Rei. Todos os meses concorri a prêmios de boa qualidade e fui contemplado no derradeiro sorteio com um Celular IPhone XR, e além da premiação, o que me moveu a participar é saber que o recurso arrecadado serve a uma causa nobre, o que me fez continuar participando desta nova edição em 2022.”',
+      'No ano de 2021 eu participei  da promoção Viaje com o Rei. Todos os meses concorri a prêmios de boa qualidade e fui contemplado no derradeiro sorteio com um Celular IPhone XR, e além da premiação, o que me moveu a participar é saber que o recurso arrecadado serve a uma causa nobre, o que me fez continuar participando desta nova edição em 2022.',
     avatar: `${jl}`,
   },
   {
     name: 'João Felipe',
     role: 'Prêmio mensal',
     content:
-      '"Participei na promoção Viaje com o Rei em 2021 e, para minha surpresa, ganhei o primeiro sorteio dos prêmios mensais! Gostei tanto que decidi continuar participando em 2022 também."',
+      'Participei na promoção Viaje com o Rei em 2021 e, para minha surpresa, ganhei o primeiro sorteio dos prêmios mensais! Gostei tanto que decidi continuar participando em 2022 também.',
     avatar: `${jf}`,
   },
 ];
@@ -105,6 +113,8 @@ function TestimonialCard({
           fontSize={'15px'}
           color="gray.700"
           pb={4}
+          textAlign="justify"
+          textIndent="1rem"
         >
           {content}
         </chakra.p>

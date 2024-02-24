@@ -17,7 +17,7 @@ import { Itens } from './Itens';
 
 import { SwiperImages } from '../SwiperImages';
 
-import iphone from '../../assets/iph.png';
+import iphone from '../../assets/rioquente/iphone13.png';
 import { useNavigate } from 'react-router-dom';
 
 export function Premios() {
@@ -52,14 +52,12 @@ export function Premios() {
             Você pode adquirir quantos bilhetes quiser e puder. Cada bilhete
             corresponde a um número exclusivo que aumentará suas chances na
             premiação. <strong> Todo mês haverá sorteio de prêmios</strong>, e
-            em janeiro de 2024 acontecem os sorteios dos 2 prêmios principais:
+            em janeiro de 2025 acontecem os sorteios dos 2 prêmios principais:
           </Text>
           <Flex
             direction={isWideVersion ? 'row' : 'column'}
-            // border="1px solid red"
             justify={isWideVersion ? 'space-between' : 'center'}
             alignItems={isWideVersion ? '' : 'center'}
-            // border="1px solid red"
           >
             <Flex
               boxShadow={'2xl'}
@@ -73,9 +71,9 @@ export function Premios() {
               <Flex direction={'column'}>
                 <SwiperImages />
                 <Box mt="1rem">
-                  <Text color="gray.600">1° Lugar</Text>
+                  <Text color="gray.600">1° Prêmio</Text>
                   <Text color="orange.400" fontSize={'lg'}>
-                    5 diárias em Alter do Chão - PA
+                    4 diárias Rio Quente Resorts
                   </Text>
 
                   <Grid
@@ -86,10 +84,10 @@ export function Premios() {
                     pt="0.5rem"
                   >
                     <GridItem w="100%" h="10">
-                      <Text>Café da Manhã</Text>
+                      <Text>4 adultos e 1 criança até 11 anos</Text>
                     </GridItem>
                     <GridItem w="100%" h="10">
-                      <Text>1 acompanhante</Text>
+                      <Text>Caldas Novas - GO</Text>
                     </GridItem>
                   </Grid>
                 </Box>
@@ -97,8 +95,8 @@ export function Premios() {
             </Flex>
 
             <Itens
-              title="2° Lugar"
-              highlight="1 iPhone 12"
+              title="2° Prêmio"
+              highlight="1 iPhone 13"
               benefit1="128 GB"
               image={iphone}
             />

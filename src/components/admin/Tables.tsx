@@ -26,6 +26,7 @@ import {
   Button,
   useDisclosure,
   useBreakpointValue,
+  Img,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { FiChevronRight } from 'react-icons/fi';
@@ -41,6 +42,8 @@ import { api } from '../../services/api';
 import { pixResponse } from '../../services/pixResponse';
 import { ViewCard } from './ViewCard';
 import { EditDataCard } from './EditDataCard';
+
+import xlsImg from '../../assets/xls.png';
 
 export interface UsersProps {
   name: string;
@@ -293,6 +296,12 @@ export function Tables() {
               está participando
             </Text>
           </Heading>
+          <Tooltip label="Download XLS">
+            <Flex cursor="pointer">
+              <Img src={xlsImg} w="4rem" />
+            </Flex>
+          </Tooltip>
+
           <Flex w={'full'}>
             <TableContainer w="100%">
               <Table variant="striped" colorScheme={'blackAlpha'}>
