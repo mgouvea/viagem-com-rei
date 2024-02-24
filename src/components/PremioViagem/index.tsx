@@ -28,6 +28,7 @@ import img4 from '../../assets/rioquente/4.jpg';
 import img5 from '../../assets/rioquente/5.jpg';
 import img6 from '../../assets/rioquente/6.jpg';
 import img7 from '../../assets/rioquente/7.jpg';
+import { is } from 'date-fns/locale';
 
 export function PremioViagem() {
   let navigate = useNavigate();
@@ -64,7 +65,7 @@ export function PremioViagem() {
         bgSize="cover"
         bgRepeat="no-repeat"
         bgPosition="center"
-        height="80vh"
+        height={isWideVersion ? '80vh' : '100vh'}
         justifyContent="flex-end"
         position={'relative'}
         zIndex={1}
