@@ -3,7 +3,7 @@ import axios from 'axios';
 let baseURL = '';
 
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3333';
+  baseURL = 'http://localhost:3334';
 } else {
   baseURL = 'https://boasorte.viajecomrei.com.br';
   // baseURL = 'http://89.116.214.181:3333';

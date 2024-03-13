@@ -176,27 +176,6 @@ export function Content() {
     getBDtNumbers();
   }, []);
 
-  // useEffect(() => {
-  //   if (pixHasCreated) {
-  //     let interval = setInterval(() => {
-  //       handleWebHooks(pixId);
-  //     }, 10000);
-
-  //     if (paymentStatus === 'pending') {
-  //       setTimeout(() => {
-  //         clearInterval(interval);
-  //       }, 180000);
-  //     } else if (paymentStatus === 'approved') {
-  //       handleDataPost();
-  //       setPixId('');
-  //       setPixHasCreated(false);
-  //       setIsPay(true);
-  //     }
-
-  //     return () => clearInterval(interval);
-  //   }
-  // }, [pixHasCreated, paymentStatus]);
-
   const getRandom = (a: number, b: number) => {
     return Math.floor(Math.random() * (b - a + 1)) + a;
   };
@@ -206,84 +185,6 @@ export function Content() {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE',
   };
-
-  // const handleDataPost = async () => {
-  //   let luckyNumberUser: number[] = [];
-  //   if (luckyNumberTickets.length >= 3999) {
-  //     toast({
-  //       title: 'Não há mais números disponíveis',
-  //       position: 'top-right',
-  //       status: 'error',
-  //       isClosable: true,
-  //     });
-  //     return;
-  //   } else {
-  //     for (let i = 0; i < ticket * qtd; i++) {
-  //       let num = getRandom(6000, 9999);
-  //       do {
-  //         num = getRandom(6000, 9999);
-  //       } while (
-  //         luckyNumberTickets?.includes(num) ||
-  //         luckyNumberUser?.includes(num)
-  //       );
-
-  //       // luckyNumberTickets.push(num);
-  //       luckyNumberUser.push(num);
-  //     }
-  //   }
-  //   setLuckyNumbers(luckyNumberUser.sort());
-
-  //   await api
-  //     .post(
-  //       '/users',
-  //       {
-  //         name: name,
-  //         email: email,
-  //         indicacao: indicacao,
-  //         phone: phone,
-  //         luckyNumber: luckyNumberUser,
-  //         package: value,
-  //         data: dateNow,
-  //         paymentStatus: paymentStatus,
-  //         paymentId: paymentStatus,
-  //       },
-  //       { headers }
-  //     )
-  //     .then(async function (response) {
-  //       handlePostLuckyNumbers(luckyNumberUser);
-  //       toast({
-  //         title:
-  //           'Sua participação está pré aprovada, pague o pix para efetiva-la!',
-  //         position: 'top-right',
-  //         status: 'warning',
-  //         variant: 'left-accent',
-  //         duration: 8000,
-  //         isClosable: true,
-  //       });
-  //     })
-  //     .catch(function (error) {
-  //       console.error('err', error);
-  //     });
-  // };
-
-  // const handlePostLuckyNumbers = async (array: number[], idUser: string) => {
-  //   console.log('handlePostLuckyNumbers', idUser);
-  //   return await api
-  //     .post(
-  //       `/tickets`,
-  //       {
-  //         luckyNumbers: array,
-  //         idUser: idUser,
-  //       },
-  //       { headers }
-  //     )
-  //     .then(function (response) {
-  //       console.log('resp', response);
-  //     })
-  //     .catch(function (error) {
-  //       console.error('err', error);
-  //     });
-  // };
 
   const handlePix = async () => {
     await pix
@@ -575,7 +476,7 @@ export function Content() {
       </Flex>
     );
   };
-
+  // @ts-ignore
   return !hasPix ? (
     <>
       <Flex minH={'79vh'} direction={{ base: 'column', md: 'row' }}>

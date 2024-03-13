@@ -114,8 +114,7 @@ export default function Pacotes() {
                 <Box w="80%" pt={7}>
                   <Link
                     as={ReactRouter}
-                    to={'/pacotes'}
-                    // to={'/Checkout20'}
+                    to={'/checkout/20'}
                     style={{ textDecoration: 'none' }}
                   >
                     <Button w="full" colorScheme="orange" variant="outline">
@@ -191,8 +190,7 @@ export default function Pacotes() {
                   <Box w="80%" pt={7}>
                     <Link
                       as={ReactRouter}
-                      to={'/pacotes'}
-                      // to={'/Checkout30'}
+                      to={'/checkout/30'}
                       style={{ textDecoration: 'none' }}
                     >
                       <Button w="full" colorScheme="orange">
@@ -249,8 +247,7 @@ export default function Pacotes() {
                 <Box w="80%" pt={7}>
                   <Link
                     as={ReactRouter}
-                    to={'/pacotes'}
-                    // to={'/Checkout'}
+                    to={`/checkout/50`}
                     style={{ textDecoration: 'none' }}
                   >
                     <Button w="full" colorScheme="orange" variant="outline">

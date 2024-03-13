@@ -21,6 +21,10 @@ export const cpfMask = (value: string) => {
     .replace(/(-\d{2})\d+?$/, '$1'); // captura 2 numeros seguidos de um traço e não deixa ser digitado mais nada
 };
 
+export const removeCpfMask = (value: string) => {
+  return value.replace(/\D/g, '');
+};
+
 export function phoneMask(tel: string) {
   tel = tel.replace(/\D/g, '');
   tel = tel.replace(/^(\d)/, '($1');
