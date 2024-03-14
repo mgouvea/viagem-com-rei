@@ -48,7 +48,6 @@ export default function Infos() {
             <Text
               fontSize={{ base: 'md', lg: 'xl' }}
               color={'white'}
-              // fontWeight={isWideVersion ? '' : 'bold'}
               fontWeight={'bold'}
               letterSpacing={0.5}
             >

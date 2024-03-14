@@ -9,23 +9,35 @@ import {
   Grid,
   GridItem,
   Heading,
+  Image,
   Input,
   Stack,
   StackDivider,
   Text,
   Tooltip,
   VStack,
+  useBreakpointValue,
+  useClipboard,
   useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { LuUserCircle } from 'react-icons/lu';
+import { LuUserCircle, LuQrCode } from 'react-icons/lu';
 import { MdOutlineShoppingCartCheckout } from 'react-icons/md';
 import { PiBroom } from 'react-icons/pi';
 import { BsDatabaseAdd } from 'react-icons/bs';
 import { PacotesCardComponent } from '../Pacotes/cards';
 import { api } from '../../services/api';
-import { cpfMask, phoneMask, removeCpfMask } from '../../utils/mask';
-import { ca } from 'date-fns/locale';
+import { useNavigate } from 'react-router-dom';
+import {
+  cpfMask,
+  firstName,
+  lastName,
+  phoneMask,
+  removeCpfMask,
+} from '../../utils/mask';
+import { currentYear } from '../../utils/helpers';
+
+import cpSegura from '../../assets/cpsegura.jpg';
 
 interface ClientInterface {
   id: string;
@@ -52,12 +64,21 @@ export function NewCheckout({ pacote }: any) {
   const [client, setClient] = useState<ClientInterface>();
   const [clientNumbers, setClientNumbers] = useState([] as number[]);
 
+  const [pixQrCode, setPixQrCode] = useState<string>('');
+  const [pastePixCode, setPastePixCode] = useState<string>('');
+  const { hasCopied, onCopy } = useClipboard(pastePixCode);
+
   const isErrorNome = nome === '';
   const isErrorEmail = email === '';
   const isErrorPhone = phone === '';
   const isErrorCpf = cpf === '';
 
+  let navigate = useNavigate();
   const toast = useToast();
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
 
   useEffect(() => {
     if (pacote === 50) {
@@ -115,6 +136,33 @@ export function NewCheckout({ pacote }: any) {
     }
   };
 
+  const handleGerarPix = async () => {
+    const { nome, email, cpf } = client;
+    const response = await api.post('payments/create', {
+      transaction_amount: pacote * qtd,
+      payment_method_id: 'pix',
+      payer: {
+        first_name: firstName(nome),
+        last_name: lastName(nome),
+        email: email,
+        identification: {
+          type: 'CPF',
+          number: cpf,
+        },
+      },
+      description: `Viaje com o rei ${currentYear} - ${firstName(
+        nome
+      )} ${lastName(nome)}`,
+    });
+    setPixQrCode(
+      response.data.point_of_interaction.transaction_data.qr_code_base64
+    );
+    setPastePixCode(
+      response.data.point_of_interaction.transaction_data.qr_code
+    );
+    setIsLoadingPix(false);
+  };
+
   const handleCleanFields = () => {
     setEmail('');
     setClient(undefined);
@@ -126,6 +174,9 @@ export function NewCheckout({ pacote }: any) {
     setNome('');
     setPhone('');
     setCpf('');
+    setPixQrCode('');
+    setPastePixCode('');
+    setQtd(1);
   };
 
   const height = 'calc(100vh - 80px)';
@@ -151,6 +202,7 @@ export function NewCheckout({ pacote }: any) {
             border="1px solid #ccc"
             borderRadius="xl"
             padding="1rem"
+            bg="#FFF"
           >
             <Stack>
               <Flex justify="flex-start" align="center" gap="0.5rem">
@@ -239,7 +291,9 @@ export function NewCheckout({ pacote }: any) {
                   >
                     <Text fontSize="xl">Bem vindo {client?.nome}</Text>
                     <Text fontSize="md">
-                      Veja abaixo seus números da sorte:
+                      {clientNumbers.length
+                        ? 'Veja abaixo seus números da sorte:'
+                        : 'Você ainda não comprou bilhetes.'}
                     </Text>
                     <Flex justify="center">
                       {clientNumbers.map((n, index) => (
@@ -254,13 +308,14 @@ export function NewCheckout({ pacote }: any) {
             </VStack>
           </GridItem>
 
-          {client && (
+          {client && !pixQrCode && (
             <GridItem
               rowSpan={1}
               colSpan={6}
               border="1px solid #ccc"
               borderRadius="xl"
               padding="1rem"
+              bg="#FFF"
             >
               <Stack>
                 <Flex justify="flex-start" align="center" gap="0.5rem">
@@ -312,7 +367,7 @@ export function NewCheckout({ pacote }: any) {
                         return;
                       }
                       setIsLoadingPix(true);
-                      handleCheckEmail();
+                      handleGerarPix();
                     }}
                     _hover={{
                       transition: 'all 0.3s ease',
@@ -333,6 +388,7 @@ export function NewCheckout({ pacote }: any) {
               border="1px solid #ccc"
               borderRadius="xl"
               padding="1rem"
+              bg="#FFF"
             >
               <Stack>
                 <Flex
@@ -406,6 +462,82 @@ export function NewCheckout({ pacote }: any) {
                     Continuar
                   </Button>
                 </Stack>
+              </Stack>
+            </GridItem>
+          )}
+
+          {pixQrCode && (
+            <GridItem
+              rowSpan={1}
+              colSpan={6}
+              border="1px solid #ccc"
+              borderRadius="xl"
+              padding="1rem"
+              bg="#FFF"
+              boxShadow="0 0 10px 0 #ccc"
+            >
+              <Stack>
+                <Flex
+                  justify="flex-start"
+                  align="center"
+                  gap="0.5rem"
+                  mb="0.5rem"
+                >
+                  <LuQrCode size={25} />
+                  <Text fontSize="xl">
+                    Leia o QrCode com seu aplicativo de pagamento
+                  </Text>
+                </Flex>
+
+                <Flex align="center" justify="center" mt="1rem">
+                  <Image
+                    w="15rem"
+                    src={pixQrCode ? `data:image/jpeg;base64,${pixQrCode}` : ''}
+                  />
+                </Flex>
+                <Flex
+                  direction="column"
+                  mb={2}
+                  mt="1rem"
+                  align="center"
+                  justify="center"
+                >
+                  <Text fontSize={isWideVersion ? 'sm' : 'md'} mb="0.3rem">
+                    Ou copie nosso pix e pague no seu banco!
+                  </Text>
+                  <Input
+                    w={isWideVersion ? '25rem' : '20rem'}
+                    value={pastePixCode}
+                    isReadOnly
+                  />
+                  <Flex>
+                    <Button
+                      onClick={onCopy}
+                      ml={2}
+                      w={isWideVersion ? '' : '7rem'}
+                      fontSize={isWideVersion ? '' : 'lg'}
+                      colorScheme="blue"
+                      mt={isWideVersion ? '0.5rem' : '1rem'}
+                      mb={isWideVersion ? '' : '0.5rem'}
+                    >
+                      {hasCopied ? 'Copiado' : 'Copiar'}
+                    </Button>
+                    <Button
+                      onClick={() => navigate('/Pacotes')}
+                      ml={2}
+                      w={isWideVersion ? '' : '7rem'}
+                      fontSize={isWideVersion ? '' : 'lg'}
+                      colorScheme="orange"
+                      mt={isWideVersion ? '0.5rem' : '1rem'}
+                      mb={isWideVersion ? '' : '0.5rem'}
+                    >
+                      Cancelar pix
+                    </Button>
+                  </Flex>
+                  <Flex mt="3rem">
+                    <Image w="sm" src={cpSegura} />
+                  </Flex>
+                </Flex>
               </Stack>
             </GridItem>
           )}

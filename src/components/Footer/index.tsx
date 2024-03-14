@@ -120,11 +120,8 @@ export function Footer() {
               © {year} Viaje com o Rei. Todos os direitos reservados
             </Text>
           </Link>
-          {/* <Text style={{ cursor: 'default' }} fontSize={'small'}>
-            © {year} Viaje com o Rei. Todos os direitos reservados
-          </Text> */}
           <Link
-            href="https://wa.me/5561982107187?text=Ol%C3%A1+GouTech+Digital%2C+tenho+interesse+em+saber+mais+sobre+seu+trabalho%21"
+            href="https://wa.me/5561982107187?text=Ol%C3%A1+Mateus%2C+tenho+interesse+em+saber+mais+sobre+seu+trabalho%21"
             isExternal
             style={{ textDecoration: 'none' }}
           >

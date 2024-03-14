@@ -10,10 +10,7 @@ import {
   Icon,
   useColorModeValue,
   Box,
-  List,
   ListItem,
-  ListIcon,
-  OrderedList,
   UnorderedList,
 } from '@chakra-ui/react';
 import { MdPhoneIphone, MdDevicesOther } from 'react-icons/md';
