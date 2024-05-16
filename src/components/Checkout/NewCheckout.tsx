@@ -39,7 +39,7 @@ import {
 } from '../../utils/mask';
 import { currentYear } from '../../utils/helpers';
 
-import cpSegura from '../../assets/cpsegura.jpg';
+import cpsegura from 'assets/cpsegura.jpg';
 
 interface ClientInterface {
   id: string;
@@ -600,7 +600,7 @@ export function NewCheckout({ pacote }: any) {
                     </Button>
                   </Flex>
                   <Flex mt="3rem">
-                    <Image w="sm" src={cpSegura} />
+                    <Image w="sm" src={cpsegura} />
                   </Flex>
                 </Flex>
               </Stack>
