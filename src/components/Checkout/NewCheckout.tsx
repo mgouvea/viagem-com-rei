@@ -39,7 +39,7 @@ import {
 } from '../../utils/mask';
 import { currentYear } from '../../utils/helpers';
 
-import cpsegura from 'assets/cpsegura.jpg';
+import cpsegura from '@/assets/cpsegura.jpg';
 
 interface ClientInterface {
   id: string;
