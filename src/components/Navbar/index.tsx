@@ -112,7 +112,7 @@ export function Navbar() {
             <Link as={ReactRouter} to={'/'}>
               <Img
                 src={logo}
-                alt="Viagem com o rei"
+                alt="Viagem com rei"
                 boxSize="5rem"
                 w={isWideVersion ? '100%' : '90%'}
                 objectFit="cover"
@@ -128,13 +128,14 @@ export function Navbar() {
                 <Link
                   href="https://api.whatsapp.com/send?phone=556192049304&text=Ol%C3%A1%2C%20quero%20saber%20mais%20informa%C3%A7%C3%B5es%20a%20respeito%20da%20promo%C3%A7%C3%A3o%20Viaje%20com%20o%20Rei!"
                   isExternal
+                  _hover={{ color: 'white' }}
                 >
                   <FaWhatsapp fontSize={'1.3rem'} />
                 </Link>
               </SocialButton>
             </Flex>
-            {window.location.pathname === '/Pacotes' ||
-            window.location.pathname === '/pacotes' ||
+            {window.location.pathname === '/Planos' ||
+            window.location.pathname === '/planos' ||
             window.location.pathname === '/Checkout' ||
             window.location.pathname === '/Checkout20' ||
             window.location.pathname === '/Checkout30' ? null : (
@@ -145,7 +146,7 @@ export function Navbar() {
                 fontWeight={600}
                 color={'white'}
                 bg={'orange.400'}
-                onClick={() => navigate('/Pacotes')}
+                onClick={() => navigate('/Planos')}
                 _hover={{
                   bg: 'orange.500',
                 }}
@@ -342,16 +343,8 @@ const NAV_ITEMS: Array<NavItem> = [
     label: 'Prêmios',
     href: '/premios',
   },
-  // {
-  //   label: 'Ganhadores',
-  //   href: '/ganhadores',
-  // },
   {
-    label: 'Pacotes',
-    href: '/pacotes',
+    label: 'Planos',
+    href: '/planos',
   },
-  // {
-  //   label: 'Faça uma doação',
-  //   href: '#',
-  // },
 ];

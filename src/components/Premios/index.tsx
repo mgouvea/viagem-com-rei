@@ -84,10 +84,10 @@ export function Premios() {
                     pt="0.5rem"
                   >
                     <GridItem w="100%" h="10">
-                      <Text>4 adultos e 1 criança até 11 anos</Text>
+                      <Text>4 adultos e 1 criança</Text>
                     </GridItem>
                     <GridItem w="100%" h="10">
-                      <Text>Caldas Novas - GO</Text>
+                      <Text>Rio Quente - GO</Text>
                     </GridItem>
                   </Grid>
                 </Box>
@@ -96,7 +96,7 @@ export function Premios() {
 
             <Itens
               title="2° Prêmio"
-              highlight="1 iPhone 13"
+              highlight=" iPhone 13"
               benefit1="128 GB"
               image={iphone}
             />
@@ -116,7 +116,7 @@ export function Premios() {
               _hover={{
                 bg: 'green.500',
               }}
-              onClick={() => navigate('/Pacotes')}
+              onClick={() => navigate('/Planos')}
             >
               Participe já!
             </Button>

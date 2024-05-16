@@ -8,6 +8,7 @@ import {
   FormLabel,
   Grid,
   GridItem,
+  HStack,
   Heading,
   Image,
   Input,
@@ -18,9 +19,10 @@ import {
   VStack,
   useBreakpointValue,
   useClipboard,
+  useColorModeValue,
   useToast,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { LuUserCircle, LuQrCode } from 'react-icons/lu';
 import { MdOutlineShoppingCartCheckout } from 'react-icons/md';
 import { PiBroom } from 'react-icons/pi';
@@ -150,7 +152,7 @@ export function NewCheckout({ pacote }: any) {
           number: cpf,
         },
       },
-      description: `Viaje com o rei ${currentYear} - ${firstName(
+      description: `Viaje com rei ${currentYear} - ${firstName(
         nome
       )} ${lastName(nome)}`,
     });
@@ -179,6 +181,45 @@ export function NewCheckout({ pacote }: any) {
     setQtd(1);
   };
 
+  const DynamicHeading = ({ pacote }) => {
+    // Determina o bgGradient baseado no valor de pacote
+    const bgGradient =
+      pacote === '50'
+        ? 'linear(to-r, #FFD860, #C29200)'
+        : pacote === '30'
+        ? 'linear(to-r, #D3D3D3, #6E7685)'
+        : 'linear(to-r, #FFCD97, #DA9D5C)';
+
+    return (
+      <Heading
+        display="flex"
+        justifyContent="flex-start"
+        as="h2"
+        size="lg"
+        bgGradient={bgGradient}
+        backgroundClip="text"
+      >
+        {pacote === '50' ? 'Ouro' : pacote === '30' ? 'Prata' : 'Bronze'}
+      </Heading>
+    );
+  };
+
+  function PriceWrapper({ children }: { children: ReactNode }) {
+    return (
+      <Box
+        shadow="base"
+        borderWidth="1px"
+        alignSelf={{ base: 'center', lg: 'flex-start' }}
+        borderColor={useColorModeValue('gray.200', 'gray.500')}
+        borderRadius={'xl'}
+        bg="#214539"
+        p="0.5rem"
+      >
+        {children}
+      </Box>
+    );
+  }
+
   const height = 'calc(100vh - 80px)';
   return (
     <VStack
@@ -190,15 +231,31 @@ export function NewCheckout({ pacote }: any) {
     >
       <Box h={height}>
         <Grid
-          h="200px"
           templateRows="repeat(1, 1fr)"
-          templateColumns="repeat(10, 1fr)"
+          templateColumns={isWideVersion ? 'repeat(10, 1fr)' : 'repeat(2, 1fr)'}
+          marginInline={isWideVersion ? '10rem' : '1rem'}
           gap={4}
-          marginInline="10rem"
         >
+          {!isWideVersion && (
+            <GridItem colSpan={2} mt="-1.5rem">
+              <PriceWrapper>
+                <Flex align="center" justify="space-between">
+                  <DynamicHeading pacote={pacote} />
+                  <HStack justifyContent="center" color="#f6f6f6">
+                    <Text fontSize="xl" fontWeight="600">
+                      R$
+                    </Text>
+                    <Text fontSize="3xl" fontWeight="900">
+                      {pacote * qtd}
+                    </Text>
+                  </HStack>
+                </Flex>
+              </PriceWrapper>
+            </GridItem>
+          )}
           <GridItem
             rowSpan={1}
-            colSpan={6}
+            colSpan={isWideVersion ? 6 : 2}
             border="1px solid #ccc"
             borderRadius="xl"
             padding="1rem"
@@ -206,8 +263,10 @@ export function NewCheckout({ pacote }: any) {
           >
             <Stack>
               <Flex justify="flex-start" align="center" gap="0.5rem">
-                <LuUserCircle size={25} />
-                <Text fontSize="2xl">Dados Pessoais</Text>
+                <LuUserCircle size={isWideVersion ? 25 : 21} />
+                <Text fontSize={isWideVersion ? '2xl' : 'lg'}>
+                  Dados Pessoais
+                </Text>
               </Flex>
               <FormControl id="email" isInvalid={isErrorEmail && isError}>
                 <FormLabel>Email:</FormLabel>
@@ -256,14 +315,17 @@ export function NewCheckout({ pacote }: any) {
                       }}
                       onClick={handleCleanFields}
                     >
-                      <PiBroom size={25} color="#174d32" />
+                      <PiBroom size={isWideVersion ? 25 : 20} color="#174d32" />
                     </Box>
                   </Tooltip>
                 )}
               </Stack>
             </Stack>
           </GridItem>
-          <GridItem colSpan={4}>
+          <GridItem
+            colSpan={isWideVersion ? 4 : 2}
+            display={isWideVersion ? 'grid' : 'none'}
+          >
             <VStack
               divider={<StackDivider borderColor="gray.200" />}
               spacing={4}
@@ -273,8 +335,8 @@ export function NewCheckout({ pacote }: any) {
               <Flex flexDirection="column" h="60px">
                 <Text fontSize="lg">Ação entre amigos</Text>
                 <Heading fontWeight={600}>
-                  <Text color="orange.500" fontSize="53xl">
-                    Viaje com o Rei
+                  <Text color="orange.500" fontSize="3xl">
+                    Viaje com Rei
                   </Text>
                 </Heading>
               </Flex>
@@ -311,7 +373,7 @@ export function NewCheckout({ pacote }: any) {
           {client && !pixQrCode && (
             <GridItem
               rowSpan={1}
-              colSpan={6}
+              colSpan={isWideVersion ? 6 : 2}
               border="1px solid #ccc"
               borderRadius="xl"
               padding="1rem"
@@ -384,7 +446,7 @@ export function NewCheckout({ pacote }: any) {
           {!client && activeCadastro && (
             <GridItem
               rowSpan={1}
-              colSpan={6}
+              colSpan={isWideVersion ? 6 : 2}
               border="1px solid #ccc"
               borderRadius="xl"
               padding="1rem"
@@ -469,12 +531,13 @@ export function NewCheckout({ pacote }: any) {
           {pixQrCode && (
             <GridItem
               rowSpan={1}
-              colSpan={6}
+              colSpan={isWideVersion ? 6 : 2}
               border="1px solid #ccc"
               borderRadius="xl"
               padding="1rem"
               bg="#FFF"
               boxShadow="0 0 10px 0 #ccc"
+              mb={isWideVersion ? '' : '1rem'}
             >
               <Stack>
                 <Flex
@@ -483,9 +546,11 @@ export function NewCheckout({ pacote }: any) {
                   gap="0.5rem"
                   mb="0.5rem"
                 >
-                  <LuQrCode size={25} />
-                  <Text fontSize="xl">
-                    Leia o QrCode com seu aplicativo de pagamento
+                  <LuQrCode size={isWideVersion ? 25 : 21} />
+                  <Text fontSize={isWideVersion ? 'xl' : 'md'}>
+                    {isWideVersion
+                      ? 'Leia o QrCode com seu aplicativo de pagamento'
+                      : 'Leia o QrCode com seu app bancário'}
                   </Text>
                 </Flex>
 
@@ -516,7 +581,7 @@ export function NewCheckout({ pacote }: any) {
                       ml={2}
                       w={isWideVersion ? '' : '7rem'}
                       fontSize={isWideVersion ? '' : 'lg'}
-                      colorScheme="blue"
+                      colorScheme="green"
                       mt={isWideVersion ? '0.5rem' : '1rem'}
                       mb={isWideVersion ? '' : '0.5rem'}
                     >
@@ -527,7 +592,7 @@ export function NewCheckout({ pacote }: any) {
                       ml={2}
                       w={isWideVersion ? '' : '7rem'}
                       fontSize={isWideVersion ? '' : 'lg'}
-                      colorScheme="orange"
+                      colorScheme="blackAlpha"
                       mt={isWideVersion ? '0.5rem' : '1rem'}
                       mb={isWideVersion ? '' : '0.5rem'}
                     >

@@ -305,7 +305,7 @@ export function Tables() {
           <Flex w={'full'}>
             <TableContainer w="100%">
               <Table variant="striped" colorScheme={'blackAlpha'}>
-                <TableCaption>Viaje com o Rei {year}</TableCaption>
+                <TableCaption>Viaje com Rei {year}</TableCaption>
 
                 {isLoading ? (
                   <Flex justify={'center'}>

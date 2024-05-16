@@ -32,14 +32,14 @@ const testimonials = [
     name: 'Júlio Cezar',
     role: 'Prêmio Principal',
     content:
-      'No ano de 2021 eu participei  da promoção Viaje com o Rei. Todos os meses concorri a prêmios de boa qualidade e fui contemplado no derradeiro sorteio com um Celular IPhone XR, e além da premiação, o que me moveu a participar é saber que o recurso arrecadado serve a uma causa nobre, o que me fez continuar participando desta nova edição em 2022.',
+      'No ano de 2021 eu participei  da promoção Viaje com Rei. Todos os meses concorri a prêmios de boa qualidade e fui contemplado no derradeiro sorteio com um Celular IPhone XR, e além da premiação, o que me moveu a participar é saber que o recurso arrecadado serve a uma causa nobre, o que me fez continuar participando desta nova edição em 2022.',
     avatar: `${jl}`,
   },
   {
     name: 'João Felipe',
     role: 'Prêmio mensal',
     content:
-      'Participei na promoção Viaje com o Rei em 2021 e, para minha surpresa, ganhei o primeiro sorteio dos prêmios mensais! Gostei tanto que decidi continuar participando em 2022 também.',
+      'Participei na promoção Viaje com Rei em 2021 e, para minha surpresa, ganhei o primeiro sorteio dos prêmios mensais! Gostei tanto que decidi continuar participando em 2022 também.',
     avatar: `${jf}`,
   },
 ];
@@ -170,7 +170,7 @@ export function Testimonials() {
           color={useColorModeValue('gray.500', 'gray.400')}
         >
           Veja abaixo o depoimento de algumas pessoas que já ganharam prêmios
-          mensais e prêmios principais nas edições anteriores.
+          nas edições anteriores.
         </chakra.h2>
       </Box>
       <SimpleGrid

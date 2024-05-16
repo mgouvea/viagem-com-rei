@@ -35,8 +35,8 @@ export function Home({ nameUser }: homeProps) {
             </Text>
           </Heading>
           <Text color={'gray.500'} maxW={'3xl'}>
-            Aqui no painel administrativo da promoção Viaje com o Rei nós
-            teremos futuramente um dashboard com os indicadores necessários para
+            Aqui no painel administrativo da promoção Viaje com Rei nós teremos
+            futuramente um dashboard com os indicadores necessários para
             otimizar nossa promoção. Aproveite e acesse no menu lateral a tabela
             de participantes!
           </Text>

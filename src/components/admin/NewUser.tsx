@@ -230,7 +230,7 @@ export function NewUser() {
         <Stack spacing={4} w={'full'} maxW={'md'}>
           <Flex align={'center'} justify="space-between">
             <Heading fontSize={'2xl'} color="green.400">
-              Pacote{' '}
+              Plano{' '}
               {value === 0
                 ? ''
                 : value === 20
@@ -274,7 +274,7 @@ export function NewUser() {
           </Flex>
           <Flex gap="0.5rem">
             <FormControl id="phone" isInvalid={isErrorPacote && isError}>
-              <FormLabel>Pacote:</FormLabel>
+              <FormLabel>Plano:</FormLabel>
               <Select
                 placeholder="Selecione"
                 value={value}
@@ -287,7 +287,7 @@ export function NewUser() {
                 <option value={50}>Ouro</option>
               </Select>
               {isErrorPacote ? (
-                <FormErrorMessage>Pacote é obrigatório.</FormErrorMessage>
+                <FormErrorMessage>Plano é obrigatório.</FormErrorMessage>
               ) : null}
             </FormControl>
             <FormControl id="cpf" isInvalid={isErrorPagamento && isError}>

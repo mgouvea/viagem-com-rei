@@ -29,7 +29,7 @@ interface FeatureProps {
 
 const ListItemArray: string[] = [
   ' Hotel Cristal (5 estrelas) - Suíte Master',
-  '4 adultos e 1 criança até 11 anos',
+  '4 adultos e 1 criança ',
   'Acesso ao Hot Park e Parque das Fontes',
   'Café da manhã e Almoço',
   'Translado ida e volta - Saíndo de Brasília ou Goiânia',
@@ -72,16 +72,16 @@ export function Iphone() {
             color={'blue.400'}
             fontWeight={600}
             fontSize={'sm'}
-            bg={useColorModeValue('blue.50', 'blue.900')}
+            bg={useColorModeValue('green.50', 'green.900')}
             p={2}
             alignSelf={'flex-start'}
             rounded={'md'}
           >
             2° Prêmio
           </Text>
-          <Heading color="orange.400">1 iPhone 13</Heading>
+          <Heading color="orange.400">iPhone 13</Heading>
           <Text color={'gray.500'} fontSize={'lg'}>
-            Como segundo prêmio principal, será sorteado 1 iPhone 13 de 128GB.
+            Como segundo prêmio principal, será sorteado um iPhone 13 de 128GB.
             Além disso, teremos diversos prêmios que serão sorteados
             mensalmente.
           </Text>
@@ -94,18 +94,9 @@ export function Iphone() {
             }
           >
             <Feature
-              icon={
-                <Icon as={SiYourtraveldottv} color={'yellow.500'} w={5} h={5} />
-              }
-              iconBg={useColorModeValue('yellow.100', 'yellow.900')}
-              text={'4 diárias Rio Quente Resorts '}
-              list={true}
-              liArray={ListItemArray}
-            />
-            <Feature
               icon={<Icon as={MdPhoneIphone} color={'green.500'} w={5} h={5} />}
               iconBg={useColorModeValue('green.100', 'green.900')}
-              text={'1 iPhone 13'}
+              text={'iPhone 13'}
             />
             <Feature
               icon={

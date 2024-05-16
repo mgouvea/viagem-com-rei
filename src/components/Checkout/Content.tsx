@@ -202,7 +202,7 @@ export function Content() {
               number: cpf,
             },
           },
-          description: 'Viaje com o rei',
+          description: 'Viaje com  rei',
         },
         { headers }
       )
@@ -371,7 +371,7 @@ export function Content() {
             <Text>Produto:</Text>
 
             <Text>
-              {qtd} Pacote {value}
+              {qtd} Plano {value}
             </Text>
           </Flex>
           <Flex justify={'space-between'} px="5rem" mt="1.3rem">
@@ -484,7 +484,7 @@ export function Content() {
           <Stack spacing={4} w={'full'} maxW={'md'}>
             <Flex align={'center'} justify="space-between">
               <Heading fontSize={'2xl'} color="orange.400">
-                Pacote {value}
+                Plano {value}
               </Heading>
               <Flex align={'center'}>
                 <Text

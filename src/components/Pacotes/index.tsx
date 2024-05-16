@@ -134,25 +134,6 @@ export default function Pacotes() {
           >
             <PriceWrapper>
               <Box position="relative">
-                <Box
-                  position="absolute"
-                  top="-16px"
-                  left="50%"
-                  style={{ transform: 'translate(-50%)' }}
-                >
-                  <Text
-                    textTransform="uppercase"
-                    bg={useColorModeValue('orange.500', 'green.700')}
-                    px={3}
-                    py={1}
-                    fontSize="sm"
-                    fontWeight="600"
-                    rounded="xl"
-                    color="white"
-                  >
-                    Mais popular
-                  </Text>
-                </Box>
                 <Box py={4} px={12}>
                   <Heading
                     display="inline-block"

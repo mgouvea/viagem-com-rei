@@ -35,13 +35,17 @@ export default function Infos() {
                 bg: 'blue.400',
                 zIndex: -1,
               }}
-              color="white"
+              color="#f6f6f6"
             >
               Promoção
             </Text>
             <br />{' '}
-            <Text color={'orange.400'} as={'span'}>
-              Viaje com o Rei
+            <Text
+              color={'blue.300'}
+              as={'span'}
+              textShadow="0 0 1px #364855, 0 0 1px #364855"
+            >
+              Viaje com Rei
             </Text>{' '}
           </Heading>
           <Box bg="rgba(6, 78, 59, 0.1)" zIndex={1} borderRadius="xl">
@@ -50,6 +54,7 @@ export default function Infos() {
               color={'white'}
               fontWeight={'bold'}
               letterSpacing={0.5}
+              textShadow="0 0 1px #364855, 0 0 1px #364855"
             >
               Sua oportunidade de contribuir com as benfeitorias do Núcleo Rei
               Hoasqueiro e ainda concorrer a um pacote turístico de 4 diárias
@@ -60,14 +65,15 @@ export default function Infos() {
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
             <Button
               rounded={'full'}
-              bg={'orange.500'}
+              bg={'blue.700'}
+              border="1px solid #4299e1"
               color={'white'}
               _hover={{
-                bg: 'orange.400',
+                bg: 'blue.600',
                 transition: 'all 0.3s ease',
                 transform: 'scale(1.05)',
               }}
-              onClick={() => navigate('/Pacotes')}
+              onClick={() => navigate('/Planos')}
             >
               Comprar bilhete
             </Button>

@@ -8,8 +8,6 @@ import { theme } from './styles/theme';
 
 import Pacotes from './components/Pacotes';
 import { Checkout } from './components/Checkout';
-import { Checkout20 } from './components/Checkout/Checkout20';
-import { Checkout30 } from './components/Checkout/Checkout30';
 import { PaymentApproved } from './components/PaymentApproved';
 import { Admin } from './components/admin';
 import Ganhadores from './components/Ganhadores';
@@ -23,10 +21,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<App />} />
           <Route path="/premios" element={<PremioViagem />} />
           <Route path="/ganhadores" element={<Ganhadores />} />
-          <Route path="/pacotes" element={<Pacotes />} />
+          <Route path="/planos" element={<Pacotes />} />
           <Route path="/checkout/:id" element={<Checkout />} />
-          {/* <Route path="/checkout20" element={<Checkout20 />} />
-          <Route path="/checkout30" element={<Checkout30 />} /> */}
           <Route path="/paymentApproved" element={<PaymentApproved />} />
           <Route path="/painel" element={<Admin />} />
         </Routes>

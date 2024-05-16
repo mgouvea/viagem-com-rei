@@ -72,24 +72,21 @@ export function Footer() {
           </Link>
           <Link
             as={ReactRouter}
-            to={'/Jeri'}
+            to={'/premios'}
             style={{ textDecoration: 'none' }}
           >
             <Text _hover={{ color: 'orange.400' }}>Prêmios</Text>
           </Link>
           <Link
             as={ReactRouter}
-            to={'/Pacotes'}
+            to={'/Planos'}
             style={{ textDecoration: 'none' }}
           >
-            <Text _hover={{ color: 'orange.400' }}>Pacotes</Text>
+            <Text _hover={{ color: 'orange.400' }}>Planos</Text>
           </Link>
-          {/* <Link as={ReactRouter} to={'/'} style={{ textDecoration: 'none' }}>
-            Doação
-          </Link> */}
           <Link
             as={ReactRouter}
-            to={'/Pacotes'}
+            to={'/Planos'}
             style={{ textDecoration: 'none' }}
           >
             <Text _hover={{ color: 'orange.400' }}>Comprar bilhete</Text>
@@ -117,7 +114,7 @@ export function Footer() {
             style={{ textDecoration: 'none' }}
           >
             <Text style={{ cursor: 'default' }} fontSize={'small'}>
-              © {year} Viaje com o Rei. Todos os direitos reservados
+              © {year} Viaje com Rei. Todos os direitos reservados
             </Text>
           </Link>
           <Link
