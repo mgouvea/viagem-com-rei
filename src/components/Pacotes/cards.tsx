@@ -173,7 +173,8 @@ export function PacotesCardComponent({ pkt, qtd }: PacotesCardProps) {
             <List spacing={3} textAlign="start" px={12}>
               <ListItem>
                 <ListIcon as={FaCheckCircle} color="green.500" />
-                {1 * qtd} bilhete por R$ {20 * qtd},00 reais
+                {1 * qtd} {1 * qtd > 1 ? 'bilhetes' : 'bilhete'} por R${' '}
+                {20 * qtd},00 reais
               </ListItem>
               <ListItem>
                 <ListIcon as={FaCheckCircle} color="green.500" />

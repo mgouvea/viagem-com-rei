@@ -12,6 +12,8 @@ import {
   Heading,
   Image,
   Input,
+  Progress,
+  Select,
   Stack,
   StackDivider,
   Text,
@@ -27,6 +29,7 @@ import { LuUserCircle, LuQrCode } from 'react-icons/lu';
 import { MdOutlineShoppingCartCheckout } from 'react-icons/md';
 import { PiBroom } from 'react-icons/pi';
 import { BsDatabaseAdd } from 'react-icons/bs';
+import { FaInfoCircle } from 'react-icons/fa';
 import { PacotesCardComponent } from '../Pacotes/cards';
 import { api } from '../../services/api';
 import { useNavigate } from 'react-router-dom';
@@ -51,6 +54,14 @@ interface ClientInterface {
   updatedAt: string;
 }
 
+const containerStyle = {
+  height: '18px',
+  display: 'inline-block',
+  border: '1px solid rgb(118, 118, 118)',
+  borderRadius: '2px',
+  padding: '1px 2px',
+};
+
 export function NewCheckout({ pacote }: any) {
   const [qtd, setQtd] = useState(1);
   const [activeCadastro, setActiveCadastro] = useState<boolean>(false);
@@ -66,14 +77,19 @@ export function NewCheckout({ pacote }: any) {
   const [client, setClient] = useState<ClientInterface>();
   const [clientNumbers, setClientNumbers] = useState([] as number[]);
 
+  const [pixId, setPixId] = useState('');
   const [pixQrCode, setPixQrCode] = useState<string>('');
   const [pastePixCode, setPastePixCode] = useState<string>('');
   const { hasCopied, onCopy } = useClipboard(pastePixCode);
+  const [paymentIsCheck, setPaymentIsCheck] = useState(false);
 
   const isErrorNome = nome === '';
   const isErrorEmail = email === '';
   const isErrorPhone = phone === '';
   const isErrorCpf = cpf === '';
+
+  // await loadMercadoPago();
+  // const mp = new window.MercadoPago(process.env.PUBLIC_KEY_MP);
 
   let navigate = useNavigate();
   const toast = useToast();
@@ -110,6 +126,57 @@ export function NewCheckout({ pacote }: any) {
     setIsLoading(false);
   };
 
+  const handleWebHooks = async (id: string) => {
+    try {
+      if (pixId === '') {
+        return;
+      } else {
+        const response = await api.get('/payments/pix', {
+          params: { id },
+        });
+
+        if (response?.status === 'approved') {
+          const purchasePayload = {
+            hasNumber: true,
+            clienteId: client.id,
+            anoCompra: currentYear,
+          };
+
+          await api
+            .post(`/purchase/create`, purchasePayload, { headers })
+            .then((response) => {
+              setPaymentIsCheck(true);
+              navigate('/');
+              toast({
+                title: 'Sucesso',
+                description: 'Pagamento confirmado',
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+                position: 'top-right',
+              });
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          toast({
+            title: 'Não foi possível confirmar seu pagamento',
+            position: 'top-right',
+            status: 'warning',
+            variant: 'left-accent',
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+
+        setPaymentStatus(response?.data?.status);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const handleSaveClient = async () => {
     try {
       const response = await api.post('clients/new-client', {
@@ -121,7 +188,7 @@ export function NewCheckout({ pacote }: any) {
       if (response?.data?.message === 'User with same CPF already exists') {
         toast({
           title: 'Erro',
-          description: 'Esse CPF já está cadastrado!',
+          description: 'Esse CPF já está cadastrado! Tente com outro email',
           position: 'top-right',
           isClosable: true,
           status: 'error',
@@ -156,6 +223,7 @@ export function NewCheckout({ pacote }: any) {
         nome
       )} ${lastName(nome)}`,
     });
+    setPixId(response?.data.id);
     setPixQrCode(
       response.data.point_of_interaction.transaction_data.qr_code_base64
     );
@@ -588,7 +656,7 @@ export function NewCheckout({ pacote }: any) {
                       {hasCopied ? 'Copiado' : 'Copiar'}
                     </Button>
                     <Button
-                      onClick={() => navigate('/Pacotes')}
+                      onClick={() => navigate('/Planos')}
                       ml={2}
                       w={isWideVersion ? '' : '7rem'}
                       fontSize={isWideVersion ? '' : 'lg'}
@@ -598,6 +666,48 @@ export function NewCheckout({ pacote }: any) {
                     >
                       Cancelar pix
                     </Button>
+                  </Flex>
+                  <Flex flexDirection="column" align="center" pt="1.5rem">
+                    <HStack w={isWideVersion ? '' : '22rem'}>
+                      <Flex
+                        flexDirection={isWideVersion ? 'row' : 'column'}
+                        align={isWideVersion ? '' : 'center'}
+                      >
+                        <FaInfoCircle color="#ed8936" size={23} />
+                        <Text
+                          // @ts-ignore
+                          textAlign={isWideVersion ? '' : 'center'}
+                          pl={isWideVersion ? '0.5rem' : ''}
+                        >
+                          Caso já tenha efetivado o pagamento, clique no botão
+                          abaixo!
+                        </Text>
+                      </Flex>
+                    </HStack>
+                    <Box mt="0.7rem">
+                      {isWideVersion ? (
+                        <Tooltip label="Ver Números da sorte" fontSize="md">
+                          <Button
+                            onClick={() => handleWebHooks(pixId)}
+                            ml={2}
+                            w={isWideVersion ? '' : '7rem'}
+                            fontSize={isWideVersion ? '' : 'lg'}
+                            colorScheme="green"
+                            mt={isWideVersion ? '0.5rem' : '1rem'}
+                            mb={isWideVersion ? '' : '0.5rem'}
+                          >
+                            Já fiz o pagamento!
+                          </Button>
+                        </Tooltip>
+                      ) : (
+                        <Button
+                          colorScheme={'orange'}
+                          onClick={() => handleWebHooks(pixId)}
+                        >
+                          Confirmar meu pagamento
+                        </Button>
+                      )}
+                    </Box>
                   </Flex>
                   <Flex mt="3rem">
                     <Image w="sm" src={cpsegura} />

@@ -113,9 +113,9 @@ export function Navbar() {
               <Img
                 src={logo}
                 alt="Viagem com rei"
-                boxSize="5rem"
+                boxSize="3.3rem"
                 w={isWideVersion ? '100%' : '90%'}
-                objectFit="cover"
+                objectFit="contain"
                 ml={isWideVersion ? '2rem' : ''}
               />
             </Link>
