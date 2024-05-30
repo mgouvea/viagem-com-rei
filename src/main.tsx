@@ -12,6 +12,7 @@ import { PaymentApproved } from './components/PaymentApproved';
 import { Admin } from './components/admin';
 import Ganhadores from './components/Ganhadores';
 import { PremioViagem } from './components/PremioViagem';
+import { Manutencao } from './components/Checkout/manutencao';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -22,7 +23,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/premios" element={<PremioViagem />} />
           <Route path="/ganhadores" element={<Ganhadores />} />
           <Route path="/planos" element={<Pacotes />} />
-          <Route path="/checkout/:id" element={<Checkout />} />
+          <Route path="/checkout/:id" element={<Manutencao />} />
+          {/* <Route path="/checkout/:id" element={<Checkout />} /> */}
           <Route path="/paymentApproved" element={<PaymentApproved />} />
           <Route path="/painel" element={<Admin />} />
         </Routes>
